@@ -4,21 +4,33 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "Project 1",
-    description: "A full-stack web application built with React and Node.js",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
-    tech: ["React", "Node.js", "MongoDB"],
+    title: "Sentiment-Enhanced Stock Market Predictor (SE-SMP)",
+    description: "A platform using Streamlit for stock price prediction over a 14-day period. Integrates machine learning with sentiment analysis and computer vision CNN.",
+    tech: ["Streamlit", "ARIMA", "LSTM", "CNN-RNN", "Sentiment Analysis"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
-    title: "Project 2",
-    description: "Mobile-responsive e-commerce platform",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
-    tech: ["Next.js", "TypeScript", "Stripe"],
+    title: "Moving Object Detection Using OpenCV",
+    description: "System achieving 95% accuracy in detecting moving objects, demonstrating potential for automated surveillance and traffic monitoring applications.",
+    tech: ["OpenCV", "Python", "Computer Vision"],
     liveUrl: "#",
     githubUrl: "#",
   },
+  {
+    title: "Dog vs Cat Classification using CNN",
+    description: "Deep learning model achieving 98% accuracy in image classification, using Convolutional Neural Networks.",
+    tech: ["CNN", "TensorFlow", "Deep Learning"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    title: "News Weather Stock Platform",
+    description: "Predictive analytics platform with LSTM models to forecast weather and stock trends, enhancing interaction by 25%.",
+    tech: ["LSTM", "Streamlit", "Python"],
+    liveUrl: "#",
+    githubUrl: "#",
+  }
 ];
 
 export const Projects = () => {
@@ -30,14 +42,9 @@ export const Projects = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <Card key={project.title} className="bg-secondary/50 border-none overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover"
-              />
+            <Card key={project.title} className="bg-secondary/50 border-none hover:bg-secondary/60 transition-colors">
               <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
+                <CardTitle className="text-xl">{project.title}</CardTitle>
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>
               <CardContent>

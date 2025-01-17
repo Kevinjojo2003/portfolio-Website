@@ -1,9 +1,27 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Code, Database, Brain, GitBranch, Terminal, Layout } from "lucide-react";
 
 const skills = [
-  { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS", "Next.js"] },
-  { category: "Backend", items: ["Node.js", "Python", "PostgreSQL", "MongoDB"] },
-  { category: "Tools", items: ["Git", "Docker", "AWS", "VS Code"] },
+  {
+    category: "Programming",
+    icon: <Code className="w-6 h-6 text-primary" />,
+    items: ["Python", "Java", "C", "HTML/CSS", "JavaScript", "SQL"]
+  },
+  {
+    category: "AI & ML",
+    icon: <Brain className="w-6 h-6 text-primary" />,
+    items: ["TensorFlow", "Keras", "scikit-learn", "OpenCV", "LSTM", "CNN"]
+  },
+  {
+    category: "Data Science",
+    icon: <Database className="w-6 h-6 text-primary" />,
+    items: ["Pandas", "NumPy", "Tableau", "PowerBI", "Data Analysis"]
+  },
+  {
+    category: "Tools & Technologies",
+    icon: <Terminal className="w-6 h-6 text-primary" />,
+    items: ["Git", "GitHub", "Google Colab", "Streamlit", "Jira"]
+  }
 ];
 
 export const Skills = () => {
@@ -13,21 +31,24 @@ export const Skills = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
           Skills & Technologies
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {skills.map((skillSet) => (
-            <Card key={skillSet.category} className="bg-secondary/50 border-none">
+            <Card key={skillSet.category} className="bg-secondary/50 border-none hover:bg-secondary/60 transition-colors">
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">{skillSet.category}</h3>
-                <ul className="space-y-2">
+                <div className="flex items-center gap-3 mb-4">
+                  {skillSet.icon}
+                  <h3 className="text-xl font-semibold">{skillSet.category}</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
                   {skillSet.items.map((skill) => (
-                    <li
+                    <span
                       key={skill}
-                      className="text-muted-foreground"
+                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors"
                     >
                       {skill}
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </div>
               </CardContent>
             </Card>
           ))}
