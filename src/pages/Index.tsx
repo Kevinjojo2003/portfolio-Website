@@ -27,12 +27,25 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+    <div className="min-h-screen bg-[#0A0A0B]">
+      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b border-border/40">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <span className="text-xl font-bold gradient-text">KJ</span>
+          <div className="flex items-center gap-6">
+            <a href="#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About</a>
+            <a href="#skills" className="text-sm text-muted-foreground hover:text-primary transition-colors">Skills</a>
+            <a href="#projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">Projects</a>
+            <a href="#contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a>
+          </div>
+        </div>
+      </nav>
+      <div className="pt-16">
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </div>
     </div>
   );
 };

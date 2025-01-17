@@ -56,3 +56,31 @@
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400;
 }
+
+.glass-card {
+  @apply bg-secondary/20 backdrop-blur-sm border border-white/10 hover:border-primary/50 transition-colors;
+}
+
+.nav-link {
+  @apply relative text-sm text-muted-foreground hover:text-primary transition-colors;
+  &::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+  &:hover::after {
+    @apply w-full;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
