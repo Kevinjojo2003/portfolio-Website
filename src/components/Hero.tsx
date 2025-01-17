@@ -10,13 +10,13 @@ export const Hero = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center text-center p-6 relative">
       <div className="space-y-6 max-w-4xl animate-fade-up">
-        <h1 className="text-4xl md:text-6xl font-bold gradient-text">
+        <h1 className="text-4xl md:text-6xl font-bold gradient-text font-sans">
           Kevin Jojo
         </h1>
-        <h2 className="text-2xl md:text-3xl text-muted-foreground">
-          AI Engineer & Full Stack Developer
+        <h2 className="text-2xl md:text-3xl text-muted-foreground font-sans">
+          AI & Machine Learning Engineer
         </h2>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-sans">
           Final year Engineering student specializing in Artificial Intelligence and Machine Learning,
           with expertise in Python, data analysis, and intelligent systems development.
         </p>
