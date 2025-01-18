@@ -1,26 +1,36 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Database, Brain, GitBranch, Terminal, Layout } from "lucide-react";
+import { Code, Database, Brain, GitBranch, Terminal, Layout, ChartBar, Network, Calculator } from "lucide-react";
 
 const skills = [
   {
-    category: "Programming",
+    category: "Programming & Development",
     icon: <Code className="w-6 h-6 text-primary" />,
-    items: ["Python", "Java", "C", "HTML/CSS", "JavaScript", "SQL"]
+    items: ["Python", "R", "Java", "C", "HTML/CSS", "JavaScript", "SQL", "Flask", "Docker", "Git", "Streamlit"]
   },
   {
-    category: "AI & ML",
+    category: "AI & Machine Learning",
     icon: <Brain className="w-6 h-6 text-primary" />,
-    items: ["TensorFlow", "Keras", "scikit-learn", "OpenCV", "LSTM", "CNN"]
+    items: ["TensorFlow", "PyTorch", "Scikit-learn", "Neural Networks", "Decision Trees", "Optimization", "EDA"]
   },
   {
-    category: "Data Science",
+    category: "Deep Learning",
+    icon: <Network className="w-6 h-6 text-primary" />,
+    items: ["CNN", "RNN", "FNN", "GAN", "Transfer Learning", "Computer Vision", "NLP"]
+  },
+  {
+    category: "Data Science & Analytics",
     icon: <Database className="w-6 h-6 text-primary" />,
-    items: ["Pandas", "NumPy", "Tableau", "PowerBI", "Data Analysis"]
+    items: ["Pandas", "NumPy", "Statistical Analysis", "ETL Pipelines", "SQL", "NoSQL", "Large-scale Data Handling"]
   },
   {
-    category: "Tools & Technologies",
-    icon: <Terminal className="w-6 h-6 text-primary" />,
-    items: ["Git", "GitHub", "Google Colab", "Streamlit", "Jira"]
+    category: "Data Visualization",
+    icon: <ChartBar className="w-6 h-6 text-primary" />,
+    items: ["Matplotlib", "Seaborn", "Tableau", "Power BI", "Data Storytelling"]
+  },
+  {
+    category: "Mathematics & Statistics",
+    icon: <Calculator className="w-6 h-6 text-primary" />,
+    items: ["Linear Algebra", "Calculus", "Probability", "Statistics", "Mathematical Modeling"]
   }
 ];
 
@@ -31,7 +41,7 @@ export const Skills = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
           Skills & Technologies
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((skillSet) => (
             <Card key={skillSet.category} className="bg-secondary/50 border-none hover:bg-secondary/60 transition-colors">
               <CardContent className="p-6">
