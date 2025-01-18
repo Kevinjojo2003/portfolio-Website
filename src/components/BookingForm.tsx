@@ -6,13 +6,59 @@ import { Calendar } from "@/components/ui/calendar";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
 
 export const BookingForm = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Booking request sent successfully! I'll get back to you soon.");
+    
+    try {
+      // Send email to admin
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          to_email: 'kevinjojo483@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          booking_date: date?.toLocaleDateString(),
+        },
+        'YOUR_PUBLIC_KEY'
+      );
+
+      // Send confirmation email to user
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_CONFIRMATION_TEMPLATE_ID',
+        {
+          to_email: formData.email,
+          name: formData.name,
+          message: formData.message,
+          booking_date: date?.toLocaleDateString(),
+        },
+        'YOUR_PUBLIC_KEY'
+      );
+
+      toast.success("Booking request sent successfully! Check your email for confirmation.");
+      setFormData({ name: '', email: '', message: '' });
+      setDate(undefined);
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      toast.error("Failed to send booking request. Please try again.");
+    }
   };
 
   return (
@@ -21,17 +67,33 @@ export const BookingForm = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
           Book a Consultation
         </h2>
-        <Card className="max-w-lg mx-auto bg-secondary/50 border-none">
+        <Card className="max-w-lg mx-auto glass-card hover:scale-105 transition-transform duration-300">
           <CardHeader>
             <CardTitle>Schedule a Chat Session</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Input placeholder="Your Name" required />
-                <Input type="email" placeholder="Your Email" required />
+                <Input 
+                  placeholder="Your Name" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required 
+                />
+                <Input 
+                  type="email" 
+                  placeholder="Your Email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required 
+                />
                 <Textarea 
                   placeholder="What would you like to discuss?"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="min-h-[100px]"
                   required
                 />
@@ -58,7 +120,7 @@ export const BookingForm = () => {
                   />
                 </div>
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full hover:scale-105 transition-transform">
                 Request Booking
               </Button>
             </form>
