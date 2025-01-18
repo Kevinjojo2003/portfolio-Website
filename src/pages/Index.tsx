@@ -28,7 +28,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B]">
+    <div className="min-h-screen bg-[#0A0A0B] dark:bg-background">
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b border-border/40">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="text-xl font-bold gradient-text">KJ</span>
@@ -49,6 +49,11 @@ const Index = () => {
         <BookingForm />
         <Contact />
       </div>
+      <footer className="py-6 px-6 border-t border-border/40 bg-background/80 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto text-center text-sm text-muted-foreground">
+          © 2025 Kevin Jojo. All rights reserved
+        </div>
+      </footer>
     </div>
   );
 };
