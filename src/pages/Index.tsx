@@ -4,6 +4,7 @@ import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
 import { BookingForm } from "@/components/BookingForm";
+import { LinkedInPosts } from "@/components/LinkedInPosts";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -46,6 +47,7 @@ const Index = () => {
         <About />
         <Skills />
         <Projects />
+        <LinkedInPosts />
         <BookingForm />
         <Contact />
       </div>

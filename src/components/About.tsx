@@ -34,9 +34,18 @@ export const About = () => {
               </div>
               <div className="space-y-6">
                 <div>
-                  <h4 className="font-medium">AI Engineer Intern</h4>
-                  <p className="text-muted-foreground">Workcohol Solutions Pvt Ltd</p>
-                  <p className="text-sm text-muted-foreground">January 2025 – Present</p>
+                  <div className="flex items-center gap-3">
+                    <img 
+                      src="https://media.licdn.com/dms/image/C560BAQHUWuO9_Ido4w/company-logo_200_200/company-logo_200_200/0/1676549519780" 
+                      alt="Workcohol Logo" 
+                      className="w-8 h-8 rounded-full"
+                    />
+                    <div>
+                      <h4 className="font-medium">AI Engineer Intern</h4>
+                      <p className="text-muted-foreground">Workcohol Solutions Pvt Ltd</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">January 2025 – Present</p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
                     <li>Developing machine learning models for automated solutions</li>
                     <li>Optimizing AI algorithms for improved accuracy</li>
@@ -75,9 +84,18 @@ export const About = () => {
               </div>
               <div className="space-y-6">
                 <div>
-                  <h4 className="font-medium">Head of Corporate Relations</h4>
-                  <p className="text-muted-foreground">E-Cell Karunya, Karunya University</p>
-                  <p className="text-sm text-muted-foreground">June 2023 – June 2024</p>
+                  <div className="flex items-center gap-3">
+                    <img 
+                      src="https://media.licdn.com/dms/image/v2/C560BAQHUWuO9_Ido4w/company-logo_200_200/company-logo_200_200/0/1676549519780" 
+                      alt="E-Cell Karunya Logo" 
+                      className="w-8 h-8 rounded-full"
+                    />
+                    <div>
+                      <h4 className="font-medium">Head of Corporate Relations</h4>
+                      <p className="text-muted-foreground">E-Cell Karunya, Karunya University</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">June 2023 – June 2024</p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
                     <li>Drove partnerships increasing engagement by 40%</li>
                     <li>Managed teams and fostered corporate partnerships</li>
