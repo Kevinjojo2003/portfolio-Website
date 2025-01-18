@@ -5,6 +5,7 @@ import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
 import { BookingForm } from "@/components/BookingForm";
 import { LinkedInPosts } from "@/components/LinkedInPosts";
+import { Blogs } from "@/components/Blogs";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -37,6 +38,7 @@ const Index = () => {
             <a href="#about" className="nav-link">About</a>
             <a href="#skills" className="nav-link">Skills</a>
             <a href="#projects" className="nav-link">Projects</a>
+            <a href="#blogs" className="nav-link">Blogs</a>
             <a href="#booking" className="nav-link">Book a Chat</a>
             <a href="#contact" className="nav-link">Contact</a>
           </div>
@@ -48,6 +50,7 @@ const Index = () => {
         <Skills />
         <Projects />
         <LinkedInPosts />
+        <Blogs />
         <BookingForm />
         <Contact />
       </div>
