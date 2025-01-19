@@ -56,13 +56,11 @@ const Index = () => {
         <Contact />
       </div>
       <footer className="py-6 px-6 border-t border-border/40 bg-background/80 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col items-center gap-4">
-            <IPTracker />
-            <div className="text-sm text-muted-foreground">
-              © 2025 Kevin Jojo. All rights reserved
-            </div>
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <div className="text-sm text-muted-foreground">
+            © 2025 Kevin Jojo. All rights reserved
           </div>
+          <IPTracker />
         </div>
       </footer>
     </div>

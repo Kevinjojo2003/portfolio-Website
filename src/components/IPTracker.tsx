@@ -12,8 +12,6 @@ export const IPTracker = () => {
         const data = await response.json();
         setVisitorIP(data.ip);
         
-        // Here you would typically send this IP to your backend
-        // For now, we'll just store it in localStorage
         const visitors = JSON.parse(localStorage.getItem('visitors') || '[]');
         if (!visitors.includes(data.ip)) {
           visitors.push(data.ip);
@@ -29,13 +27,10 @@ export const IPTracker = () => {
   }, []);
 
   return (
-    <Card className="glass-card">
-      <CardContent className="p-4">
-        <p className="text-sm text-muted-foreground">
-          Unique Visitors: {visitorCount}
-        </p>
-        <p className="text-xs text-muted-foreground mt-1">
-          Your IP: {visitorIP}
+    <Card className="glass-card w-fit">
+      <CardContent className="p-2 text-right">
+        <p className="text-xs text-muted-foreground/70">
+          Visitors: {visitorCount} | IP: {visitorIP}
         </p>
       </CardContent>
     </Card>
