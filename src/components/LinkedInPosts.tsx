@@ -1,4 +1,11 @@
 import { Card } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const LinkedInPosts = () => {
   return (
@@ -8,67 +15,81 @@ export const LinkedInPosts = () => {
           Featured LinkedIn Posts
         </h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="glass-card p-4 flex justify-center">
-            <iframe 
-              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7202518006206193664" 
-              height="1061" 
-              width="100%" 
-              frameBorder="0" 
-              allowFullScreen 
-              title="LinkedIn Post 1"
-              className="max-w-[504px]"
-            />
-          </Card>
-          
-          <Card className="glass-card p-4 flex justify-center">
-            <iframe 
-              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7180596647016501250" 
-              height="1012" 
-              width="100%" 
-              frameBorder="0" 
-              allowFullScreen 
-              title="LinkedIn Post 2"
-              className="max-w-[504px]"
-            />
-          </Card>
-          
-          <Card className="glass-card p-4 flex justify-center">
-            <iframe 
-              src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7176867683731218432" 
-              height="671" 
-              width="100%" 
-              frameBorder="0" 
-              allowFullScreen 
-              title="LinkedIn Post 3"
-              className="max-w-[504px]"
-            />
-          </Card>
+        <Carousel className="w-full max-w-[600px] mx-auto">
+          <CarouselContent>
+            <CarouselItem>
+              <Card className="glass-card p-4 flex justify-center">
+                <iframe 
+                  src="https://www.linkedin.com/embed/feed/update/urn:li:share:7202518006206193664" 
+                  height="1061" 
+                  width="100%" 
+                  frameBorder="0" 
+                  allowFullScreen 
+                  title="LinkedIn Post 1"
+                  className="max-w-[504px]"
+                />
+              </Card>
+            </CarouselItem>
+            
+            <CarouselItem>
+              <Card className="glass-card p-4 flex justify-center">
+                <iframe 
+                  src="https://www.linkedin.com/embed/feed/update/urn:li:share:7180596647016501250" 
+                  height="1012" 
+                  width="100%" 
+                  frameBorder="0" 
+                  allowFullScreen 
+                  title="LinkedIn Post 2"
+                  className="max-w-[504px]"
+                />
+              </Card>
+            </CarouselItem>
+            
+            <CarouselItem>
+              <Card className="glass-card p-4 flex justify-center">
+                <iframe 
+                  src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7176867683731218432" 
+                  height="671" 
+                  width="100%" 
+                  frameBorder="0" 
+                  allowFullScreen 
+                  title="LinkedIn Post 3"
+                  className="max-w-[504px]"
+                />
+              </Card>
+            </CarouselItem>
 
-          <Card className="glass-card p-4 flex justify-center">
-            <iframe 
-              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7163570252876800000" 
-              height="704" 
-              width="100%" 
-              frameBorder="0" 
-              allowFullScreen 
-              title="LinkedIn Post 4"
-              className="max-w-[504px]"
-            />
-          </Card>
+            <CarouselItem>
+              <Card className="glass-card p-4 flex justify-center">
+                <iframe 
+                  src="https://www.linkedin.com/embed/feed/update/urn:li:share:7163570252876800000" 
+                  height="704" 
+                  width="100%" 
+                  frameBorder="0" 
+                  allowFullScreen 
+                  title="LinkedIn Post 4"
+                  className="max-w-[504px]"
+                />
+              </Card>
+            </CarouselItem>
 
-          <Card className="glass-card p-4 flex justify-center">
-            <iframe 
-              src="https://www.linkedin.com/embed/feed/update/urn:li:share:6965137549036003329" 
-              height="858" 
-              width="100%" 
-              frameBorder="0" 
-              allowFullScreen 
-              title="LinkedIn Post 5"
-              className="max-w-[504px]"
-            />
-          </Card>
-        </div>
+            <CarouselItem>
+              <Card className="glass-card p-4 flex justify-center">
+                <iframe 
+                  src="https://www.linkedin.com/embed/feed/update/urn:li:share:6965137549036003329" 
+                  height="858" 
+                  width="100%" 
+                  frameBorder="0" 
+                  allowFullScreen 
+                  title="LinkedIn Post 5"
+                  className="max-w-[504px]"
+                />
+              </Card>
+            </CarouselItem>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </section>
   );
