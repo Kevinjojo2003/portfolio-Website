@@ -11,8 +11,8 @@ export const LinkedInPosts = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card className="glass-card p-4 flex justify-center">
             <iframe 
-              src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7176867683731218432" 
-              height="671" 
+              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7202518006206193664" 
+              height="1061" 
               width="100%" 
               frameBorder="0" 
               allowFullScreen 
@@ -23,8 +23,8 @@ export const LinkedInPosts = () => {
           
           <Card className="glass-card p-4 flex justify-center">
             <iframe 
-              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7163570252876800000" 
-              height="704" 
+              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7180596647016501250" 
+              height="1012" 
               width="100%" 
               frameBorder="0" 
               allowFullScreen 
@@ -35,12 +35,36 @@ export const LinkedInPosts = () => {
           
           <Card className="glass-card p-4 flex justify-center">
             <iframe 
+              src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7176867683731218432" 
+              height="671" 
+              width="100%" 
+              frameBorder="0" 
+              allowFullScreen 
+              title="LinkedIn Post 3"
+              className="max-w-[504px]"
+            />
+          </Card>
+
+          <Card className="glass-card p-4 flex justify-center">
+            <iframe 
+              src="https://www.linkedin.com/embed/feed/update/urn:li:share:7163570252876800000" 
+              height="704" 
+              width="100%" 
+              frameBorder="0" 
+              allowFullScreen 
+              title="LinkedIn Post 4"
+              className="max-w-[504px]"
+            />
+          </Card>
+
+          <Card className="glass-card p-4 flex justify-center">
+            <iframe 
               src="https://www.linkedin.com/embed/feed/update/urn:li:share:6965137549036003329" 
               height="858" 
               width="100%" 
               frameBorder="0" 
               allowFullScreen 
-              title="LinkedIn Post 3"
+              title="LinkedIn Post 5"
               className="max-w-[504px]"
             />
           </Card>
