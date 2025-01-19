@@ -6,6 +6,7 @@ import { Contact } from "@/components/Contact";
 import { BookingForm } from "@/components/BookingForm";
 import { LinkedInPosts } from "@/components/LinkedInPosts";
 import { Blogs } from "@/components/Blogs";
+import { IPTracker } from "@/components/IPTracker";
 import { useEffect } from "react";
 
 const Index = () => {
