@@ -3,7 +3,6 @@ import { useEffect } from "react";
 
 export const BookingForm = () => {
   useEffect(() => {
-    // Load Calendly widget script
     const script = document.createElement('script');
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
@@ -20,7 +19,7 @@ export const BookingForm = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
           Book a Consultation
         </h2>
-        <Card className="max-w-4xl mx-auto glass-card">
+        <Card className="max-w-[500px] mx-auto glass-card">
           <CardHeader>
             <CardTitle>Schedule a Chat Session</CardTitle>
           </CardHeader>
@@ -28,7 +27,7 @@ export const BookingForm = () => {
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/kevinjojo483?hide_landing_page_details=1&hide_gdpr_banner=1" 
-              style={{ minWidth: "320px", height: "700px" }}
+              style={{ minWidth: "320px", height: "500px" }}
             />
           </CardContent>
         </Card>
