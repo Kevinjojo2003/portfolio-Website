@@ -20,25 +20,19 @@ export const BookingForm = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
           Book a Consultation
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <Card className="glass-card">
-            <CardHeader>
-              <CardTitle>Schedule a Chat Session</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div 
-                className="calendly-inline-widget" 
-                data-url="https://calendly.com/kevinjojo483?hide_landing_page_details=1&hide_gdpr_banner=1" 
-                style={{ minWidth: "320px", height: "500px" }}
-              />
-            </CardContent>
-          </Card>
-          
-          <Card className="glass-card">
-            <CardHeader>
-              <CardTitle>My Services</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
+        <Card className="glass-card">
+          <CardHeader>
+            <CardTitle>Schedule a Chat Session</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            <div 
+              className="calendly-inline-widget" 
+              data-url="https://calendly.com/kevinjojo483?hide_landing_page_details=1&hide_gdpr_banner=1" 
+              style={{ minWidth: "320px", height: "500px" }}
+            />
+            
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold">My Services</h3>
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="business">
                   <AccordionTrigger className="text-lg font-semibold">
@@ -134,9 +128,9 @@ export const BookingForm = () => {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );
