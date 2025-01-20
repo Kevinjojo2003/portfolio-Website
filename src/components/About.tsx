@@ -17,10 +17,17 @@ export const About = () => {
                 <h3 className="text-xl font-semibold">Education</h3>
               </div>
               <div className="space-y-4">
-                <div>
-                  <h4 className="font-medium">Karunya Institute of Technology and Sciences</h4>
-                  <p className="text-muted-foreground">Bachelor of Technology in Computer Science (AI and Machine Learning)</p>
-                  <p className="text-sm text-muted-foreground">Sep 2021 – May 2025</p>
+                <div className="flex items-center gap-4">
+                  <img 
+                    src="/lovable-uploads/e59070ab-b6cc-446a-9027-ba2a0b9045f7.png"
+                    alt="Karunya University Logo" 
+                    className="w-12 h-12 object-contain"
+                  />
+                  <div>
+                    <h4 className="font-medium">Karunya Institute of Technology and Sciences</h4>
+                    <p className="text-muted-foreground">Bachelor of Technology in Computer Science (AI and Machine Learning)</p>
+                    <p className="text-sm text-muted-foreground">Sep 2021 – May 2025</p>
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -34,18 +41,18 @@ export const About = () => {
               </div>
               <div className="space-y-6">
                 <div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <img 
-                      src="https://media.licdn.com/dms/image/C560BAQHUWuO9_Ido4w/company-logo_200_200/company-logo_200_200/0/1676549519780" 
+                      src="/lovable-uploads/0b4ce4eb-de3c-47d7-ac69-6ca4b822ad37.png"
                       alt="Workcohol Logo" 
-                      className="w-8 h-8 rounded-full"
+                      className="w-12 h-12 object-contain bg-white rounded-full p-1"
                     />
                     <div>
                       <h4 className="font-medium">AI Engineer Intern</h4>
                       <p className="text-muted-foreground">Workcohol Solutions Pvt Ltd</p>
+                      <p className="text-sm text-muted-foreground">January 2025 – Present</p>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground mt-1">January 2025 – Present</p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
                     <li>Developing machine learning models for automated solutions</li>
                     <li>Optimizing AI algorithms for improved accuracy</li>
@@ -84,18 +91,18 @@ export const About = () => {
               </div>
               <div className="space-y-6">
                 <div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <img 
-                      src="https://media.licdn.com/dms/image/v2/C560BAQHUWuO9_Ido4w/company-logo_200_200/company-logo_200_200/0/1676549519780" 
+                      src="/lovable-uploads/15e34c16-27d8-44fa-ac7b-7431ca288a09.png"
                       alt="E-Cell Karunya Logo" 
-                      className="w-8 h-8 rounded-full"
+                      className="w-12 h-12 object-contain"
                     />
                     <div>
                       <h4 className="font-medium">Head of Corporate Relations</h4>
                       <p className="text-muted-foreground">E-Cell Karunya, Karunya University</p>
+                      <p className="text-sm text-muted-foreground">June 2023 – June 2024</p>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground mt-1">June 2023 – June 2024</p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
                     <li>Drove partnerships increasing engagement by 40%</li>
                     <li>Managed teams and fostered corporate partnerships</li>
