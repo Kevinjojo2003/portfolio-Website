@@ -29,6 +29,30 @@ export const About = () => {
                     <p className="text-sm text-muted-foreground">Sep 2021 – May 2025</p>
                   </div>
                 </div>
+                <div className="flex items-center gap-4">
+                  <img 
+                    src="/lovable-uploads/71322350-15a1-4f5d-afaf-51a4d7fde786.png"
+                    alt="De Paul Public School Logo" 
+                    className="w-12 h-12 object-contain"
+                  />
+                  <div>
+                    <h4 className="font-medium">De Paul Public School Thodupuzha</h4>
+                    <p className="text-muted-foreground">Class 12 CBSE - Mathematics with Computer Science</p>
+                    <p className="text-sm text-muted-foreground">2019 – 2021</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <img 
+                    src="/lovable-uploads/66429d70-55c1-4c94-8ce4-d38253694b0b.png"
+                    alt="The Village International School Logo" 
+                    className="w-12 h-12 object-contain"
+                  />
+                  <div>
+                    <h4 className="font-medium">The Village International School</h4>
+                    <p className="text-muted-foreground">Class 10 CBSE</p>
+                    <p className="text-sm text-muted-foreground">2017 – 2019</p>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -60,18 +84,36 @@ export const About = () => {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium">Web Development Intern</h4>
-                  <p className="text-muted-foreground">Bolt IoT</p>
-                  <p className="text-sm text-muted-foreground">May 2022 – Jun 2022</p>
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src="/lovable-uploads/37d2ddda-c5e5-4bbc-9d1e-24fc8e8e6a0e.png"
+                      alt="Bolt IoT Logo" 
+                      className="w-12 h-12 object-contain bg-white rounded-full p-1"
+                    />
+                    <div>
+                      <h4 className="font-medium">Web Development Intern</h4>
+                      <p className="text-muted-foreground">Bolt IoT</p>
+                      <p className="text-sm text-muted-foreground">May 2022 – Jun 2022</p>
+                    </div>
+                  </div>
                   <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
                     <li>Enhanced user engagement on Quiz Game Portal by 30%</li>
                     <li>Implemented advanced algorithms for better user interaction</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium">Social Media Marketing Intern</h4>
-                  <p className="text-muted-foreground">Younity.in</p>
-                  <p className="text-sm text-muted-foreground">Feb 2022 – Apr 2022</p>
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src="/lovable-uploads/dea0126d-86ea-4f83-b953-a62129e31dd7.png"
+                      alt="Younity Logo" 
+                      className="w-12 h-12 object-contain bg-white rounded-full p-1"
+                    />
+                    <div>
+                      <h4 className="font-medium">Social Media Marketing Intern</h4>
+                      <p className="text-muted-foreground">Younity.in</p>
+                      <p className="text-sm text-muted-foreground">Feb 2022 – Apr 2022</p>
+                    </div>
+                  </div>
                   <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
                     <li>Increased brand visibility by 40% with data-driven strategies</li>
                     <li>Enhanced campaign effectiveness by 35%</li>
@@ -109,9 +151,18 @@ export const About = () => {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium">Head of Human Resources</h4>
-                  <p className="text-muted-foreground">E-Cell Karunya, Karunya University</p>
-                  <p className="text-sm text-muted-foreground">February 2023 – June 2023</p>
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src="/lovable-uploads/15e34c16-27d8-44fa-ac7b-7431ca288a09.png"
+                      alt="E-Cell Karunya Logo" 
+                      className="w-12 h-12 object-contain"
+                    />
+                    <div>
+                      <h4 className="font-medium">Head of Human Resources</h4>
+                      <p className="text-muted-foreground">E-Cell Karunya, Karunya University</p>
+                      <p className="text-sm text-muted-foreground">February 2023 – June 2023</p>
+                    </div>
+                  </div>
                   <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
                     <li>Enhanced recruitment processes, boosting productivity by 20%</li>
                     <li>Established policies that increased retention rates</li>
