@@ -1,8 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
+import { useTheme } from "@/components/ThemeProvider";
+import { Download, Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export const BookingForm = () => {
+  const { theme, setTheme } = useTheme();
+  const [fontSize, setFontSize] = useState(16);
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = "https://assets.calendly.com/assets/external/widget.js";
@@ -14,24 +21,72 @@ export const BookingForm = () => {
     };
   }, []);
 
+  const handleFontSizeChange = (value: number[]) => {
+    setFontSize(value[0]);
+    document.documentElement.style.fontSize = `${value[0]}px`;
+  };
+
   return (
-    <section id="booking" className="py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
-          Book a Consultation
-        </h2>
-        <Card className="glass-card">
+    <section id="booking" className="py-16 px-4" aria-label="Booking and Services Section">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold gradient-text">
+            Book a Consultation
+          </h2>
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              asChild
+              aria-label="Download Resume"
+            >
+              <a 
+                href="https://drive.google.com/file/d/1FbcJTU8HlAYkABnixfUynwya2euTFxAM/view?usp=sharing" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Download className="h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
+
+        <div className="mb-6 flex items-center gap-4">
+          <span className="text-sm">Font Size:</span>
+          <Slider
+            defaultValue={[16]}
+            max={24}
+            min={12}
+            step={1}
+            onValueChange={handleFontSizeChange}
+            className="w-48"
+            aria-label="Adjust font size"
+          />
+          <span className="text-sm">{fontSize}px</span>
+        </div>
+
+        <Card className="glass-card max-w-3xl mx-auto">
           <CardHeader>
             <CardTitle>Schedule a Chat Session</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-8">
+          <CardContent className="space-y-6">
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/kevinjojo483?hide_landing_page_details=1&hide_gdpr_banner=1" 
-              style={{ minWidth: "320px", height: "500px" }}
+              style={{ minWidth: "320px", height: "400px" }}
+              role="complementary"
+              aria-label="Calendly scheduling widget"
             />
             
-            <div className="space-y-6">
+            <div className="space-y-4">
               <h3 className="text-xl font-semibold">My Services</h3>
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="business">
