@@ -3,8 +3,52 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Github, Linkedin, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 export const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        "service_2aqxkzp",
+        "template_yvxbwxp",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: "kevinjojo483@gmail.com"
+        },
+        "Ql_2AQQQhNvGxFXYz"
+      );
+
+      toast.success("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.");
+      console.error("Email error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
   return (
     <section id="contact" className="py-20 px-6 bg-secondary/10">
       <div className="max-w-6xl mx-auto">
@@ -57,10 +101,38 @@ export const Contact = () => {
           </Card>
           <Card className="bg-secondary/50 border-none hover:bg-secondary/60 transition-colors">
             <CardContent className="p-6 space-y-4">
-              <Input placeholder="Your Name" />
-              <Input placeholder="Your Email" type="email" />
-              <Textarea placeholder="Your Message" className="min-h-[120px]" />
-              <Button className="w-full">Send Message</Button>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <Input 
+                  placeholder="Your Name" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+                <Input 
+                  placeholder="Your Email" 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                <Textarea 
+                  placeholder="Your Message" 
+                  className="min-h-[120px]" 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+                <Button 
+                  type="submit" 
+                  className="w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </Button>
+              </form>
             </CardContent>
           </Card>
         </div>
