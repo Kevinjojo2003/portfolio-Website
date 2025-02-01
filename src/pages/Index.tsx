@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 
 const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -21,6 +22,7 @@ const Index = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.setAttribute("data-visible", "true");
+            setActiveSection(entry.target.id);
           }
         });
       },
@@ -38,7 +40,14 @@ const Index = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const offset = 80; // Height of the fixed navbar plus some padding
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
       setIsMobileMenuOpen(false);
     }
   };
@@ -61,12 +70,42 @@ const Index = () => {
 
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center gap-6">
-            <button onClick={() => scrollToSection('about')} className="nav-link">About</button>
-            <button onClick={() => scrollToSection('skills')} className="nav-link">Skills</button>
-            <button onClick={() => scrollToSection('projects')} className="nav-link">Projects</button>
-            <button onClick={() => scrollToSection('blogs')} className="nav-link">Blogs</button>
-            <button onClick={() => scrollToSection('booking')} className="nav-link">Book a Chat</button>
-            <button onClick={() => scrollToSection('contact')} className="nav-link">Contact</button>
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className={cn("nav-link", activeSection === 'about' && "text-primary")}
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection('skills')} 
+              className={cn("nav-link", activeSection === 'skills' && "text-primary")}
+            >
+              Skills
+            </button>
+            <button 
+              onClick={() => scrollToSection('projects')} 
+              className={cn("nav-link", activeSection === 'projects' && "text-primary")}
+            >
+              Projects
+            </button>
+            <button 
+              onClick={() => scrollToSection('blogs')} 
+              className={cn("nav-link", activeSection === 'blogs' && "text-primary")}
+            >
+              Blogs
+            </button>
+            <button 
+              onClick={() => scrollToSection('booking')} 
+              className={cn("nav-link", activeSection === 'booking' && "text-primary")}
+            >
+              Book a Chat
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')} 
+              className={cn("nav-link", activeSection === 'contact' && "text-primary")}
+            >
+              Contact
+            </button>
             <a 
               href="https://drive.google.com/file/d/1FbcJTU8HlAYkABnixfUynwya2euTFxAM/view?usp=sharing"
               target="_blank"
@@ -86,12 +125,42 @@ const Index = () => {
           )}
         >
           <div className="flex flex-col space-y-4 px-6">
-            <button onClick={() => scrollToSection('about')} className="nav-link text-left">About</button>
-            <button onClick={() => scrollToSection('skills')} className="nav-link text-left">Skills</button>
-            <button onClick={() => scrollToSection('projects')} className="nav-link text-left">Projects</button>
-            <button onClick={() => scrollToSection('blogs')} className="nav-link text-left">Blogs</button>
-            <button onClick={() => scrollToSection('booking')} className="nav-link text-left">Book a Chat</button>
-            <button onClick={() => scrollToSection('contact')} className="nav-link text-left">Contact</button>
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className={cn("nav-link text-left", activeSection === 'about' && "text-primary")}
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection('skills')} 
+              className={cn("nav-link text-left", activeSection === 'skills' && "text-primary")}
+            >
+              Skills
+            </button>
+            <button 
+              onClick={() => scrollToSection('projects')} 
+              className={cn("nav-link text-left", activeSection === 'projects' && "text-primary")}
+            >
+              Projects
+            </button>
+            <button 
+              onClick={() => scrollToSection('blogs')} 
+              className={cn("nav-link text-left", activeSection === 'blogs' && "text-primary")}
+            >
+              Blogs
+            </button>
+            <button 
+              onClick={() => scrollToSection('booking')} 
+              className={cn("nav-link text-left", activeSection === 'booking' && "text-primary")}
+            >
+              Book a Chat
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')} 
+              className={cn("nav-link text-left", activeSection === 'contact' && "text-primary")}
+            >
+              Contact
+            </button>
             <a 
               href="https://drive.google.com/file/d/1FbcJTU8HlAYkABnixfUynwya2euTFxAM/view?usp=sharing"
               target="_blank"

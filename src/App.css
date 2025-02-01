@@ -40,3 +40,58 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Navigation styles */
+.nav-link {
+  position: relative;
+  color: var(--foreground);
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: hsl(var(--primary));
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: hsl(var(--primary));
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile navigation styles */
+@media (max-width: 768px) {
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 0;
+  }
+
+  .nav-link::after {
+    bottom: 4px;
+  }
+}
+
+/* Section fade animation */
+.section-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-fade[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
