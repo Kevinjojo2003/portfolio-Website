@@ -54,9 +54,21 @@ const Index = () => {
   };
 
   const handleResumeDownload = () => {
-    const resumeUrl = "https://drive.google.com/file/d/1FbcJTU8HlAYkABnixfUynwya2euTFxAM/view?usp=sharing";
-    window.open(resumeUrl, '_blank');
-    toast.success("Opening resume in a new tab!");
+    const resumeUrl = "https://drive.google.com/uc?export=download&id=1FbcJTU8HlAYkABnixfUynwya2euTFxAM";
+    
+    try {
+      const link = document.createElement('a');
+      link.href = resumeUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      toast.success("Opening resume in a new tab!");
+    } catch (error) {
+      toast.error("Unable to download resume. Please try again later.");
+      console.error("Resume download error:", error);
+    }
   };
 
   return (
