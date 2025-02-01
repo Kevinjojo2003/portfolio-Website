@@ -8,9 +8,10 @@ import { LinkedInPosts } from "@/components/LinkedInPosts";
 import { Blogs } from "@/components/Blogs";
 import { IPTracker } from "@/components/IPTracker";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,7 +41,7 @@ const Index = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Height of the fixed navbar plus some padding
+      const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -52,13 +53,18 @@ const Index = () => {
     }
   };
 
+  const handleResumeDownload = () => {
+    const resumeUrl = "https://drive.google.com/file/d/1FbcJTU8HlAYkABnixfUynwya2euTFxAM/view?usp=sharing";
+    window.open(resumeUrl, '_blank');
+    toast.success("Opening resume in a new tab!");
+  };
+
   return (
     <div className="min-h-screen bg-[#0A0A0B] dark:bg-background">
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b border-border/40">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="text-xl font-bold gradient-text">KJ</span>
           
-          {/* Mobile menu button */}
           <Button
             variant="ghost"
             size="icon"
@@ -68,7 +74,6 @@ const Index = () => {
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
 
-          {/* Desktop navigation */}
           <div className="hidden md:flex items-center gap-6">
             <button 
               onClick={() => scrollToSection('about')} 
@@ -106,18 +111,15 @@ const Index = () => {
             >
               Contact
             </button>
-            <a 
-              href="https://drive.google.com/file/d/1FbcJTU8HlAYkABnixfUynwya2euTFxAM/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-link"
+            <button 
+              onClick={handleResumeDownload}
+              className="nav-link flex items-center gap-1"
             >
-              Resume
-            </a>
+              Resume <Download className="h-4 w-4" />
+            </button>
           </div>
         </div>
 
-        {/* Mobile navigation menu */}
         <div
           className={cn(
             "md:hidden absolute w-full bg-background/95 backdrop-blur-sm border-b border-border/40 transition-all duration-300 ease-in-out",
@@ -161,14 +163,12 @@ const Index = () => {
             >
               Contact
             </button>
-            <a 
-              href="https://drive.google.com/file/d/1FbcJTU8HlAYkABnixfUynwya2euTFxAM/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-link text-left"
+            <button 
+              onClick={handleResumeDownload}
+              className="nav-link text-left flex items-center gap-1"
             >
-              Resume
-            </a>
+              Resume <Download className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </nav>
