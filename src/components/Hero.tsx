@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown, Mail, Github, Linkedin, MapPin, Sun, Moon } from "lucide-react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { useTheme } from "@/components/ThemeProvider";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export const Hero = () => {
   const { theme, setTheme } = useTheme();
+  const { t } = useTranslation();
   
   const scrollToProjects = () => {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
@@ -12,28 +15,30 @@ export const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center text-center p-6 relative">
-      <Button 
-        variant="ghost" 
-        size="icon" 
-        className="fixed top-4 right-4 z-50"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      >
-        {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-      </Button>
+      <div className="fixed top-4 right-4 z-50 flex gap-2">
+        <LanguageSwitcher />
+        <Button 
+          variant="ghost" 
+          size="icon"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
+      </div>
 
       <div className="space-y-6 max-w-4xl animate-fade-up">
         <div className="glass-card p-8 hover:scale-105 transition-transform duration-300">
           <h1 className="text-4xl md:text-6xl font-bold gradient-text font-sans mb-6">
-            Kevin Jojo
+            {t('hero.title')}
           </h1>
           <h2 className="text-2xl md:text-3xl text-muted-foreground font-sans mb-4">
-            AI & Machine Learning Engineer
+            {t('hero.subtitle')}
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-sans leading-relaxed">
-            I'm Kevin Jojo, a passionate AI & Machine Learning Engineer and a final-year engineering student specializing in Artificial Intelligence and Machine Learning. With a strong foundation in Python, data analysis, and intelligent systems development, I thrive on solving complex problems and driving innovation through technology.
+            {t('hero.description1')}
           </p>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-sans mt-4">
-            Explore my journey, projects, and contributions to the world of AI and discover how I blend technical expertise with a drive to create impactful solutions. Let's shape the future together!
+            {t('hero.description2')}
           </p>
         </div>
         
@@ -75,7 +80,7 @@ export const Hero = () => {
           className="mt-8 hover:scale-105 transition-transform"
           size="lg"
         >
-          View My Work <ArrowDown className="ml-2 h-4 w-4 animate-bounce" />
+          {t('hero.viewWork')} <ArrowDown className="ml-2 h-4 w-4 animate-bounce" />
         </Button>
       </div>
     </section>
