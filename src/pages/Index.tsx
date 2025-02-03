@@ -12,10 +12,12 @@ import { Menu, X, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -91,43 +93,43 @@ const Index = () => {
               onClick={() => scrollToSection('about')} 
               className={cn("nav-link", activeSection === 'about' && "text-primary")}
             >
-              About
+              {t('nav.about')}
             </button>
             <button 
               onClick={() => scrollToSection('skills')} 
               className={cn("nav-link", activeSection === 'skills' && "text-primary")}
             >
-              Skills
+              {t('nav.skills')}
             </button>
             <button 
               onClick={() => scrollToSection('projects')} 
               className={cn("nav-link", activeSection === 'projects' && "text-primary")}
             >
-              Projects
+              {t('nav.projects')}
             </button>
             <button 
               onClick={() => scrollToSection('blogs')} 
               className={cn("nav-link", activeSection === 'blogs' && "text-primary")}
             >
-              Blogs
+              {t('nav.blogs')}
             </button>
             <button 
               onClick={() => scrollToSection('booking')} 
               className={cn("nav-link", activeSection === 'booking' && "text-primary")}
             >
-              Book a Chat
+              {t('nav.booking')}
             </button>
             <button 
               onClick={() => scrollToSection('contact')} 
               className={cn("nav-link", activeSection === 'contact' && "text-primary")}
             >
-              Contact
+              {t('nav.contact')}
             </button>
             <button 
               onClick={handleResumeDownload}
               className="nav-link flex items-center gap-1"
             >
-              Resume <Download className="h-4 w-4" />
+              {t('nav.resume')} <Download className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -143,43 +145,43 @@ const Index = () => {
               onClick={() => scrollToSection('about')} 
               className={cn("nav-link text-left", activeSection === 'about' && "text-primary")}
             >
-              About
+              {t('nav.about')}
             </button>
             <button 
               onClick={() => scrollToSection('skills')} 
               className={cn("nav-link text-left", activeSection === 'skills' && "text-primary")}
             >
-              Skills
+              {t('nav.skills')}
             </button>
             <button 
               onClick={() => scrollToSection('projects')} 
               className={cn("nav-link text-left", activeSection === 'projects' && "text-primary")}
             >
-              Projects
+              {t('nav.projects')}
             </button>
             <button 
               onClick={() => scrollToSection('blogs')} 
               className={cn("nav-link text-left", activeSection === 'blogs' && "text-primary")}
             >
-              Blogs
+              {t('nav.blogs')}
             </button>
             <button 
               onClick={() => scrollToSection('booking')} 
               className={cn("nav-link text-left", activeSection === 'booking' && "text-primary")}
             >
-              Book a Chat
+              {t('nav.booking')}
             </button>
             <button 
               onClick={() => scrollToSection('contact')} 
               className={cn("nav-link text-left", activeSection === 'contact' && "text-primary")}
             >
-              Contact
+              {t('nav.contact')}
             </button>
             <button 
               onClick={handleResumeDownload}
               className="nav-link text-left flex items-center gap-1"
             >
-              Resume <Download className="h-4 w-4" />
+              {t('nav.resume')} <Download className="h-4 w-4" />
             </button>
           </div>
         </div>

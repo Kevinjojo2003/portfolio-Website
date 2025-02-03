@@ -20,15 +20,50 @@ const resources = {
       "nav.contact": "Contact",
       "nav.resume": "Resume",
 
+      // About Section
+      "about.title": "Experience & Responsibilities",
+      "about.education": "Education",
+      "about.experience": "Experience",
+      "about.responsibilities": "Positions of Responsibility",
+      "about.certifications": "Certifications",
+
+      // Skills Section
+      "skills.title": "Skills & Technologies",
+      "skills.programming": "Programming & Development",
+      "skills.ai": "AI & Machine Learning",
+      "skills.deepLearning": "Deep Learning",
+      "skills.dataScience": "Data Science & Analytics",
+      "skills.visualization": "Data Visualization",
+      "skills.mathematics": "Mathematics & Statistics",
+
+      // Projects Section
+      "projects.title": "Featured Projects",
+      "projects.liveDemo": "Live Demo",
+      "projects.viewCode": "View Code",
+
+      // Blogs Section
+      "blogs.title": "My Blog Posts",
+
+      // LinkedIn Posts Section
+      "linkedin.title": "Featured LinkedIn Posts",
+
+      // Booking Section
+      "booking.title": "Book a Consultation",
+      "booking.subtitle": "Schedule a Chat Session",
+      "booking.services": "My Services",
+      "booking.business": "Business Services",
+      "booking.technical": "Technical Services",
+
       // Contact Form
-      "contact.title": "Get in Touch",
+      "contact.title": "Get In Touch",
+      "contact.info": "Contact Information",
       "contact.name": "Your Name",
       "contact.email": "Your Email",
       "contact.message": "Your Message",
       "contact.send": "Send Message",
       "contact.sending": "Sending...",
       "contact.success": "Message sent successfully!",
-      "contact.error": "Failed to send message. Please try again.",
+      "contact.error": "Failed to send message. Please try again."
     }
   },
   es: {
@@ -49,15 +84,50 @@ const resources = {
       "nav.contact": "Contacto",
       "nav.resume": "Currículum",
 
+      // About Section
+      "about.title": "Experiencia y Responsabilidades",
+      "about.education": "Educación",
+      "about.experience": "Experiencia",
+      "about.responsibilities": "Posiciones de Responsabilidad",
+      "about.certifications": "Certificaciones",
+
+      // Skills Section
+      "skills.title": "Habilidades y Tecnologías",
+      "skills.programming": "Programación y Desarrollo",
+      "skills.ai": "IA y Aprendizaje Automático",
+      "skills.deepLearning": "Aprendizaje Profundo",
+      "skills.dataScience": "Ciencia de Datos y Análisis",
+      "skills.visualization": "Visualización de Datos",
+      "skills.mathematics": "Matemáticas y Estadística",
+
+      // Projects Section
+      "projects.title": "Proyectos Destacados",
+      "projects.liveDemo": "Demo en Vivo",
+      "projects.viewCode": "Ver Código",
+
+      // Blogs Section
+      "blogs.title": "Mis Publicaciones del Blog",
+
+      // LinkedIn Posts Section
+      "linkedin.title": "Publicaciones Destacadas de LinkedIn",
+
+      // Booking Section
+      "booking.title": "Reservar una Consulta",
+      "booking.subtitle": "Programar una Sesión de Chat",
+      "booking.services": "Mis Servicios",
+      "booking.business": "Servicios Empresariales",
+      "booking.technical": "Servicios Técnicos",
+
       // Contact Form
       "contact.title": "Contacto",
+      "contact.info": "Información de Contacto",
       "contact.name": "Tu Nombre",
       "contact.email": "Tu Email",
       "contact.message": "Tu Mensaje",
       "contact.send": "Enviar Mensaje",
       "contact.sending": "Enviando...",
       "contact.success": "¡Mensaje enviado con éxito!",
-      "contact.error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo.",
+      "contact.error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
     }
   },
   fr: {
@@ -78,15 +148,50 @@ const resources = {
       "nav.contact": "Contact",
       "nav.resume": "CV",
 
+      // About Section
+      "about.title": "Expérience et Responsabilités",
+      "about.education": "Formation",
+      "about.experience": "Expérience",
+      "about.responsibilities": "Postes à Responsabilité",
+      "about.certifications": "Certifications",
+
+      // Skills Section
+      "skills.title": "Compétences et Technologies",
+      "skills.programming": "Programmation et Développement",
+      "skills.ai": "IA et Apprentissage Automatique",
+      "skills.deepLearning": "Apprentissage Profond",
+      "skills.dataScience": "Science des Données et Analyse",
+      "skills.visualization": "Visualisation des Données",
+      "skills.mathematics": "Mathématiques et Statistiques",
+
+      // Projects Section
+      "projects.title": "Projets en Vedette",
+      "projects.liveDemo": "Démo en Direct",
+      "projects.viewCode": "Voir le Code",
+
+      // Blogs Section
+      "blogs.title": "Mes Articles de Blog",
+
+      // LinkedIn Posts Section
+      "linkedin.title": "Publications LinkedIn en Vedette",
+
+      // Booking Section
+      "booking.title": "Réserver une Consultation",
+      "booking.subtitle": "Planifier une Session de Chat",
+      "booking.services": "Mes Services",
+      "booking.business": "Services aux Entreprises",
+      "booking.technical": "Services Techniques",
+
       // Contact Form
       "contact.title": "Contact",
+      "contact.info": "Informations de Contact",
       "contact.name": "Votre Nom",
       "contact.email": "Votre Email",
       "contact.message": "Votre Message",
       "contact.send": "Envoyer",
       "contact.sending": "Envoi en cours...",
       "contact.success": "Message envoyé avec succès !",
-      "contact.error": "Échec de l'envoi du message. Veuillez réessayer.",
+      "contact.error": "Échec de l'envoi du message. Veuillez réessayer."
     }
   }
 };
