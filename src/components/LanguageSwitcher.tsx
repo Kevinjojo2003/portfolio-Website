@@ -14,7 +14,14 @@ export const LanguageSwitcher = () => {
   const languages = [
     { code: 'en', name: 'English' },
     { code: 'es', name: 'Español' },
-    { code: 'fr', name: 'Français' }
+    { code: 'fr', name: 'Français' },
+    { code: 'zh', name: '中文' },
+    { code: 'de', name: 'Deutsch' },
+    { code: 'hi', name: 'हिंदी' },
+    { code: 'ar', name: 'العربية' },
+    { code: 'pt', name: 'Português' },
+    { code: 'ru', name: 'Русский' },
+    { code: 'ja', name: '日本語' }
   ];
 
   return (
@@ -24,7 +31,7 @@ export const LanguageSwitcher = () => {
           <Languages className="h-5 w-5" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="max-h-[300px] overflow-y-auto">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
