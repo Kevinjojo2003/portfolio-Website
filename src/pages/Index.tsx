@@ -8,16 +8,12 @@ import { LinkedInPosts } from "@/components/LinkedInPosts";
 import { Blogs } from "@/components/Blogs";
 import { IPTracker } from "@/components/IPTracker";
 import { useEffect, useState } from "react";
-import { Menu, X, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { MainNav } from "@/components/Navigation/MainNav";
 import { toast } from "sonner";
-import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -75,117 +71,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#0A0A0B] dark:bg-background">
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b border-border/40">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-xl font-bold gradient-text">KJ</span>
-          
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-
-          <div className="hidden md:flex items-center gap-6">
-            <button 
-              onClick={() => scrollToSection('about')} 
-              className={cn("nav-link", activeSection === 'about' && "text-primary")}
-            >
-              {t('nav.about')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('skills')} 
-              className={cn("nav-link", activeSection === 'skills' && "text-primary")}
-            >
-              {t('nav.skills')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('projects')} 
-              className={cn("nav-link", activeSection === 'projects' && "text-primary")}
-            >
-              {t('nav.projects')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('blogs')} 
-              className={cn("nav-link", activeSection === 'blogs' && "text-primary")}
-            >
-              {t('nav.blogs')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('booking')} 
-              className={cn("nav-link", activeSection === 'booking' && "text-primary")}
-            >
-              {t('nav.booking')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')} 
-              className={cn("nav-link", activeSection === 'contact' && "text-primary")}
-            >
-              {t('nav.contact')}
-            </button>
-            <button 
-              onClick={handleResumeDownload}
-              className="nav-link flex items-center gap-1"
-            >
-              {t('nav.resume')} <Download className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-        <div
-          className={cn(
-            "md:hidden absolute w-full bg-background/95 backdrop-blur-sm border-b border-border/40 transition-all duration-300 ease-in-out",
-            isMobileMenuOpen ? "max-h-[400px] py-4" : "max-h-0 overflow-hidden"
-          )}
-        >
-          <div className="flex flex-col space-y-4 px-6">
-            <button 
-              onClick={() => scrollToSection('about')} 
-              className={cn("nav-link text-left", activeSection === 'about' && "text-primary")}
-            >
-              {t('nav.about')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('skills')} 
-              className={cn("nav-link text-left", activeSection === 'skills' && "text-primary")}
-            >
-              {t('nav.skills')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('projects')} 
-              className={cn("nav-link text-left", activeSection === 'projects' && "text-primary")}
-            >
-              {t('nav.projects')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('blogs')} 
-              className={cn("nav-link text-left", activeSection === 'blogs' && "text-primary")}
-            >
-              {t('nav.blogs')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('booking')} 
-              className={cn("nav-link text-left", activeSection === 'booking' && "text-primary")}
-            >
-              {t('nav.booking')}
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')} 
-              className={cn("nav-link text-left", activeSection === 'contact' && "text-primary")}
-            >
-              {t('nav.contact')}
-            </button>
-            <button 
-              onClick={handleResumeDownload}
-              className="nav-link text-left flex items-center gap-1"
-            >
-              {t('nav.resume')} <Download className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </nav>
+      <MainNav 
+        activeSection={activeSection}
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+        scrollToSection={scrollToSection}
+        handleResumeDownload={handleResumeDownload}
+      />
       <div className="pt-16">
         <Hero />
         <About />
