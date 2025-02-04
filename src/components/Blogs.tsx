@@ -1,27 +1,30 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
-
-const blogs = [
-  {
-    title: "Memories Have Life",
-    url: "https://writingsbykevin.blogspot.com/2021/10/memories-have-life_0402192773.html",
-    excerpt: "Explore the lasting impact of memories in our lives",
-    date: "October 2021"
-  },
-  {
-    title: "Trust to Friends",
-    url: "https://writingsbykevin.blogspot.com/2022/04/trust%20to%20friends.html",
-    excerpt: "A reflection on friendship and trust",
-    date: "April 2022"
-  }
-];
+import { useTranslation } from "react-i18next";
 
 export const Blogs = () => {
+  const { t } = useTranslation();
+
+  const blogs = [
+    {
+      title: t('blogs.memories'),
+      url: "https://writingsbykevin.blogspot.com/2021/10/memories-have-life_0402192773.html",
+      excerpt: t('blogs.memoriesDesc'),
+      date: "October 2021"
+    },
+    {
+      title: t('blogs.trust'),
+      url: "https://writingsbykevin.blogspot.com/2022/04/trust%20to%20friends.html",
+      excerpt: t('blogs.trustDesc'),
+      date: "April 2022"
+    }
+  ];
+
   return (
     <section id="blogs" className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
-          My Blog Posts
+          {t('blogs.title')}
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">

@@ -10,10 +10,12 @@ import { IPTracker } from "@/components/IPTracker";
 import { useEffect, useState } from "react";
 import { MainNav } from "@/components/Navigation/MainNav";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,9 +64,9 @@ const Index = () => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      toast.success("Opening resume in a new tab!");
+      toast.success(t('contact.success'));
     } catch (error) {
-      toast.error("Unable to download resume. Please try again later.");
+      toast.error(t('contact.error'));
       console.error("Resume download error:", error);
     }
   };
@@ -91,7 +93,7 @@ const Index = () => {
       <footer className="py-6 px-6 border-t border-border/40 bg-background/80 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="text-sm text-muted-foreground">
-            © 2025 Kevin Jojo. All rights reserved
+            {t('footer.copyright')}
           </div>
           <IPTracker />
         </div>
