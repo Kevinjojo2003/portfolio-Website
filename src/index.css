@@ -4,7 +4,7 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%; /* White background */
+    --background: 213 100% 98%; /* Very light blue background */
     --foreground: 222 47% 11%; /* Dark blue text */
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
@@ -72,7 +72,7 @@
 }
 
 .glass-card {
-  @apply bg-secondary/20 backdrop-blur-sm border border-primary/10 hover:border-primary/50 transition-colors;
+  @apply bg-white/70 backdrop-blur-sm border border-blue-100 hover:border-primary/50 transition-colors shadow-lg;
 }
 
 .nav-link {
