@@ -112,6 +112,49 @@ export const en = {
     "contact.error": "Failed to send message. Please try again.",
     "contact.location": "Cochin, Kerala",
 
+    "about.education.karunya": "Karunya Institute of Technology and Sciences",
+    "about.education.karunyaDegree": "Bachelor of Technology in Computer Science (AI and Machine Learning)",
+    "about.education.karunyaDate": "Sep 2021 – May 2025",
+    
+    "about.education.depaul": "De Paul Public School Thodupuzha",
+    "about.education.depaulDegree": "Class 12 CBSE - Mathematics with Computer Science",
+    "about.education.depaulDate": "2019 – 2021",
+    
+    "about.education.village": "The Village International School",
+    "about.education.villageDegree": "Class 10 CBSE",
+    "about.education.villageDate": "2017 – 2019",
+
+    "about.experience.aiEngineer": "AI Engineer Intern",
+    "about.experience.workcohol": "Workcohol Solutions Pvt Ltd",
+    "about.experience.workcoholDate": "January 2025 – Present",
+    "about.experience.workcoholDesc1": "Developing machine learning models for automated solutions",
+    "about.experience.workcoholDesc2": "Optimizing AI algorithms for improved accuracy",
+    "about.experience.workcoholDesc3": "Collaborating with cross-functional teams",
+
+    "about.experience.webDev": "Web Development Intern",
+    "about.experience.bolt": "Bolt IoT",
+    "about.experience.boltDate": "May 2022 – Jun 2022",
+    "about.experience.boltDesc1": "Enhanced user engagement on Quiz Game Portal by 30%",
+    "about.experience.boltDesc2": "Implemented advanced algorithms for better user interaction",
+
+    "about.experience.marketing": "Social Media Marketing Intern",
+    "about.experience.younity": "Younity.in",
+    "about.experience.younityDate": "Feb 2022 – Apr 2022",
+    "about.experience.younityDesc1": "Increased brand visibility by 40% with data-driven strategies",
+    "about.experience.younityDesc2": "Enhanced campaign effectiveness by 35%",
+
+    "about.responsibilities.corporate": "Head of Corporate Relations",
+    "about.responsibilities.corporateOrg": "E-Cell Karunya, Karunya University",
+    "about.responsibilities.corporateDate": "June 2023 – June 2024",
+    "about.responsibilities.corporateDesc1": "Drove partnerships increasing engagement by 40%",
+    "about.responsibilities.corporateDesc2": "Managed teams and fostered corporate partnerships",
+
+    "about.responsibilities.hr": "Head of Human Resources",
+    "about.responsibilities.hrOrg": "E-Cell Karunya, Karunya University",
+    "about.responsibilities.hrDate": "February 2023 – June 2023",
+    "about.responsibilities.hrDesc1": "Enhanced recruitment processes, boosting productivity by 20%",
+    "about.responsibilities.hrDesc2": "Established policies that increased retention rates",
+
     "footer.copyright": "© 2025 Kevin Jojo. All rights reserved",
     "footer.ipTracker": "Your IP Address"
   }

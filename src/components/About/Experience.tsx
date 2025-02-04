@@ -1,13 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Briefcase } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Experience = () => {
+  const { t } = useTranslation();
+  
   return (
     <Card className="glass-card">
       <CardContent className="p-6 md:p-8">
         <div className="flex items-center gap-3 mb-6">
           <Briefcase className="w-6 h-6 text-primary" />
-          <h3 className="text-xl font-semibold">Experience</h3>
+          <h3 className="text-xl font-semibold">{t('about.experience')}</h3>
         </div>
         <div className="space-y-6">
           <div>
@@ -18,15 +21,15 @@ export const Experience = () => {
                 className="w-12 h-12 object-contain bg-white rounded-full p-1"
               />
               <div>
-                <h4 className="font-medium">AI Engineer Intern</h4>
-                <p className="text-muted-foreground">Workcohol Solutions Pvt Ltd</p>
-                <p className="text-sm text-muted-foreground">January 2025 – Present</p>
+                <h4 className="font-medium">{t('about.experience.aiEngineer')}</h4>
+                <p className="text-muted-foreground">{t('about.experience.workcohol')}</p>
+                <p className="text-sm text-muted-foreground">{t('about.experience.workcoholDate')}</p>
               </div>
             </div>
             <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
-              <li>Developing machine learning models for automated solutions</li>
-              <li>Optimizing AI algorithms for improved accuracy</li>
-              <li>Collaborating with cross-functional teams</li>
+              <li>{t('about.experience.workcoholDesc1')}</li>
+              <li>{t('about.experience.workcoholDesc2')}</li>
+              <li>{t('about.experience.workcoholDesc3')}</li>
             </ul>
           </div>
           <div>
@@ -37,14 +40,14 @@ export const Experience = () => {
                 className="w-12 h-12 object-contain bg-white rounded-full p-1"
               />
               <div>
-                <h4 className="font-medium">Web Development Intern</h4>
-                <p className="text-muted-foreground">Bolt IoT</p>
-                <p className="text-sm text-muted-foreground">May 2022 – Jun 2022</p>
+                <h4 className="font-medium">{t('about.experience.webDev')}</h4>
+                <p className="text-muted-foreground">{t('about.experience.bolt')}</p>
+                <p className="text-sm text-muted-foreground">{t('about.experience.boltDate')}</p>
               </div>
             </div>
             <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
-              <li>Enhanced user engagement on Quiz Game Portal by 30%</li>
-              <li>Implemented advanced algorithms for better user interaction</li>
+              <li>{t('about.experience.boltDesc1')}</li>
+              <li>{t('about.experience.boltDesc2')}</li>
             </ul>
           </div>
           <div>
@@ -55,14 +58,14 @@ export const Experience = () => {
                 className="w-12 h-12 object-contain bg-white rounded-full p-1"
               />
               <div>
-                <h4 className="font-medium">Social Media Marketing Intern</h4>
-                <p className="text-muted-foreground">Younity.in</p>
-                <p className="text-sm text-muted-foreground">Feb 2022 – Apr 2022</p>
+                <h4 className="font-medium">{t('about.experience.marketing')}</h4>
+                <p className="text-muted-foreground">{t('about.experience.younity')}</p>
+                <p className="text-sm text-muted-foreground">{t('about.experience.younityDate')}</p>
               </div>
             </div>
             <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
-              <li>Increased brand visibility by 40% with data-driven strategies</li>
-              <li>Enhanced campaign effectiveness by 35%</li>
+              <li>{t('about.experience.younityDesc1')}</li>
+              <li>{t('about.experience.younityDesc2')}</li>
             </ul>
           </div>
         </div>

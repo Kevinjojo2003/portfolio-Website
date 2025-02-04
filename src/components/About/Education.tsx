@@ -1,13 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Education = () => {
+  const { t } = useTranslation();
+  
   return (
     <Card className="glass-card">
       <CardContent className="p-6 md:p-8">
         <div className="flex items-center gap-3 mb-6">
           <BookOpen className="w-6 h-6 text-primary" />
-          <h3 className="text-xl font-semibold">Education</h3>
+          <h3 className="text-xl font-semibold">{t('about.education')}</h3>
         </div>
         <div className="space-y-4">
           <div className="flex items-center gap-4">
@@ -17,9 +20,9 @@ export const Education = () => {
               className="w-12 h-12 object-contain"
             />
             <div>
-              <h4 className="font-medium">Karunya Institute of Technology and Sciences</h4>
-              <p className="text-muted-foreground">Bachelor of Technology in Computer Science (AI and Machine Learning)</p>
-              <p className="text-sm text-muted-foreground">Sep 2021 – May 2025</p>
+              <h4 className="font-medium">{t('about.education.karunya')}</h4>
+              <p className="text-muted-foreground">{t('about.education.karunyaDegree')}</p>
+              <p className="text-sm text-muted-foreground">{t('about.education.karunyaDate')}</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -29,9 +32,9 @@ export const Education = () => {
               className="w-12 h-12 object-contain"
             />
             <div>
-              <h4 className="font-medium">De Paul Public School Thodupuzha</h4>
-              <p className="text-muted-foreground">Class 12 CBSE - Mathematics with Computer Science</p>
-              <p className="text-sm text-muted-foreground">2019 – 2021</p>
+              <h4 className="font-medium">{t('about.education.depaul')}</h4>
+              <p className="text-muted-foreground">{t('about.education.depaulDegree')}</p>
+              <p className="text-sm text-muted-foreground">{t('about.education.depaulDate')}</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -41,9 +44,9 @@ export const Education = () => {
               className="w-12 h-12 object-contain"
             />
             <div>
-              <h4 className="font-medium">The Village International School</h4>
-              <p className="text-muted-foreground">Class 10 CBSE</p>
-              <p className="text-sm text-muted-foreground">2017 – 2019</p>
+              <h4 className="font-medium">{t('about.education.village')}</h4>
+              <p className="text-muted-foreground">{t('about.education.villageDegree')}</p>
+              <p className="text-sm text-muted-foreground">{t('about.education.villageDate')}</p>
             </div>
           </div>
         </div>

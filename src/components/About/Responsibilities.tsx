@@ -1,13 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Users } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Responsibilities = () => {
+  const { t } = useTranslation();
+  
   return (
     <Card className="glass-card">
       <CardContent className="p-6 md:p-8">
         <div className="flex items-center gap-3 mb-6">
           <Users className="w-6 h-6 text-primary" />
-          <h3 className="text-xl font-semibold">Positions of Responsibility</h3>
+          <h3 className="text-xl font-semibold">{t('about.responsibilities')}</h3>
         </div>
         <div className="space-y-6">
           <div>
@@ -18,14 +21,14 @@ export const Responsibilities = () => {
                 className="w-12 h-12 object-contain"
               />
               <div>
-                <h4 className="font-medium">Head of Corporate Relations</h4>
-                <p className="text-muted-foreground">E-Cell Karunya, Karunya University</p>
-                <p className="text-sm text-muted-foreground">June 2023 – June 2024</p>
+                <h4 className="font-medium">{t('about.responsibilities.corporate')}</h4>
+                <p className="text-muted-foreground">{t('about.responsibilities.corporateOrg')}</p>
+                <p className="text-sm text-muted-foreground">{t('about.responsibilities.corporateDate')}</p>
               </div>
             </div>
             <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
-              <li>Drove partnerships increasing engagement by 40%</li>
-              <li>Managed teams and fostered corporate partnerships</li>
+              <li>{t('about.responsibilities.corporateDesc1')}</li>
+              <li>{t('about.responsibilities.corporateDesc2')}</li>
             </ul>
           </div>
           <div>
@@ -36,14 +39,14 @@ export const Responsibilities = () => {
                 className="w-12 h-12 object-contain"
               />
               <div>
-                <h4 className="font-medium">Head of Human Resources</h4>
-                <p className="text-muted-foreground">E-Cell Karunya, Karunya University</p>
-                <p className="text-sm text-muted-foreground">February 2023 – June 2023</p>
+                <h4 className="font-medium">{t('about.responsibilities.hr')}</h4>
+                <p className="text-muted-foreground">{t('about.responsibilities.hrOrg')}</p>
+                <p className="text-sm text-muted-foreground">{t('about.responsibilities.hrDate')}</p>
               </div>
             </div>
             <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
-              <li>Enhanced recruitment processes, boosting productivity by 20%</li>
-              <li>Established policies that increased retention rates</li>
+              <li>{t('about.responsibilities.hrDesc1')}</li>
+              <li>{t('about.responsibilities.hrDesc2')}</li>
             </ul>
           </div>
         </div>
