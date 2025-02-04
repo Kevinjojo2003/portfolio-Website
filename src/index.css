@@ -72,7 +72,7 @@
 }
 
 .glass-card {
-  @apply bg-white/70 backdrop-blur-sm border border-blue-100 hover:border-primary/50 transition-colors shadow-lg;
+  @apply bg-white/70 dark:bg-black/20 backdrop-blur-sm border border-blue-100 dark:border-gray-800 hover:border-primary/50 transition-colors shadow-lg dark:shadow-none;
 }
 
 .nav-link {
