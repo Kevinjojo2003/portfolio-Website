@@ -7,10 +7,26 @@ import { useInView } from "react-intersection-observer";
 
 export const About = () => {
   const { t } = useTranslation();
-  const [educationRef, educationInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [experienceRef, experienceInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [responsibilitiesRef, responsibilitiesInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [certificationsRef, certificationsInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [educationRef, educationInView] = useInView({ 
+    threshold: 0.2,
+    triggerOnce: true,
+    delay: 100
+  });
+  const [experienceRef, experienceInView] = useInView({ 
+    threshold: 0.2,
+    triggerOnce: true,
+    delay: 200
+  });
+  const [responsibilitiesRef, responsibilitiesInView] = useInView({ 
+    threshold: 0.2,
+    triggerOnce: true,
+    delay: 300
+  });
+  const [certificationsRef, certificationsInView] = useInView({ 
+    threshold: 0.2,
+    triggerOnce: true,
+    delay: 400
+  });
 
   return (
     <section id="about" className="py-20 px-6">
@@ -22,7 +38,7 @@ export const About = () => {
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           <div 
             ref={educationRef}
-            className={`transform transition-all duration-700 ${
+            className={`transform transition-all duration-1000 ${
               educationInView ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
             }`}
           >
@@ -30,7 +46,7 @@ export const About = () => {
           </div>
           <div 
             ref={experienceRef}
-            className={`transform transition-all duration-700 delay-200 ${
+            className={`transform transition-all duration-1000 delay-200 ${
               experienceInView ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'
             }`}
           >
@@ -41,7 +57,7 @@ export const About = () => {
         <div className="grid md:grid-cols-2 gap-6">
           <div 
             ref={responsibilitiesRef}
-            className={`transform transition-all duration-700 ${
+            className={`transform transition-all duration-1000 ${
               responsibilitiesInView ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
             }`}
           >
@@ -49,7 +65,7 @@ export const About = () => {
           </div>
           <div 
             ref={certificationsRef}
-            className={`transform transition-all duration-700 delay-200 ${
+            className={`transform transition-all duration-1000 delay-200 ${
               certificationsInView ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'
             }`}
           >
