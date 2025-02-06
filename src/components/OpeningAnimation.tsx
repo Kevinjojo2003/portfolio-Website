@@ -72,17 +72,19 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
     const animate = () => {
       frame++;
       
-      // Rotate the entire network
+      // Rotate and pulse the network
       nodes.forEach((node, i) => {
         node.rotation.x += 0.01;
         node.rotation.y += 0.01;
         node.position.x += Math.sin(frame * 0.02 + i) * 0.01;
         node.position.y += Math.cos(frame * 0.02 + i) * 0.01;
+        // Add pulsing effect
+        const scale = 1 + Math.sin(frame * 0.05 + i) * 0.1;
+        node.scale.set(scale, scale, scale);
       });
 
       // Update connections
-      connections.forEach((line, i) => {
-        const positions = line.geometry.attributes.position.array;
+      connections.forEach((line) => {
         line.geometry.attributes.position.needsUpdate = true;
       });
 
@@ -91,9 +93,8 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
       // Complete animation after 3 seconds
       if (frame === 180) {
         onComplete();
-      } else {
-        requestAnimationFrame(animate);
       }
+      requestAnimationFrame(animate);
     };
 
     animate();
