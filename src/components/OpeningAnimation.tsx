@@ -7,13 +7,14 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
   const containerRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const [dataStream, setDataStream] = useState<string[]>([]);
+  const [progress, setProgress] = useState(0);
 
   // Generate random binary stream
   useEffect(() => {
     const interval = setInterval(() => {
       setDataStream(prev => {
         const newStream = [...prev];
-        if (newStream.length > 20) newStream.shift();
+        if (newStream.length > 30) newStream.shift();
         return [...newStream, Math.random().toString(2).substr(2, 8)];
       });
     }, 100);
@@ -58,7 +59,7 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
       }
     });
 
-    // Create connections
+    // Create connections with animated materials
     const lineMaterial = new THREE.LineBasicMaterial({
       color: theme === 'dark' ? 0x4a9eff : 0x2563eb,
       transparent: true,
@@ -72,7 +73,7 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
         for (let j = nextLayerStart; j < nextLayerStart + layers[layer + 1]; j++) {
           const points = [nodes[i].position, nodes[j].position];
           const geometry = new THREE.BufferGeometry().setFromPoints(points);
-          const line = new THREE.Line(geometry, lineMaterial);
+          const line = new THREE.Line(geometry, lineMaterial.clone());
           connections.push(line);
           scene.add(line);
         }
@@ -80,7 +81,7 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
       currentLayerStart += layers[layer];
     }
 
-    // Add lights
+    // Add lights with animation
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
@@ -96,14 +97,23 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
 
     // Animation
     let frame = 0;
+    const startTime = Date.now();
+    const animationDuration = 30000; // 30 seconds
+
     const animate = () => {
       frame++;
       
-      // Rotate camera slightly
+      // Calculate progress
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min((elapsed / animationDuration) * 100, 100);
+      setProgress(progress);
+
+      // Rotate camera with smooth oscillation
       camera.position.x = Math.sin(frame * 0.001) * 2;
+      camera.position.y = Math.cos(frame * 0.001) * 1;
       camera.lookAt(0, 0, 0);
 
-      // Animate nodes
+      // Animate nodes with wave effect
       nodes.forEach((node, i) => {
         const time = frame * 0.02;
         node.position.y += Math.sin(time + i) * 0.002;
@@ -111,14 +121,41 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
         node.scale.set(scale, scale, scale);
       });
 
-      // Animate connections
+      // Animate connections with pulse effect
       connections.forEach((line, i) => {
         const opacity = (Math.sin(frame * 0.02 + i) + 1) * 0.3;
         (line.material as THREE.LineBasicMaterial).opacity = opacity;
       });
 
+      // Animate lights
+      pointLight1.position.x = Math.sin(frame * 0.01) * 5;
+      pointLight2.position.x = -Math.sin(frame * 0.01) * 5;
+
       renderer.render(scene, camera);
-      requestAnimationFrame(animate);
+
+      if (elapsed < animationDuration) {
+        requestAnimationFrame(animate);
+      } else {
+        // Fade out animation
+        const fadeOut = () => {
+          frame++;
+          nodes.forEach(node => {
+            (node.material as THREE.MeshPhongMaterial).opacity *= 0.95;
+          });
+          connections.forEach(line => {
+            (line.material as THREE.LineBasicMaterial).opacity *= 0.95;
+          });
+          renderer.render(scene, camera);
+
+          if ((nodes[0].material as THREE.MeshPhongMaterial).opacity > 0.01) {
+            requestAnimationFrame(fadeOut);
+          } else {
+            onComplete();
+            toast.success("Welcome to my portfolio!");
+          }
+        };
+        fadeOut();
+      }
     };
 
     animate();
@@ -131,12 +168,6 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
     };
 
     window.addEventListener('resize', handleResize);
-
-    // Trigger completion after animation
-    setTimeout(() => {
-      onComplete();
-      toast.success("Welcome to my portfolio!");
-    }, 3000);
 
     return () => {
       if (containerRef.current) {
@@ -163,6 +194,14 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
               {binary}
             </div>
           ))}
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="w-64 h-1 bg-primary/20 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-primary transition-all duration-300 rounded-full"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
         </div>
       </div>
     </div>
