@@ -1,10 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useTheme } from '@/components/ThemeProvider';
+import { toast } from 'sonner';
 
 export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
+  const [dataStream, setDataStream] = useState<string[]>([]);
+
+  // Generate random binary stream
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDataStream(prev => {
+        const newStream = [...prev];
+        if (newStream.length > 20) newStream.shift();
+        return [...newStream, Math.random().toString(2).substr(2, 8)];
+      });
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -16,10 +31,10 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create a more complex neural network structure
+    // Create neural network structure
     const nodes: THREE.Mesh[] = [];
     const connections: THREE.Line[] = [];
-    const layers = [4, 6, 6, 4]; // Neural network architecture
+    const layers = [4, 6, 6, 4];
     const nodeGeometry = new THREE.SphereGeometry(0.15, 32, 32);
     
     const nodeMaterial = new THREE.MeshPhongMaterial({
@@ -43,7 +58,7 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
       }
     });
 
-    // Create connections between layers
+    // Create connections
     const lineMaterial = new THREE.LineBasicMaterial({
       color: theme === 'dark' ? 0x4a9eff : 0x2563eb,
       transparent: true,
@@ -91,25 +106,18 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
       // Animate nodes
       nodes.forEach((node, i) => {
         const time = frame * 0.02;
-        // Add subtle floating motion
         node.position.y += Math.sin(time + i) * 0.002;
-        // Pulsing effect
         const scale = 1 + Math.sin(time * 2 + i) * 0.1;
         node.scale.set(scale, scale, scale);
       });
 
-      // Animate connections opacity
+      // Animate connections
       connections.forEach((line, i) => {
         const opacity = (Math.sin(frame * 0.02 + i) + 1) * 0.3;
         (line.material as THREE.LineBasicMaterial).opacity = opacity;
       });
 
       renderer.render(scene, camera);
-
-      // Complete animation after 3 seconds
-      if (frame === 180) {
-        onComplete();
-      }
       requestAnimationFrame(animate);
     };
 
@@ -124,6 +132,12 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
 
     window.addEventListener('resize', handleResize);
 
+    // Trigger completion after animation
+    setTimeout(() => {
+      onComplete();
+      toast.success("Welcome to my portfolio!");
+    }, 3000);
+
     return () => {
       if (containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
@@ -133,10 +147,24 @@ export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => 
   }, [theme]);
 
   return (
-    <div 
-      ref={containerRef} 
-      className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
-      style={{ animation: 'fadeOut 0.5s ease-out 2.5s forwards' }}
-    />
+    <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm">
+      <div ref={containerRef} className="w-full h-full" />
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="flex flex-wrap gap-4 p-4">
+          {dataStream.map((binary, index) => (
+            <div
+              key={index}
+              className="text-primary/60 font-mono text-sm animate-fade-up"
+              style={{
+                animationDelay: `${index * 50}ms`,
+                opacity: 0
+              }}
+            >
+              {binary}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };

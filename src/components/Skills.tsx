@@ -54,14 +54,13 @@ export const Skills = () => {
           {skills.map((skillSet, index) => (
             <Card 
               key={skillSet.category} 
-              className={`bg-secondary/50 border-none hover:bg-secondary/60 transition-all duration-1000 transform ${
+              className={`glass-card hover:scale-105 transition-all duration-300 transform ${
                 inView 
                   ? 'translate-y-0 opacity-100' 
                   : 'translate-y-20 opacity-0'
               }`}
               style={{ 
-                transitionDelay: `${index * 100}ms`,
-                transform: inView ? 'translateY(0)' : 'translateY(20px)'
+                transitionDelay: `${index * 100}ms`
               }}
             >
               <CardContent className="p-6">
@@ -73,7 +72,7 @@ export const Skills = () => {
                   {skillSet.items.map((skill, skillIndex) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors"
+                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-all duration-300 transform hover:scale-105"
                       style={{ 
                         animation: inView ? `fadeIn 0.5s ease-out forwards ${(index * 100) + (skillIndex * 50)}ms` : 'none',
                         opacity: 0
