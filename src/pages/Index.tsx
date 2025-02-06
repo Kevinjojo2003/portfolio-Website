@@ -11,10 +11,12 @@ import { useEffect, useState } from "react";
 import { MainNav } from "@/components/Navigation/MainNav";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { OpeningAnimation } from "@/components/OpeningAnimation";
 
 const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [showContent, setShowContent] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -72,33 +74,36 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background transition-colors duration-300">
-      <MainNav 
-        activeSection={activeSection}
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-        scrollToSection={scrollToSection}
-        handleResumeDownload={handleResumeDownload}
-      />
-      <div className="pt-16">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <LinkedInPosts />
-        <Blogs />
-        <BookingForm />
-        <Contact />
-      </div>
-      <footer className="py-6 px-6 border-t border-border/40 bg-background/80 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <div className="text-sm text-muted-foreground">
-            {t('footer.copyright')}
-          </div>
-          <IPTracker />
+    <>
+      {!showContent && <OpeningAnimation onComplete={() => setShowContent(true)} />}
+      <div className={`min-h-screen bg-background transition-colors duration-300 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+        <MainNav 
+          activeSection={activeSection}
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+          scrollToSection={scrollToSection}
+          handleResumeDownload={handleResumeDownload}
+        />
+        <div className="pt-16">
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <LinkedInPosts />
+          <Blogs />
+          <BookingForm />
+          <Contact />
         </div>
-      </footer>
-    </div>
+        <footer className="py-6 px-6 border-t border-border/40 bg-background/80 backdrop-blur-sm">
+          <div className="max-w-6xl mx-auto flex justify-between items-center">
+            <div className="text-sm text-muted-foreground">
+              {t('footer.copyright')}
+            </div>
+            <IPTracker />
+          </div>
+        </footer>
+      </div>
+    </>
   );
 };
 
