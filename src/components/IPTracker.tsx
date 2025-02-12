@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -8,16 +9,27 @@ export const IPTracker = () => {
   useEffect(() => {
     const trackVisitor = async () => {
       try {
+        // Get visitor's IP
         const response = await fetch('https://api.ipify.org?format=json');
         const data = await response.json();
         setVisitorIP(data.ip);
         
-        const visitors = JSON.parse(localStorage.getItem('visitors') || '[]');
+        // Get existing visitors from localStorage
+        const storedVisitors = localStorage.getItem('visitors');
+        let visitors: string[] = [];
+        
+        if (storedVisitors) {
+          visitors = JSON.parse(storedVisitors);
+        }
+        
+        // Check if this IP is new
         if (!visitors.includes(data.ip)) {
           visitors.push(data.ip);
           localStorage.setItem('visitors', JSON.stringify(visitors));
-          setVisitorCount(visitors.length);
         }
+        
+        // Update count
+        setVisitorCount(visitors.length);
       } catch (error) {
         console.error('Error tracking visitor:', error);
       }
