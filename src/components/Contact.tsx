@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,8 +7,10 @@ import { Mail, Github, Linkedin, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 export const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,10 +35,10 @@ export const Contact = () => {
         "Ql_2AQQQhNvGxFXYz"
       );
 
-      toast.success("Message sent successfully!");
+      toast.success(t('contact.success'));
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      toast.error("Failed to send message. Please try again.");
+      toast.error(t('contact.error'));
       console.error("Email error:", error);
     } finally {
       setIsSubmitting(false);
@@ -53,12 +56,12 @@ export const Contact = () => {
     <section id="contact" className="py-20 px-6 bg-secondary/10">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
-          Get In Touch
+          {t('contact.title')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card className="bg-secondary/50 border-none hover:bg-secondary/60 transition-colors">
             <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
+              <h3 className="text-xl font-semibold mb-6">{t('contact.info')}</h3>
               <div className="space-y-4">
                 <a
                   href="mailto:kevinjojo003@gmail.com"
@@ -103,14 +106,14 @@ export const Contact = () => {
             <CardContent className="p-6 space-y-4">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <Input 
-                  placeholder="Your Name" 
+                  placeholder={t('contact.name')}
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
                 />
                 <Input 
-                  placeholder="Your Email" 
+                  placeholder={t('contact.email')}
                   type="email" 
                   name="email"
                   value={formData.email}
@@ -118,7 +121,7 @@ export const Contact = () => {
                   required
                 />
                 <Textarea 
-                  placeholder="Your Message" 
+                  placeholder={t('contact.message')}
                   className="min-h-[120px]" 
                   name="message"
                   value={formData.message}
@@ -130,7 +133,7 @@ export const Contact = () => {
                   className="w-full"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? t('contact.sending') : t('contact.send')}
                 </Button>
               </form>
             </CardContent>
