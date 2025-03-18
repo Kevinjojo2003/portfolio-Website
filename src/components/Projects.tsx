@@ -1,6 +1,7 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, FilePlus, Microscope } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export const Projects = () => {
@@ -13,6 +14,7 @@ export const Projects = () => {
       tech: ["Streamlit", "ARIMA", "LSTM", "CNN-RNN", "Sentiment Analysis"],
       liveUrl: "#",
       githubUrl: "#",
+      icon: <FilePlus className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.object'),
@@ -20,6 +22,7 @@ export const Projects = () => {
       tech: ["OpenCV", "Python", "Computer Vision"],
       liveUrl: "#",
       githubUrl: "#",
+      icon: <ExternalLink className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.classification'),
@@ -27,6 +30,7 @@ export const Projects = () => {
       tech: ["CNN", "TensorFlow", "Deep Learning"],
       liveUrl: "#",
       githubUrl: "#",
+      icon: <Github className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.news'),
@@ -34,6 +38,15 @@ export const Projects = () => {
       tech: ["LSTM", "Streamlit", "Python"],
       liveUrl: "#",
       githubUrl: "#",
+      icon: <ExternalLink className="w-8 h-8 text-primary/70" />
+    },
+    {
+      title: t('projects.medical'),
+      description: t('projects.medicalDesc'),
+      tech: ["Langchain", "Medical NLP", "GPT-4", "Python"],
+      liveUrl: "#",
+      githubUrl: "#",
+      icon: <Microscope className="w-8 h-8 text-primary/70" />
     }
   ];
 
@@ -46,9 +59,12 @@ export const Projects = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
             <Card key={project.title} className="bg-secondary/50 border-none hover:bg-secondary/60 transition-colors">
-              <CardHeader>
-                <CardTitle className="text-xl">{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
+              <CardHeader className="flex flex-row items-start space-y-0 gap-3">
+                {project.icon}
+                <div>
+                  <CardTitle className="text-xl">{project.title}</CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">

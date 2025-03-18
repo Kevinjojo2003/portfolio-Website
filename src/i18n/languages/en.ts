@@ -1,3 +1,4 @@
+
 export const en = {
   translation: {
     "hero.title": "Kevin Jojo",
@@ -39,7 +40,9 @@ export const en = {
     "projects.classificationDesc": "Deep learning model achieving 98% accuracy in image classification, using Convolutional Neural Networks.",
     "projects.news": "News Weather Stock Platform",
     "projects.newsDesc": "Predictive analytics platform with LSTM models to forecast weather and stock trends, enhancing interaction by 25%.",
-
+    "projects.medical": "Advanced Medical Report Analyzer",
+    "projects.medicalDesc": "An AI-powered tool using Langchain and large language models to extract, analyze, and summarize key findings from complex medical reports with 92% accuracy.",
+    
     "blogs.title": "My Blog Posts",
     "blogs.memories": "Memories Have Life",
     "blogs.memoriesDesc": "Explore the lasting impact of memories in our lives",
