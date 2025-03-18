@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import {
   Carousel,
@@ -9,6 +10,7 @@ import {
 
 export const LinkedInPosts = () => {
   const posts = [
+    "urn:li:ugcPost:7306983829930393600",
     "urn:li:share:7202518006206193664",
     "urn:li:share:7180596647016501250",
     "urn:li:ugcPost:7176867683731218432",
