@@ -9,20 +9,20 @@ export const Projects = () => {
 
   const projects = [
     {
-      title: t('projects.semp'),
-      description: t('projects.sempDesc'),
-      tech: ["Streamlit", "ARIMA", "LSTM", "CNN-RNN", "Sentiment Analysis"],
-      liveUrl: "https://stock-sentiment-predictor.streamlit.app/",
-      githubUrl: "https://github.com/kevinjojo/stock-predictor",
-      icon: <LineChart className="w-8 h-8 text-primary/70" />
-    },
-    {
       title: t('projects.medical'),
       description: t('projects.medicalDesc'),
       tech: ["Langchain", "Medical NLP", "GPT-4", "Python"],
       liveUrl: "https://medical-report-analyzer.streamlit.app/",
       githubUrl: "https://github.com/kevinjojo/medical-report-analyzer",
       icon: <Microscope className="w-8 h-8 text-primary/70" />
+    },
+    {
+      title: t('projects.semp'),
+      description: t('projects.sempDesc'),
+      tech: ["Streamlit", "ARIMA", "LSTM", "CNN-RNN", "Sentiment Analysis"],
+      liveUrl: "https://stock-sentiment-predictor.streamlit.app/",
+      githubUrl: "https://github.com/kevinjojo/stock-predictor",
+      icon: <LineChart className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.object'),
