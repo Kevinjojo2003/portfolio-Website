@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, FilePlus, Microscope } from "lucide-react";
+import { ExternalLink, Github, FilePlus, Microscope, Brain, LineChart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export const Projects = () => {
@@ -12,41 +12,41 @@ export const Projects = () => {
       title: t('projects.semp'),
       description: t('projects.sempDesc'),
       tech: ["Streamlit", "ARIMA", "LSTM", "CNN-RNN", "Sentiment Analysis"],
-      liveUrl: "#",
-      githubUrl: "#",
-      icon: <FilePlus className="w-8 h-8 text-primary/70" />
+      liveUrl: "https://stock-sentiment-predictor.streamlit.app/",
+      githubUrl: "https://github.com/kevinjojo/stock-predictor",
+      icon: <LineChart className="w-8 h-8 text-primary/70" />
+    },
+    {
+      title: t('projects.medical'),
+      description: t('projects.medicalDesc'),
+      tech: ["Langchain", "Medical NLP", "GPT-4", "Python"],
+      liveUrl: "https://medical-report-analyzer.streamlit.app/",
+      githubUrl: "https://github.com/kevinjojo/medical-report-analyzer",
+      icon: <Microscope className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.object'),
       description: t('projects.objectDesc'),
       tech: ["OpenCV", "Python", "Computer Vision"],
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://object-detection-demo.streamlit.app/",
+      githubUrl: "https://github.com/kevinjojo/object-detection",
       icon: <ExternalLink className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.classification'),
       description: t('projects.classificationDesc'),
       tech: ["CNN", "TensorFlow", "Deep Learning"],
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://dog-cat-classification.streamlit.app/",
+      githubUrl: "https://github.com/kevinjojo/dog-cat-classifier",
       icon: <Github className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.news'),
       description: t('projects.newsDesc'),
       tech: ["LSTM", "Streamlit", "Python"],
-      liveUrl: "#",
-      githubUrl: "#",
-      icon: <ExternalLink className="w-8 h-8 text-primary/70" />
-    },
-    {
-      title: t('projects.medical'),
-      description: t('projects.medicalDesc'),
-      tech: ["Langchain", "Medical NLP", "GPT-4", "Python"],
-      liveUrl: "#",
-      githubUrl: "#",
-      icon: <Microscope className="w-8 h-8 text-primary/70" />
+      liveUrl: "https://news-weather-stock.streamlit.app/",
+      githubUrl: "https://github.com/kevinjojo/news-weather-stock",
+      icon: <Brain className="w-8 h-8 text-primary/70" />
     }
   ];
 
