@@ -1,3 +1,4 @@
+
 export const de = {
   translation: {
     "hero.title": "Kevin Jojo",
@@ -50,9 +51,8 @@ export const de = {
     "contact.send": "Nachricht senden",
     "contact.sending": "Wird gesendet...",
     "contact.success": "Nachricht erfolgreich gesendet!",
-    "contact.error": "Fehler beim Senden. Bitte versuchen Sie es erneut."
+    "contact.error": "Fehler beim Senden. Bitte versuchen Sie es erneut.",
 
-    "about.certifications": "Zertifizierungen",
     "about.certifications.google": "Google Projektmanagement: Spezialisierung",
     "about.certifications.googleOrg": "Google",
     "about.certifications.googleDate": "Mär 2024",
