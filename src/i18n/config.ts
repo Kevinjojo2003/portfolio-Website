@@ -12,6 +12,10 @@ import { pt } from './languages/pt';
 import { ru } from './languages/ru';
 import { ja } from './languages/ja';
 import { ml } from './languages/ml';
+import { ta } from './languages/ta';
+import { te } from './languages/te';
+import { kn } from './languages/kn';
+import { ms } from './languages/ms';
 
 const resources = {
   en,
@@ -24,7 +28,11 @@ const resources = {
   pt,
   ru,
   ja,
-  ml
+  ml,
+  ta,
+  te,
+  kn,
+  ms
 };
 
 i18n

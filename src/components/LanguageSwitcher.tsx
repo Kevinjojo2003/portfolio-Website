@@ -20,7 +20,11 @@ export const LanguageSwitcher = () => {
     { code: 'de', name: 'Deutsch' },
     { code: 'hi', name: 'हिंदी' },
     { code: 'ml', name: 'മലയാളം' }, 
+    { code: 'ta', name: 'தமிழ்' },
+    { code: 'te', name: 'తెలుగు' }, 
+    { code: 'kn', name: 'ಕನ್ನಡ' },
     { code: 'ar', name: 'العربية' },
+    { code: 'ms', name: 'Bahasa Melayu' },
     { code: 'pt', name: 'Português' },
     { code: 'ru', name: 'Русский' },
     { code: 'ja', name: '日本語' }
