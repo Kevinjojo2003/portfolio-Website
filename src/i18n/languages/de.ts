@@ -51,5 +51,22 @@ export const de = {
     "contact.sending": "Wird gesendet...",
     "contact.success": "Nachricht erfolgreich gesendet!",
     "contact.error": "Fehler beim Senden. Bitte versuchen Sie es erneut."
+
+    "about.certifications": "Zertifizierungen",
+    "about.certifications.google": "Google Projektmanagement: Spezialisierung",
+    "about.certifications.googleOrg": "Google",
+    "about.certifications.googleDate": "Mär 2024",
+    "about.certifications.ml": "Maschinelles Lernen mit Python - Level 1",
+    "about.certifications.mlOrg": "IBM",
+    "about.certifications.mlDate": "Okt 2022",
+    "about.certifications.chatbot": "KI-Chatbot-Entwicklung mit IBM Watson",
+    "about.certifications.chatbotOrg": "Coursera",
+    "about.certifications.chatbotDate": "Jan 2022",
+    "about.certifications.computational": "Computational Thinking und Problemlösung",
+    "about.certifications.computationalOrg": "Universität Michigan",
+    "about.certifications.computationalDate": "Jan 2022",
+    "about.certifications.marketing": "Grundlagen des Digitalmarketings",
+    "about.certifications.marketingOrg": "Google Digital Garage",
+    "about.certifications.marketingDate": "Dez 2021"
   }
 };

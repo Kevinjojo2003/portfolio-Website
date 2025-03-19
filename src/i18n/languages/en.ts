@@ -1,4 +1,3 @@
-
 export const en = {
   translation: {
     "hero.title": "Kevin Jojo",
@@ -61,7 +60,22 @@ export const en = {
     "about.responsibilities.hrDesc2": "Managed team building activities and performance tracking",
     
     "about.certifications": "Certifications",
-
+    "about.certifications.google": "Google Project Management: Specialization",
+    "about.certifications.googleOrg": "Google",
+    "about.certifications.googleDate": "Mar 2024",
+    "about.certifications.ml": "Machine Learning with Python - Level 1",
+    "about.certifications.mlOrg": "IBM",
+    "about.certifications.mlDate": "Oct 2022",
+    "about.certifications.chatbot": "AI Chatbot Development using IBM Watson",
+    "about.certifications.chatbotOrg": "Coursera",
+    "about.certifications.chatbotDate": "Jan 2022",
+    "about.certifications.computational": "Computational Thinking and Problem Solving",
+    "about.certifications.computationalOrg": "University of Michigan",
+    "about.certifications.computationalDate": "Jan 2022",
+    "about.certifications.marketing": "Digital Marketing Fundamentals",
+    "about.certifications.marketingOrg": "Google Digital Garage",
+    "about.certifications.marketingDate": "Dec 2021",
+    
     "skills.title": "Skills & Technologies",
     "skills.programming": "Programming & Development",
     "skills.ai": "AI & Machine Learning",
@@ -102,7 +116,20 @@ export const en = {
     "booking.services": "My Services",
     "booking.business": "Business Services",
     "booking.technical": "Technical Services",
-
+    "booking.business.consulting": "AI Integration Consulting",
+    "booking.business.strategy": "Digital Transformation Strategy",
+    "booking.business.automation": "Business Process Automation",
+    "booking.business.analytics": "Data-Driven Decision Making",
+    "booking.technical.ai": "AI Model Development",
+    "booking.technical.ml": "Machine Learning Implementation",
+    "booking.technical.data": "Data Analysis & Visualization",
+    "booking.technical.development": "Web & Mobile App Development",
+    "booking.availability": "Availability",
+    "booking.availabilityDesc": "Monday to Friday, 9:00 AM - 6:00 PM EST",
+    "booking.duration": "Session Duration",
+    "booking.durationDesc": "30-minute and 60-minute sessions available",
+    "booking.bookNow": "Book Now via Calendly",
+    
     "contact.title": "Get In Touch",
     "contact.info": "Contact Information",
     "contact.name": "Your Name",

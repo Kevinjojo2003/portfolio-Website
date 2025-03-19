@@ -1,4 +1,3 @@
-
 export const es = {
   translation: {
     "hero.title": "Kevin Jojo",
@@ -61,7 +60,22 @@ export const es = {
     "about.responsibilities.hrDesc2": "Gestioné actividades de formación de equipos y seguimiento del desempeño",
     
     "about.certifications": "Certificaciones",
-
+    "about.certifications.google": "Gestión de Proyectos de Google: Especialización",
+    "about.certifications.googleOrg": "Google",
+    "about.certifications.googleDate": "Mar 2024",
+    "about.certifications.ml": "Aprendizaje Automático con Python - Nivel 1",
+    "about.certifications.mlOrg": "IBM",
+    "about.certifications.mlDate": "Oct 2022",
+    "about.certifications.chatbot": "Desarrollo de Chatbots con IA usando IBM Watson",
+    "about.certifications.chatbotOrg": "Coursera",
+    "about.certifications.chatbotDate": "Ene 2022",
+    "about.certifications.computational": "Pensamiento Computacional y Resolución de Problemas",
+    "about.certifications.computationalOrg": "Universidad de Michigan",
+    "about.certifications.computationalDate": "Ene 2022",
+    "about.certifications.marketing": "Fundamentos de Marketing Digital",
+    "about.certifications.marketingOrg": "Google Digital Garage",
+    "about.certifications.marketingDate": "Dic 2021",
+    
     "skills.title": "Habilidades y Tecnologías",
     "skills.programming": "Programación y Desarrollo",
     "skills.ai": "IA y Aprendizaje Automático",
@@ -102,7 +116,20 @@ export const es = {
     "booking.services": "Mis Servicios",
     "booking.business": "Servicios Empresariales",
     "booking.technical": "Servicios Técnicos",
-
+    "booking.business.consulting": "Consultoría de Integración de IA",
+    "booking.business.strategy": "Estrategia de Transformación Digital",
+    "booking.business.automation": "Automatización de Procesos de Negocio",
+    "booking.business.analytics": "Toma de Decisiones Basada en Datos",
+    "booking.technical.ai": "Desarrollo de Modelos de IA",
+    "booking.technical.ml": "Implementación de Aprendizaje Automático",
+    "booking.technical.data": "Análisis y Visualización de Datos",
+    "booking.technical.development": "Desarrollo de Aplicaciones Web y Móviles",
+    "booking.availability": "Disponibilidad",
+    "booking.availabilityDesc": "Lunes a Viernes, 9:00 AM - 6:00 PM EST",
+    "booking.duration": "Duración de la Sesión",
+    "booking.durationDesc": "Sesiones de 30 y 60 minutos disponibles",
+    "booking.bookNow": "Reservar Ahora vía Calendly",
+    
     "contact.title": "Contacto",
     "contact.info": "Información de Contacto",
     "contact.name": "Tu Nombre",

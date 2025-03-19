@@ -1,133 +1,102 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useEffect } from "react";
+
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CheckCircle, Calendar, Clock, Briefcase, Code } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const BookingForm = () => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
+  const { t } = useTranslation();
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  const businessServices = [
+    t('booking.business.consulting'),
+    t('booking.business.strategy'),
+    t('booking.business.automation'),
+    t('booking.business.analytics')
+  ];
+
+  const technicalServices = [
+    t('booking.technical.ai'),
+    t('booking.technical.ml'),
+    t('booking.technical.data'),
+    t('booking.technical.development')
+  ];
 
   return (
     <section id="booking" className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center">
-          Book a Consultation
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text text-center">
+          {t('booking.title')}
         </h2>
+        <p className="text-lg text-center text-muted-foreground mb-12">
+          {t('booking.subtitle')}
+        </p>
+        
         <Card className="glass-card">
-          <CardHeader>
-            <CardTitle>Schedule a Chat Session</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-8">
-            <div 
-              className="calendly-inline-widget" 
-              data-url="https://calendly.com/kevinjojo483?hide_landing_page_details=1&hide_gdpr_banner=1" 
-              style={{ minWidth: "320px", height: "500px" }}
-            />
+          <CardContent className="p-8">
+            <h3 className="text-2xl font-semibold mb-8">{t('booking.services')}</h3>
             
-            <div className="space-y-6">
-              <h3 className="text-xl font-semibold">My Services</h3>
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="business">
-                  <AccordionTrigger className="text-lg font-semibold">
-                    Business Services
-                  </AccordionTrigger>
-                  <AccordionContent className="space-y-6 text-left">
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-primary">1. Startup Support and Mentorship</h4>
-                      <p className="text-muted-foreground">Empowering entrepreneurs to kickstart and scale their ventures:</p>
-                      <ul className="list-disc pl-6 text-sm space-y-2 text-muted-foreground">
-                        <li>Conduct workshops on entrepreneurship fundamentals</li>
-                        <li>Assist in developing comprehensive business plans and investor-ready pitches</li>
-                        <li>Guide startups through incubation, funding opportunities, and ecosystem integration</li>
-                      </ul>
+            <Tabs defaultValue="business" className="mb-12">
+              <TabsList className="grid grid-cols-2 w-full max-w-md mx-auto">
+                <TabsTrigger value="business">
+                  <Briefcase className="mr-2 h-4 w-4" />
+                  {t('booking.business')}
+                </TabsTrigger>
+                <TabsTrigger value="technical">
+                  <Code className="mr-2 h-4 w-4" />
+                  {t('booking.technical')}
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="business" className="mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {businessServices.map((service, index) => (
+                    <div key={index} className="flex items-start gap-3 p-4 bg-primary/5 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <p>{service}</p>
                     </div>
-
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-primary">2. Corporate Relations and Networking</h4>
-                      <p className="text-muted-foreground">Helping businesses forge meaningful partnerships and expand networks:</p>
-                      <ul className="list-disc pl-6 text-sm space-y-2 text-muted-foreground">
-                        <li>Develop and implement strategies to secure and maintain strategic partnerships</li>
-                        <li>Create effective sponsorship strategies, sponsor decks, and identify potential collaborators</li>
-                        <li>Train teams to manage stakeholder relationships for long-term success</li>
-                      </ul>
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="technical" className="mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {technicalServices.map((service, index) => (
+                    <div key={index} className="flex items-start gap-3 p-4 bg-primary/5 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <p>{service}</p>
                     </div>
-
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-primary">3. Human Resources and Leadership Development</h4>
-                      <p className="text-muted-foreground">Building strong teams and fostering leadership within organizations:</p>
-                      <ul className="list-disc pl-6 text-sm space-y-2 text-muted-foreground">
-                        <li>Provide recruitment strategies and team-building sessions for optimized performance</li>
-                        <li>Design HR frameworks to improve employee satisfaction and retention</li>
-                        <li>Conduct leadership training and personal development programs tailored to team leaders</li>
-                      </ul>
-                    </div>
-
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-primary">4. Event Management and Execution</h4>
-                      <p className="text-muted-foreground">Delivering seamless, impactful events for startups and organizations:</p>
-                      <ul className="list-disc pl-6 text-sm space-y-2 text-muted-foreground">
-                        <li>Organize startup events, hackathons, pitch competitions, and conferences</li>
-                        <li>Plan and execute networking meetups and panel discussions</li>
-                        <li>Oversee event logistics, sponsorship integrations, and audience engagement</li>
-                      </ul>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="technical">
-                  <AccordionTrigger className="text-lg font-semibold">
-                    Technical Services
-                  </AccordionTrigger>
-                  <AccordionContent className="space-y-6 text-left">
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-primary">1. Machine Learning and AI Solutions</h4>
-                      <p className="text-muted-foreground">Providing intelligent systems tailored to your business needs:</p>
-                      <ul className="list-disc pl-6 text-sm space-y-2 text-muted-foreground">
-                        <li>Design, develop, and deploy machine learning models for predictive analytics</li>
-                        <li>Implement natural language processing (NLP) solutions for sentiment analysis and chatbot development</li>
-                        <li>Build custom AI-powered solutions such as recommendation systems, fraud detection, and automation tools</li>
-                      </ul>
-                    </div>
-
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-primary">2. Data Analysis and Visualization</h4>
-                      <p className="text-muted-foreground">Turning raw data into actionable insights:</p>
-                      <ul className="list-disc pl-6 text-sm space-y-2 text-muted-foreground">
-                        <li>Perform statistical analysis and data mining for decision-making</li>
-                        <li>Create interactive dashboards using Tableau, Power BI, or Streamlit</li>
-                        <li>Conduct advanced sentiment analysis and financial trend forecasting</li>
-                      </ul>
-                    </div>
-
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-primary">3. Software Development</h4>
-                      <p className="text-muted-foreground">Building efficient and user-friendly software applications:</p>
-                      <ul className="list-disc pl-6 text-sm space-y-2 text-muted-foreground">
-                        <li>Develop Python-based tools for data processing, automation, and analysis</li>
-                        <li>Create web applications using HTML, CSS, JavaScript, and frameworks like Streamlit or Flask</li>
-                        <li>Optimize existing software for performance and scalability</li>
-                      </ul>
-                    </div>
-
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-primary">4. Computer Vision Applications</h4>
-                      <p className="text-muted-foreground">Enhancing image and video-based systems for automation:</p>
-                      <ul className="list-disc pl-6 text-sm space-y-2 text-muted-foreground">
-                        <li>Develop object detection and tracking solutions using OpenCV and TensorFlow</li>
-                        <li>Implement deep learning models for image classification, segmentation, and recognition</li>
-                        <li>Design automated surveillance and traffic monitoring systems</li>
-                      </ul>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-primary/5 p-6 rounded-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <Calendar className="w-5 h-5 text-primary" />
+                  <h4 className="font-semibold">{t('booking.availability')}</h4>
+                </div>
+                <p className="text-muted-foreground">{t('booking.availabilityDesc')}</p>
+              </div>
+              
+              <div className="bg-primary/5 p-6 rounded-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <Clock className="w-5 h-5 text-primary" />
+                  <h4 className="font-semibold">{t('booking.duration')}</h4>
+                </div>
+                <p className="text-muted-foreground">{t('booking.durationDesc')}</p>
+              </div>
+            </div>
+            
+            <div className="mt-8 text-center">
+              <a 
+                href="https://calendly.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+              >
+                {t('booking.bookNow')}
+              </a>
             </div>
           </CardContent>
         </Card>
