@@ -27,7 +27,12 @@ export const LanguageSwitcher = () => {
     { code: 'ms', name: 'Bahasa Melayu' },
     { code: 'pt', name: 'Português' },
     { code: 'ru', name: 'Русский' },
-    { code: 'ja', name: '日本語' }
+    { code: 'ja', name: '日本語' },
+    { code: 'bn', name: 'বাংলা' },        // Bengali
+    { code: 'ko', name: '한국어' },        // Korean
+    { code: 'vi', name: 'Tiếng Việt' },   // Vietnamese
+    { code: 'tr', name: 'Türkçe' },       // Turkish
+    { code: 'it', name: 'Italiano' }      // Italian
   ];
 
   return (

@@ -19,18 +19,6 @@ export const de = {
     "about.education": "Ausbildung",
     "about.experience": "Erfahrung",
     "about.responsibilities": "Verantwortlichkeiten",
-    "about.responsibilities.corporate": "Leiter der Unternehmensbeziehungen",
-    "about.responsibilities.corporateOrg": "E-Cell Karunya",
-    "about.responsibilities.corporateDate": "Aug 2022 - Jul 2023",
-    "about.responsibilities.corporateDesc1": "Verwaltung der Beziehungen zu Unternehmenspartnern und Sponsoren",
-    "about.responsibilities.corporateDesc2": "Organisation von kollaborativen Veranstaltungen und Workshops zwischen Industrie und Hochschule",
-    
-    "about.responsibilities.hr": "HR-Leiter",
-    "about.responsibilities.hrOrg": "E-Cell Karunya",
-    "about.responsibilities.hrDate": "Aug 2021 - Jul 2022",
-    "about.responsibilities.hrDesc1": "Koordination von Rekrutierungsaktionen und Mitgliedereinführung",
-    "about.responsibilities.hrDesc2": "Verwaltung von Teambuilding-Aktivitäten und Leistungsverfolgung",
-    
     "about.certifications": "Zertifizierungen",
     "about.certifications.google": "Google Projektmanagement: Spezialisierung",
     "about.certifications.googleOrg": "Google",
@@ -57,10 +45,24 @@ export const de = {
     "skills.mathematics": "Mathematik & Statistik",
 
     "projects.title": "Ausgewählte Projekte",
+    "projects.medical": "Medizinischer Berichtsanalysator",
+    "projects.medicalDesc": "KI-basiertes Tool, das wichtige Informationen aus medizinischen Dokumenten extrahiert",
+    "projects.semp": "Aktien-Sentiment & Preisprediktor",
+    "projects.sempDesc": "Nachrichtenstimmungs- und LSTM-basiertes Aktienkursprognose-Tool",
+    "projects.object": "Echtzeit-Objekterkennung",
+    "projects.objectDesc": "Echtzeit-Objekterkennung mit OpenCV und YOLO-Modellen",
+    "projects.classification": "Hunde- & Katzenklassifikator",
+    "projects.classificationDesc": "Deep-Learning-Modell, das Hunde- und Katzenbilder mit CNN klassifiziert",
+    "projects.news": "Nachrichten-Wetter-Aktien-Dashboard",
+    "projects.newsDesc": "Streamlit-Dashboard, das personalisierte Nachrichten-, Wetter- und Aktienmarktdaten anzeigt",
     "projects.liveDemo": "Live Demo",
     "projects.viewCode": "Code ansehen",
 
     "blogs.title": "Meine Blogbeiträge",
+    "blogs.memories": "Erinnerungen haben ein Leben",
+    "blogs.memoriesDesc": "Gedanken darüber, wie Erinnerungen unser Leben formen und warum wir sie schätzen sollten",
+    "blogs.trust": "Vertrauen in Freunde",
+    "blogs.trustDesc": "Persönliche Gedanken über die Bedeutung von Vertrauen in Beziehungen und wie es wahre Freundschaft formt",
 
     "linkedin.title": "Ausgewählte LinkedIn-Beiträge",
 
@@ -69,6 +71,19 @@ export const de = {
     "booking.services": "Meine Dienstleistungen",
     "booking.business": "Business Services",
     "booking.technical": "Technische Services",
+    "booking.business.consulting": "KI- und Data-Science-Beratung",
+    "booking.business.strategy": "Digitale Transformationsstrategie",
+    "booking.business.automation": "Geschäftsprozessautomatisierung",
+    "booking.business.analytics": "Datenanalyse und Berichterstattung",
+    "booking.technical.ai": "KI- und ML-Modellentwicklung",
+    "booking.technical.ml": "ML-Lösungsintegration",
+    "booking.technical.data": "Datenanalyse und Visualisierung",
+    "booking.technical.development": "KI-basierte Softwareentwicklung",
+    "booking.availability": "Verfügbarkeit",
+    "booking.availabilityDesc": "Montag bis Freitag, 9:00 - 17:00 Uhr (IST)",
+    "booking.duration": "Sitzungsdauer",
+    "booking.durationDesc": "30-minütige oder 1-stündige Beratungssitzungen verfügbar",
+    "booking.bookNow": "Jetzt buchen",
 
     "contact.title": "Kontakt aufnehmen",
     "contact.info": "Kontaktinformationen",
@@ -78,6 +93,8 @@ export const de = {
     "contact.send": "Nachricht senden",
     "contact.sending": "Wird gesendet...",
     "contact.success": "Nachricht erfolgreich gesendet!",
-    "contact.error": "Fehler beim Senden. Bitte versuchen Sie es erneut."
+    "contact.error": "Fehler beim Senden. Bitte versuchen Sie es erneut.",
+    
+    "footer.copyright": "© 2024 Kevin Jojo. Alle Rechte vorbehalten."
   }
 };

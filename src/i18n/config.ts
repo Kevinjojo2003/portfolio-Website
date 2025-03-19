@@ -16,6 +16,11 @@ import { ta } from './languages/ta';
 import { te } from './languages/te';
 import { kn } from './languages/kn';
 import { ms } from './languages/ms';
+import { bn } from './languages/bn';
+import { ko } from './languages/ko';
+import { vi } from './languages/vi';
+import { tr } from './languages/tr';
+import { it } from './languages/it';
 
 const resources = {
   en,
@@ -32,7 +37,12 @@ const resources = {
   ta,
   te,
   kn,
-  ms
+  ms,
+  bn,
+  ko,
+  vi,
+  tr,
+  it
 };
 
 i18n
