@@ -53,7 +53,7 @@ export const en = {
     "about.responsibilities.corporateDesc1": "Managed relationships with corporate partners and sponsors",
     "about.responsibilities.corporateDesc2": "Organized industry-academia collaborative events and workshops",
     
-    "about.responsibilities.hr": "HR Coordinator",
+    "about.responsibilities.hr": "HR Head",
     "about.responsibilities.hrOrg": "E-Cell Karunya",
     "about.responsibilities.hrDate": "Aug 2021 - Jul 2022",
     "about.responsibilities.hrDesc1": "Coordinated recruitment drives and member onboarding",

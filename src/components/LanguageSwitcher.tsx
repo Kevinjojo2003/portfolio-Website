@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { Languages } from "lucide-react";
@@ -18,6 +19,7 @@ export const LanguageSwitcher = () => {
     { code: 'zh', name: '中文' },
     { code: 'de', name: 'Deutsch' },
     { code: 'hi', name: 'हिंदी' },
+    { code: 'ml', name: 'മലയാളം' }, 
     { code: 'ar', name: 'العربية' },
     { code: 'pt', name: 'Português' },
     { code: 'ru', name: 'Русский' },

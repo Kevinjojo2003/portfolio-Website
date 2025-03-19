@@ -1,3 +1,4 @@
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { en } from './languages/en';
@@ -10,6 +11,7 @@ import { ar } from './languages/ar';
 import { pt } from './languages/pt';
 import { ru } from './languages/ru';
 import { ja } from './languages/ja';
+import { ml } from './languages/ml';
 
 const resources = {
   en,
@@ -21,7 +23,8 @@ const resources = {
   ar,
   pt,
   ru,
-  ja
+  ja,
+  ml
 };
 
 i18n
