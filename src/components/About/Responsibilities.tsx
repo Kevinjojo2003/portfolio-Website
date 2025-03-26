@@ -50,6 +50,24 @@ export const Responsibilities = () => {
               <li>{t('about.responsibilities.hrDesc2')}</li>
             </ul>
           </div>
+          <div>
+            <div className="flex items-center gap-4">
+              <img 
+                src="/lovable-uploads/15e34c16-27d8-44fa-ac7b-7431ca288a09.png"
+                alt="Rotaract Club Logo" 
+                className="w-12 h-12 object-contain"
+              />
+              <div>
+                <h4 className="font-medium">{t('about.responsibilities.rotaract')}</h4>
+                <p className="text-muted-foreground">{t('about.responsibilities.rotaractOrg')}</p>
+                <p className="text-sm text-muted-foreground">{t('about.responsibilities.rotaractDate')}</p>
+              </div>
+            </div>
+            <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
+              <li>{t('about.responsibilities.rotaractDesc1')}</li>
+              <li>{t('about.responsibilities.rotaractDesc2')}</li>
+            </ul>
+          </div>
         </div>
       </CardContent>
     </Card>

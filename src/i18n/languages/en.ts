@@ -1,4 +1,3 @@
-
 export const en = {
   translation: {
     "hero.title": "Kevin Jojo",
@@ -26,8 +25,46 @@ export const en = {
     "about.education.village": "The Village International School",
     "about.education.villageDegree": "Secondary Education",
     "about.education.villageDate": "2007 - 2019",
+    
     "about.experience": "Experience",
+    "about.experience.aiEngineer": "AI Engineer Intern",
+    "about.experience.workcohol": "Workcohol",
+    "about.experience.workcoholDate": "Jan 2025 - Present",
+    "about.experience.workcoholDesc1": "Working on AI and machine learning projects",
+    "about.experience.workcoholDesc2": "Developing intelligent systems and solutions",
+    "about.experience.workcoholDesc3": "Implementing deep learning models",
+    
+    "about.experience.webDev": "Web Development Intern",
+    "about.experience.bolt": "Bolt IoT",
+    "about.experience.boltDate": "May 2022 - Jun 2022",
+    "about.experience.boltDesc1": "Developed responsive web applications",
+    "about.experience.boltDesc2": "Worked with modern web technologies",
+    
+    "about.experience.marketing": "Social Media Marketing Intern",
+    "about.experience.younity": "Younity",
+    "about.experience.younityDate": "Feb 2022 - Apr 2022",
+    "about.experience.younityDesc1": "Created and managed social media campaigns",
+    "about.experience.younityDesc2": "Analyzed marketing metrics and performance",
+    
     "about.responsibilities": "Responsibilities",
+    "about.responsibilities.corporate": "Head of Corporate Relations",
+    "about.responsibilities.corporateOrg": "E-Cell Karunya",
+    "about.responsibilities.corporateDate": "June 2023 - June 2024",
+    "about.responsibilities.corporateDesc1": "Managed relationships with corporate partners",
+    "about.responsibilities.corporateDesc2": "Organized corporate events and collaborations",
+    
+    "about.responsibilities.hr": "Head of Human Resources",
+    "about.responsibilities.hrOrg": "E-Cell Karunya",
+    "about.responsibilities.hrDate": "Feb 2023 - June 2023",
+    "about.responsibilities.hrDesc1": "Managed recruitment and team coordination",
+    "about.responsibilities.hrDesc2": "Organized training and development programs",
+    
+    "about.responsibilities.rotaract": "Board Member",
+    "about.responsibilities.rotaractOrg": "Rotaract Club",
+    "about.responsibilities.rotaractDate": "Feb 2021 - Present",
+    "about.responsibilities.rotaractDesc1": "Participated in community service projects",
+    "about.responsibilities.rotaractDesc2": "Contributed to club initiatives and events",
+    
     "about.certifications": "Certifications",
     "about.certifications.google": "Google Project Management: Specialization",
     "about.certifications.googleOrg": "Google",

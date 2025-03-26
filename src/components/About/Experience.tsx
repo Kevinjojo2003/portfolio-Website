@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Briefcase } from "lucide-react";
 import { useTranslation } from "react-i18next";
