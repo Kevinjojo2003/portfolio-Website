@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, FilePlus, Microscope, Brain, LineChart } from "lucide-react";
+import { ExternalLink, Github, LineChart, Microscope, Brain, Eye, Cat } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export const Projects = () => {
@@ -9,17 +9,9 @@ export const Projects = () => {
 
   const projects = [
     {
-      title: t('projects.medical'),
-      description: t('projects.medicalDesc'),
-      tech: ["Langchain", "Medical NLP", "GPT-4", "Python"],
-      liveUrl: "https://medical-report-analyzer.streamlit.app/",
-      githubUrl: "https://github.com/kevinjojo/medical-report-analyzer",
-      icon: <Microscope className="w-8 h-8 text-primary/70" />
-    },
-    {
       title: t('projects.semp'),
       description: t('projects.sempDesc'),
-      tech: ["Streamlit", "ARIMA", "LSTM", "CNN-RNN", "Sentiment Analysis"],
+      tech: ["ARIMA", "LSTM", "CNN-RNN", "Sentiment Analysis"],
       liveUrl: "https://stock-sentiment-predictor.streamlit.app/",
       githubUrl: "https://github.com/kevinjojo/stock-predictor",
       icon: <LineChart className="w-8 h-8 text-primary/70" />
@@ -30,7 +22,7 @@ export const Projects = () => {
       tech: ["OpenCV", "Python", "Computer Vision"],
       liveUrl: "https://object-detection-demo.streamlit.app/",
       githubUrl: "https://github.com/kevinjojo/object-detection",
-      icon: <ExternalLink className="w-8 h-8 text-primary/70" />
+      icon: <Eye className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.classification'),
@@ -38,7 +30,7 @@ export const Projects = () => {
       tech: ["CNN", "TensorFlow", "Deep Learning"],
       liveUrl: "https://dog-cat-classification.streamlit.app/",
       githubUrl: "https://github.com/kevinjojo/dog-cat-classifier",
-      icon: <Github className="w-8 h-8 text-primary/70" />
+      icon: <Cat className="w-8 h-8 text-primary/70" />
     },
     {
       title: t('projects.news'),
@@ -47,6 +39,14 @@ export const Projects = () => {
       liveUrl: "https://news-weather-stock.streamlit.app/",
       githubUrl: "https://github.com/kevinjojo/news-weather-stock",
       icon: <Brain className="w-8 h-8 text-primary/70" />
+    },
+    {
+      title: t('projects.asd'),
+      description: t('projects.asdDesc'),
+      tech: ["Machine Learning", "Data Analysis", "Healthcare"],
+      liveUrl: "https://asd-ml-exploration.streamlit.app/",
+      githubUrl: "https://github.com/kevinjojo/asd-ml-exploration",
+      icon: <Microscope className="w-8 h-8 text-primary/70" />
     }
   ];
 

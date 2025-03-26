@@ -1,3 +1,4 @@
+
 export const ja = {
   translation: {
     "hero.title": "ケビン・ジョジョ",
@@ -44,10 +45,24 @@ export const ja = {
     "skills.mathematics": "数学と統計",
 
     "projects.title": "注目のプロジェクト",
+    "projects.semp": "センチメント強化型株式市場予測ツール",
+    "projects.sempDesc": "季節性ARIMA、LSTM、CNN-RNNを使用した感情分析付き株価予測",
+    "projects.object": "OpenCVを使用した動体検出",
+    "projects.objectDesc": "コンピュータビジョンを使用した動体検出で95%の精度を達成",
+    "projects.classification": "犬と猫の分類（CNN）",
+    "projects.classificationDesc": "画像分類で98%の精度を持つディープラーニングモデルを設計",
+    "projects.news": "ニュース・天気・株式プラットフォーム",
+    "projects.newsDesc": "LSTM＆Streamlitを使用して天気と株式トレンドを予測し、インタラクションを25%向上",
+    "projects.asd": "ASD機械学習探索",
+    "projects.asdDesc": "機械学習を使用してASDデータセットの予測精度を20%向上",
     "projects.liveDemo": "ライブデモ",
     "projects.viewCode": "コードを見る",
 
     "blogs.title": "ブログ投稿",
+    "blogs.memories": "記憶には命がある",
+    "blogs.memoriesDesc": "記憶が私たちの人生をどのように形作り、なぜ大切にすべきかについての考察",
+    "blogs.trust": "友人への信頼",
+    "blogs.trustDesc": "関係における信頼の重要性と、それが真の友情をどのように形成するかについての個人的考察",
 
     "linkedin.title": "注目のLinkedIn投稿",
 
@@ -56,6 +71,19 @@ export const ja = {
     "booking.services": "サービス",
     "booking.business": "ビジネスサービス",
     "booking.technical": "技術サービス",
+    "booking.business.consulting": "AI統合コンサルティング",
+    "booking.business.strategy": "デジタル変革戦略",
+    "booking.business.automation": "ビジネスプロセス自動化",
+    "booking.business.analytics": "データ駆動型意思決定",
+    "booking.technical.ai": "AIモデル開発",
+    "booking.technical.ml": "機械学習実装",
+    "booking.technical.data": "データ分析と可視化",
+    "booking.technical.development": "ウェブ＆モバイルアプリ開発",
+    "booking.availability": "利用可能時間",
+    "booking.availabilityDesc": "月曜日〜金曜日、午前9時〜午後6時（日本時間）",
+    "booking.duration": "セッション時間",
+    "booking.durationDesc": "30分間および60分間のセッションが利用可能",
+    "booking.bookNow": "Calendlyで今すぐ予約",
 
     "contact.title": "お問い合わせ",
     "contact.info": "連絡先情報",
@@ -65,6 +93,8 @@ export const ja = {
     "contact.send": "送信",
     "contact.sending": "送信中...",
     "contact.success": "メッセージを送信しました！",
-    "contact.error": "送信に失敗しました。もう一度お試しください。"
+    "contact.error": "送信に失敗しました。もう一度お試しください。",
+    
+    "footer.copyright": "© 2024 Kevin Jojo. All rights reserved."
   }
 };

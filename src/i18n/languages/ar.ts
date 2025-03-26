@@ -1,3 +1,4 @@
+
 export const ar = {
   translation: {
     "hero.title": "كيفن جوجو",
@@ -19,6 +20,21 @@ export const ar = {
     "about.experience": "الخبرة",
     "about.responsibilities": "المسؤوليات",
     "about.certifications": "الشهادات",
+    "about.certifications.google": "إدارة مشاريع جوجل: تخصص",
+    "about.certifications.googleOrg": "جوجل",
+    "about.certifications.googleDate": "مارس 2024",
+    "about.certifications.ml": "تعلم الآلة مع بايثون - المستوى 1",
+    "about.certifications.mlOrg": "آي بي إم",
+    "about.certifications.mlDate": "أكتوبر 2022",
+    "about.certifications.chatbot": "تطوير روبوت المحادثة الذكي باستخدام IBM Watson",
+    "about.certifications.chatbotOrg": "كورسيرا",
+    "about.certifications.chatbotDate": "يناير 2022",
+    "about.certifications.computational": "التفكير الحاسوبي وحل المشكلات",
+    "about.certifications.computationalOrg": "جامعة ميشيغان",
+    "about.certifications.computationalDate": "يناير 2022",
+    "about.certifications.marketing": "أساسيات التسويق الرقمي",
+    "about.certifications.marketingOrg": "جوجل ديجيتال جاراج",
+    "about.certifications.marketingDate": "ديسمبر 2021",
 
     "skills.title": "المهارات والتقنيات",
     "skills.programming": "البرمجة والتطوير",
@@ -29,10 +45,24 @@ export const ar = {
     "skills.mathematics": "الرياضيات والإحصاء",
 
     "projects.title": "مشاريع مميزة",
+    "projects.semp": "متنبئ سوق الأسهم المعزز بتحليل المشاعر",
+    "projects.sempDesc": "يستخدم نماذج ARIMA الموسمية وLSTM وCNN-RNN للتنبؤ بأسعار الأسهم مع تحليل المشاعر",
+    "projects.object": "كشف الأجسام المتحركة باستخدام OpenCV",
+    "projects.objectDesc": "حقق دقة 95% في اكتشاف الأجسام المتحركة باستخدام رؤية الكمبيوتر",
+    "projects.classification": "تصنيف الكلاب والقطط (CNN)",
+    "projects.classificationDesc": "تصميم نموذج تعلم عميق بدقة 98% لتصنيف الصور",
+    "projects.news": "منصة الأخبار والطقس والأسهم",
+    "projects.newsDesc": "التنبؤ باتجاهات الطقس والأسهم باستخدام LSTM وStreamlit، مما يزيد التفاعل بنسبة 25%",
+    "projects.asd": "استكشاف التعلم الآلي لاضطراب طيف التوحد",
+    "projects.asdDesc": "تحسين دقة التنبؤ على مجموعات بيانات التوحد بنسبة 20% باستخدام التعلم الآلي",
     "projects.liveDemo": "عرض حي",
     "projects.viewCode": "عرض الكود",
 
     "blogs.title": "مقالاتي",
+    "blogs.memories": "للذكريات حياة",
+    "blogs.memoriesDesc": "تأملات حول كيف تشكل الذكريات حياتنا ولماذا يجب أن نعتز بها",
+    "blogs.trust": "الثقة في الأصدقاء",
+    "blogs.trustDesc": "تأملات شخصية حول أهمية الثقة في العلاقات وكيف تشكل الصداقة الحقيقية",
 
     "linkedin.title": "منشورات لينكد إن المميزة",
 
@@ -41,6 +71,19 @@ export const ar = {
     "booking.services": "خدماتي",
     "booking.business": "الخدمات التجارية",
     "booking.technical": "الخدمات التقنية",
+    "booking.business.consulting": "استشارات تكامل الذكاء الاصطناعي",
+    "booking.business.strategy": "استراتيجية التحول الرقمي",
+    "booking.business.automation": "أتمتة العمليات التجارية",
+    "booking.business.analytics": "اتخاذ القرارات المدعومة بالبيانات",
+    "booking.technical.ai": "تطوير نماذج الذكاء الاصطناعي",
+    "booking.technical.ml": "تنفيذ التعلم الآلي",
+    "booking.technical.data": "تحليل البيانات وتصورها",
+    "booking.technical.development": "تطوير تطبيقات الويب والموبايل",
+    "booking.availability": "التوفر",
+    "booking.availabilityDesc": "من الاثنين إلى الجمعة، 9:00 صباحًا - 6:00 مساءً (بتوقيت القاهرة)",
+    "booking.duration": "مدة الجلسة",
+    "booking.durationDesc": "جلسات متاحة لمدة 30 دقيقة و60 دقيقة",
+    "booking.bookNow": "احجز الآن عبر Calendly",
 
     "contact.title": "تواصل معي",
     "contact.info": "معلومات الاتصال",
@@ -50,6 +93,8 @@ export const ar = {
     "contact.send": "إرسال الرسالة",
     "contact.sending": "جاري الإرسال...",
     "contact.success": "تم إرسال الرسالة بنجاح!",
-    "contact.error": "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى."
+    "contact.error": "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.",
+    
+    "footer.copyright": "© 2024 كيفن جوجو. جميع الحقوق محفوظة."
   }
 };

@@ -45,10 +45,24 @@ export const pt = {
     "skills.mathematics": "Matemática e Estatística",
 
     "projects.title": "Projetos em Destaque",
+    "projects.semp": "Preditor de Mercado de Ações com Análise de Sentimento",
+    "projects.sempDesc": "Usa ARIMA Sazonal, LSTM, CNN-RNN para previsão de preços de ações com análise de sentimento",
+    "projects.object": "Detecção de Objetos em Movimento Usando OpenCV",
+    "projects.objectDesc": "Alcançou 95% de precisão na detecção de objetos em movimento usando visão computacional",
+    "projects.classification": "Classificação de Cães vs Gatos (CNN)",
+    "projects.classificationDesc": "Modelo de aprendizado profundo com 98% de precisão para classificação de imagens",
+    "projects.news": "Plataforma de Notícias, Clima e Ações",
+    "projects.newsDesc": "Prevê tendências de clima e ações usando LSTM e Streamlit, aumentando a interação em 25%",
+    "projects.asd": "Exploração de ML para TEA",
+    "projects.asdDesc": "Melhorou a precisão de previsão em conjuntos de dados de TEA em 20% usando aprendizado de máquina",
     "projects.liveDemo": "Demo ao Vivo",
     "projects.viewCode": "Ver Código",
 
     "blogs.title": "Meus Posts do Blog",
+    "blogs.memories": "Memórias Têm Vida",
+    "blogs.memoriesDesc": "Reflexões sobre como as memórias moldam nossas vidas e por que devemos valorizá-las",
+    "blogs.trust": "Confiança em Amigos",
+    "blogs.trustDesc": "Reflexões pessoais sobre a importância da confiança nos relacionamentos e como ela molda a verdadeira amizade",
 
     "linkedin.title": "Posts em Destaque do LinkedIn",
 

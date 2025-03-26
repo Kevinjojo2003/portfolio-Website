@@ -1,3 +1,4 @@
+
 export const fr = {
   translation: {
     "hero.title": "Kevin Jojo",
@@ -19,6 +20,21 @@ export const fr = {
     "about.experience": "Expérience",
     "about.responsibilities": "Postes à Responsabilité",
     "about.certifications": "Certifications",
+    "about.certifications.google": "Gestion de Projet Google : Spécialisation",
+    "about.certifications.googleOrg": "Google",
+    "about.certifications.googleDate": "Mar 2024",
+    "about.certifications.ml": "Apprentissage Automatique avec Python - Niveau 1",
+    "about.certifications.mlOrg": "IBM",
+    "about.certifications.mlDate": "Oct 2022",
+    "about.certifications.chatbot": "Développement de Chatbot IA avec IBM Watson",
+    "about.certifications.chatbotOrg": "Coursera",
+    "about.certifications.chatbotDate": "Jan 2022",
+    "about.certifications.computational": "Pensée Computationnelle et Résolution de Problèmes",
+    "about.certifications.computationalOrg": "Université du Michigan",
+    "about.certifications.computationalDate": "Jan 2022",
+    "about.certifications.marketing": "Fondamentaux du Marketing Digital",
+    "about.certifications.marketingOrg": "Google Digital Garage",
+    "about.certifications.marketingDate": "Déc 2021",
 
     "skills.title": "Compétences et Technologies",
     "skills.programming": "Programmation et Développement",
@@ -29,10 +45,24 @@ export const fr = {
     "skills.mathematics": "Mathématiques et Statistiques",
 
     "projects.title": "Projets en Vedette",
+    "projects.semp": "Prédicteur de Marché Boursier Amélioré par Sentiment",
+    "projects.sempDesc": "Utilise ARIMA saisonnier, LSTM, CNN-RNN pour la prédiction des prix des actions avec analyse de sentiment",
+    "projects.object": "Détection d'Objets en Mouvement avec OpenCV",
+    "projects.objectDesc": "95% de précision dans la détection d'objets en mouvement en utilisant la vision par ordinateur",
+    "projects.classification": "Classification Chien vs Chat (CNN)",
+    "projects.classificationDesc": "Modèle d'apprentissage profond avec 98% de précision pour la classification d'images",
+    "projects.news": "Plateforme Actualités-Météo-Actions",
+    "projects.newsDesc": "Prédit les tendances météo et boursières avec LSTM et Streamlit, augmentant l'interaction de 25%",
+    "projects.asd": "Exploration ML pour l'Autisme",
+    "projects.asdDesc": "Amélioration de 20% de la précision de prédiction sur les ensembles de données sur l'autisme",
     "projects.liveDemo": "Démo en Direct",
     "projects.viewCode": "Voir le Code",
 
     "blogs.title": "Mes Articles de Blog",
+    "blogs.memories": "Les Souvenirs Ont une Vie",
+    "blogs.memoriesDesc": "Réflexions sur comment les souvenirs façonnent nos vies et pourquoi nous devrions les chérir",
+    "blogs.trust": "La Confiance en Amitié",
+    "blogs.trustDesc": "Réflexions personnelles sur l'importance de la confiance dans les relations et comment elle forge l'amitié véritable",
 
     "linkedin.title": "Publications LinkedIn en Vedette",
 
@@ -41,6 +71,19 @@ export const fr = {
     "booking.services": "Mes Services",
     "booking.business": "Services aux Entreprises",
     "booking.technical": "Services Techniques",
+    "booking.business.consulting": "Conseil en Intégration d'IA",
+    "booking.business.strategy": "Stratégie de Transformation Digitale",
+    "booking.business.automation": "Automatisation des Processus d'Affaires",
+    "booking.business.analytics": "Prise de Décision Basée sur les Données",
+    "booking.technical.ai": "Développement de Modèles d'IA",
+    "booking.technical.ml": "Implémentation d'Apprentissage Automatique",
+    "booking.technical.data": "Analyse et Visualisation de Données",
+    "booking.technical.development": "Développement d'Applications Web et Mobiles",
+    "booking.availability": "Disponibilité",
+    "booking.availabilityDesc": "Lundi à Vendredi, 9h00 - 18h00 (HNE)",
+    "booking.duration": "Durée des Sessions",
+    "booking.durationDesc": "Sessions de 30 et 60 minutes disponibles",
+    "booking.bookNow": "Réserver Maintenant via Calendly",
 
     "contact.title": "Contact",
     "contact.info": "Informations de Contact",
@@ -50,6 +93,8 @@ export const fr = {
     "contact.send": "Envoyer",
     "contact.sending": "Envoi en cours...",
     "contact.success": "Message envoyé avec succès !",
-    "contact.error": "Échec de l'envoi du message. Veuillez réessayer."
+    "contact.error": "Échec de l'envoi du message. Veuillez réessayer.",
+    
+    "footer.copyright": "© 2024 Kevin Jojo. Tous droits réservés."
   }
 };
