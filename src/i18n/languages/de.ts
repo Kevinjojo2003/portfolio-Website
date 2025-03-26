@@ -1,4 +1,3 @@
-
 export const de = {
   translation: {
     "hero.title": "Kevin Jojo",
@@ -17,6 +16,15 @@ export const de = {
 
     "about.title": "Erfahrung & Verantwortlichkeiten",
     "about.education": "Ausbildung",
+    "about.education.karunya": "Karunya Institut für Technologie und Wissenschaften",
+    "about.education.karunyaDegree": "B.Tech in Informatik (KI & ML)",
+    "about.education.karunyaDate": "2021 - 2025",
+    "about.education.depaul": "De Paul Public School",
+    "about.education.depaulDegree": "Höhere Sekundarbildung",
+    "about.education.depaulDate": "2019 - 2021",
+    "about.education.village": "The Village International School",
+    "about.education.villageDegree": "Sekundarbildung",
+    "about.education.villageDate": "2007 - 2019",
     "about.experience": "Erfahrung",
     "about.responsibilities": "Verantwortlichkeiten",
     "about.certifications": "Zertifizierungen",

@@ -1,4 +1,3 @@
-
 export const ja = {
   translation: {
     "hero.title": "ケビン・ジョジョ",
@@ -17,6 +16,15 @@ export const ja = {
 
     "about.title": "経験と責任",
     "about.education": "教育",
+    "about.education.karunya": "カルーニャ工科学科学研究所",
+    "about.education.karunyaDegree": "コンピュータサイエンス学士（AI＆ML）",
+    "about.education.karunyaDate": "2021年 - 2025年",
+    "about.education.depaul": "デポール公立学校",
+    "about.education.depaulDegree": "高等学校教育",
+    "about.education.depaulDate": "2019年 - 2021年",
+    "about.education.village": "ビレッジインターナショナルスクール",
+    "about.education.villageDegree": "中等教育",
+    "about.education.villageDate": "2007年 - 2019年",
     "about.experience": "経験",
     "about.responsibilities": "責任",
     "about.certifications": "資格",
@@ -60,7 +68,7 @@ export const ja = {
 
     "blogs.title": "ブログ投稿",
     "blogs.memories": "記憶には命がある",
-    "blogs.memoriesDesc": "記憶が私たちの人生をどのように形作り、なぜ大切にすべきかについての考察",
+    "blogs.memoriesDesc": "記憶が私たちの人生をどのように形���り、なぜ大切にすべきかについての考察",
     "blogs.trust": "友人への信頼",
     "blogs.trustDesc": "関係における信頼の重要性と、それが真の友情をどのように形成するかについての個人的考察",
 
