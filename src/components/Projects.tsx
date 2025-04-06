@@ -1,13 +1,21 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, LineChart, Microscope, Brain, Eye, Cat } from "lucide-react";
+import { ExternalLink, Github, LineChart, Microscope, Brain, Eye, Cat, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export const Projects = () => {
   const { t } = useTranslation();
 
   const projects = [
+    {
+      title: t('projects.medical'),
+      description: t('projects.medicalDesc'),
+      tech: ["Langchain", "AI", "Medical Analysis"],
+      liveUrl: "https://mediai.streamlit.app/",
+      githubUrl: "https://github.com/Kevinjojo2003/MediAi",
+      icon: <FileText className="w-8 h-8 text-primary/70" />
+    },
     {
       title: t('projects.semp'),
       description: t('projects.sempDesc'),

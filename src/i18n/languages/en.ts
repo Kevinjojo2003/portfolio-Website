@@ -91,6 +91,8 @@ export const en = {
     "skills.mathematics": "Mathematics & Statistics",
 
     "projects.title": "Featured Projects",
+    "projects.medical": "Medical Report Analyzer",
+    "projects.medicalDesc": "AI-powered medical report analyzer using Langchain for automated analysis and insights",
     "projects.semp": "Sentiment-Enhanced Stock Market Predictor",
     "projects.sempDesc": "Uses Seasonal ARIMA, LSTM, CNN-RNN for stock price prediction with sentiment analysis",
     "projects.object": "Moving Object Detection Using OpenCV",
