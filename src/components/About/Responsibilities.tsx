@@ -53,7 +53,7 @@ export const Responsibilities = () => {
           <div>
             <div className="flex items-center gap-4">
               <img 
-                src="/lovable-uploads/15e34c16-27d8-44fa-ac7b-7431ca288a09.png"
+                src="/lovable-uploads/dcc6dfe7-b1bc-4bd8-b562-04863bafceb0.png"
                 alt="Rotaract Club Logo" 
                 className="w-12 h-12 object-contain"
               />
