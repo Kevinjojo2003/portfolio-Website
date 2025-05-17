@@ -53,9 +53,9 @@ export const Responsibilities = () => {
           <div>
             <div className="flex items-center gap-4">
               <img 
-                src="/lovable-uploads/dcc6dfe7-b1bc-4bd8-b562-04863bafceb0.png"
+                src="/lovable-uploads/535dd461-a6ee-4b6b-8fb6-759cb1c304eb.png"
                 alt="Rotaract Club Logo" 
-                className="w-12 h-12 object-contain"
+                className="w-12 h-12 object-contain bg-white rounded-full p-1"
               />
               <div>
                 <h4 className="font-medium">{t('about.responsibilities.rotaract')}</h4>
