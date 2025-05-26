@@ -1,8 +1,5 @@
 
 # Kevin Jojo Portfolio
-
-![Kevin Jojo Portfolio](public/og-image.png)
-
 A modern, responsive portfolio website showcasing Kevin Jojo's skills, projects, and experiences as an AI & Machine Learning Engineer.
 
 ## 🚀 Features
