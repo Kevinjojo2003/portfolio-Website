@@ -35,7 +35,7 @@ export const en = {
     
     "about.experience.aiEngineer": "AI Engineer Intern",
     "about.experience.workcohol": "Workcohol",
-    "about.experience.workcoholDate": "Jan 2025 - Present",
+    "about.experience.workcoholDate": "Jan 2025 - June 2025",
     "about.experience.workcoholDesc1": "Working on AI and machine learning projects",
     "about.experience.workcoholDesc2": "Developing intelligent systems and solutions",
     "about.experience.workcoholDesc3": "Implementing deep learning models",
