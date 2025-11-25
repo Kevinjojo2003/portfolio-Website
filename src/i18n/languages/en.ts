@@ -28,8 +28,8 @@ export const en = {
     
     "about.experience": "Experience",
     "about.experience.promptEngineer": "Prompt Engineer & Business Analyst",
-    "about.experience.kolo": "Koloapp - Founders Office",
-    "about.experience.koloDate": "Present",
+    "about.experience.kolo": "Koloapp",
+    "about.experience.koloDate": "August 2025 - Now",
     "about.experience.koloDesc1": "Designing and developing analytics for Kolo's gathering systems that improve accuracy and reduce manual effort",
     "about.experience.koloDesc2": "Enhancing vendor-homeowner decision workflows through data-driven insights",
     
