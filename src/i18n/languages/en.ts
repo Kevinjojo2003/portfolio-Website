@@ -27,6 +27,12 @@ export const en = {
     "about.education.villageDate": "2007 - 2019",
     
     "about.experience": "Experience",
+    "about.experience.promptEngineer": "Prompt Engineer & Business Analyst",
+    "about.experience.kolo": "Koloapp - Founders Office",
+    "about.experience.koloDate": "Present",
+    "about.experience.koloDesc1": "Designing and developing analytics for Kolo's gathering systems that improve accuracy and reduce manual effort",
+    "about.experience.koloDesc2": "Enhancing vendor-homeowner decision workflows through data-driven insights",
+    
     "about.experience.aiEngineer": "AI Engineer Intern",
     "about.experience.workcohol": "Workcohol",
     "about.experience.workcoholDate": "Jan 2025 - Present",

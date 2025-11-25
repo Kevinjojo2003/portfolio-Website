@@ -17,6 +17,24 @@ export const Experience = () => {
           <div>
             <div className="flex items-center gap-4">
               <img 
+                src="/lovable-uploads/kolo-logo.png"
+                alt="Kolo Logo" 
+                className="w-12 h-12 object-contain bg-white rounded-full p-1"
+              />
+              <div>
+                <h4 className="font-medium">{t('about.experience.promptEngineer')}</h4>
+                <p className="text-muted-foreground">{t('about.experience.kolo')}</p>
+                <p className="text-sm text-muted-foreground">{t('about.experience.koloDate')}</p>
+              </div>
+            </div>
+            <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
+              <li>{t('about.experience.koloDesc1')}</li>
+              <li>{t('about.experience.koloDesc2')}</li>
+            </ul>
+          </div>
+          <div>
+            <div className="flex items-center gap-4">
+              <img 
                 src="/lovable-uploads/0b4ce4eb-de3c-47d7-ac69-6ca4b822ad37.png"
                 alt="Workcohol Logo" 
                 className="w-12 h-12 object-contain bg-white rounded-full p-1"
