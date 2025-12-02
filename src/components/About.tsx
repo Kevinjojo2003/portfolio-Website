@@ -2,6 +2,7 @@ import { Education } from "./About/Education";
 import { Experience } from "./About/Experience";
 import { Responsibilities } from "./About/Responsibilities";
 import { Certifications } from "./About/Certifications";
+import { Publications } from "./About/Publications";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 
@@ -26,6 +27,11 @@ export const About = () => {
     threshold: 0.2,
     triggerOnce: true,
     delay: 400
+  });
+  const [publicationsRef, publicationsInView] = useInView({ 
+    threshold: 0.2,
+    triggerOnce: true,
+    delay: 500
   });
 
   return (
@@ -54,7 +60,7 @@ export const About = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
           <div 
             ref={responsibilitiesRef}
             className={`transform transition-all duration-1000 ${
@@ -71,6 +77,15 @@ export const About = () => {
           >
             <Certifications />
           </div>
+        </div>
+
+        <div 
+          ref={publicationsRef}
+          className={`transform transition-all duration-1000 ${
+            publicationsInView ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+          }`}
+        >
+          <Publications />
         </div>
       </div>
     </section>

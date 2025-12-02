@@ -88,6 +88,14 @@ export const en = {
     "about.certifications.marketingOrg": "Google Digital Garage",
     "about.certifications.marketingDate": "Dec 2021",
 
+    "about.publications": "Publications",
+    "about.publications.ieee.title": "A Multi-Modal Framework for Stock Market Prediction Integrating Sentiment, Technical Indicators, and Real-Time Analysis",
+    "about.publications.ieee.conference": "2025 IEEE International Conference on Contemporary Computing and Communications (InC4)",
+    "about.publications.ieee.publisher": "IEEE",
+    "about.publications.ieee.doi": "10.1109/InC465408.2025.11256434",
+    "about.publications.ieee.description": "This research introduces the Sentiment-Enhanced Stock Market Predictor (SE-SMP), a comprehensive multi-modal framework designed to improve the accuracy of stock market forecasting. The model integrates historical price data, technical indicators, market sentiment, and real-time chart analysis using computer vision techniques.",
+    "about.publications.viewPublication": "View Publication",
+
     "skills.title": "Skills & Technologies",
     "skills.programming": "Programming & Development",
     "skills.ai": "AI & Machine Learning",
