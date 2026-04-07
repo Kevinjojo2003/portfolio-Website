@@ -82,7 +82,7 @@ export const Hero = () => {
             </HoverCard>
 
             <Button variant="outline" size="lg" asChild className="gap-2 hover:scale-105 transition-transform">
-              <a href="https://linkedin.com/in/kevinjojo" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/kevinjojo/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
               </a>
