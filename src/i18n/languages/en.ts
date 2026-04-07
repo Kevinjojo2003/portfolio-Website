@@ -142,7 +142,7 @@ export const en = {
     "booking.technical.data": "Data Analysis & Visualization",
     "booking.technical.development": "Web & Mobile App Development",
     "booking.availability": "Availability",
-    "booking.availabilityDesc": "Monday to Friday, 9:00 AM - 6:00 PM (EST)",
+    "booking.availabilityDesc": "Monday to Friday, 7:00 PM - 12:00 AM (EST)",
     "booking.duration": "Session Duration",
     "booking.durationDesc": "30-minute and 60-minute sessions available",
     "booking.bookNow": "Book Now via Calendly",
