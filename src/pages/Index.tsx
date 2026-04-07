@@ -57,7 +57,7 @@ const Index = () => {
   };
 
   const handleResumeDownload = () => {
-    const resumeUrl = "https://drive.google.com/uc?export=download&id=1FbcJTU8HlAYkABnixfUynwya2euTFxAM";
+    const resumeUrl = "/Kevin_Jojo_Resume.pdf";
     
     try {
       const link = document.createElement('a');
