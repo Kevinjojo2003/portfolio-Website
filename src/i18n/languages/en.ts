@@ -1,9 +1,9 @@
 export const en = {
   translation: {
     "hero.title": "Kevin Jojo",
-    "hero.subtitle": "AI & Machine Learning Engineer",
-    "hero.description1": "I'm Kevin Jojo, a passionate AI & Machine Learning Engineer and final year engineering student specializing in Artificial Intelligence and Machine Learning. With a strong foundation in Python, data analysis, and intelligent systems development, I excel at solving complex problems and driving innovation through technology.",
-    "hero.description2": "Explore my journey, projects, and contributions to the world of AI and discover how I blend technical expertise with the drive to create impactful solutions. Let's shape the future together!",
+    "hero.subtitle": "AI Engineer & Product-Focused Builder",
+    "hero.description1": "I'm Kevin Jojo, an AI Engineer and product-focused builder specializing in designing and deploying intelligent systems that solve real-world business problems.",
+    "hero.description2": "My work sits at the intersection of artificial intelligence and product strategy—where I translate complex data, workflows, and domain requirements into scalable, user-facing AI solutions. From LLM-powered applications and evaluation frameworks to multi-modal prediction systems, I focus on building tools that drive efficiency, improve decision-making, and create measurable impact.",
     "hero.viewWork": "View My Work",
     
     "nav.about": "About",
