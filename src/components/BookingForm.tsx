@@ -88,15 +88,13 @@ export const BookingForm = () => {
               </div>
             </div>
             
-            <div className="mt-8 text-center">
-              <a 
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-              >
-                {t('booking.bookNow')}
-              </a>
+            <div className="mt-8">
+              <iframe 
+                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3V_jQjqASYLC7q66zB6jVB396S5CvmhO8ZYcyQOPcGCTCKc5waU_0-xMZL35WFKcBQ9ebKgF6h?gv=true" 
+                className="w-full rounded-lg border-0" 
+                height="600" 
+                title="Schedule an appointment"
+              />
             </div>
           </CardContent>
         </Card>
