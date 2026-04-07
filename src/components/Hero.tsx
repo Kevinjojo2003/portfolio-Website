@@ -102,7 +102,7 @@ export const Hero = () => {
 
             <a 
               className="libutton" 
-              href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=kevinjojo" 
+              href="https://www.linkedin.com/mynetwork/discovery-see-all/?usecase=PEOPLE_FOLLOWS&followMember=kevinjojo" 
               target="_blank"
               rel="noopener noreferrer"
             >
