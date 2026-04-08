@@ -1,47 +1,3 @@
-
-#root {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 /* Navigation styles */
 .nav-link {
   position: relative;
@@ -72,19 +28,6 @@
   width: 100%;
 }
 
-/* Mobile navigation styles */
-@media (max-width: 768px) {
-  .nav-link {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 0;
-  }
-
-  .nav-link::after {
-    bottom: 4px;
-  }
-}
-
 /* Section fade animation */
 .section-fade {
   opacity: 0;
@@ -104,12 +47,17 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/* Adjust padding for mobile */
 @media (max-width: 768px) {
-  #root {
-    padding: 0.5rem;
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 0;
   }
-  
+
+  .nav-link::after {
+    bottom: 4px;
+  }
+
   section {
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
@@ -127,7 +75,7 @@ a,
 /* Optimize forms for mobile */
 input, 
 textarea {
-  font-size: 16px !important; /* Prevent zoom on iOS */
+  font-size: 16px !important;
 }
 
 /* Safe area insets for notched devices */
@@ -140,14 +88,25 @@ textarea {
   }
 }
 
-/* Improve scrolling performance */
-* {
-  -webkit-overflow-scrolling: touch;
+/* LinkedIn Follow Button */
+.libutton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7px;
+  text-align: center;
+  outline: none;
+  text-decoration: none !important;
+  color: hsl(var(--primary-foreground)) !important;
+  width: 200px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: #0A66C2;
+  font-family: "SF Pro Text", Helvetica, sans-serif;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-/* Disable text selection for better mobile UX */
-.no-select {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
+.libutton:hover {
+  transform: scale(1.05);
+  background-color: #004182;
 }

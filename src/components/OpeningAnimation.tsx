@@ -1,63 +1,58 @@
-
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => {
-  const [dataStream, setDataStream] = useState<string[][]>([]);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // Calculate number of rows and columns to fill screen
-    const rows = Math.ceil(window.innerHeight / 24); // Assuming each row is ~24px
-    const cols = Math.ceil(window.innerWidth / 100); // Assuming each binary number takes ~100px
-
-    // Initialize grid
-    setDataStream(Array(rows).fill(0).map(() => 
-      Array(cols).fill('00000000')
-    ));
-
-    const interval = setInterval(() => {
-      setDataStream(prev => {
-        return prev.map(row => 
-          row.map(() => Math.random().toString(2).substr(2, 8))
-        );
-      });
-    }, 50);
-
-    // Run for 3 seconds then complete
     const timeout = setTimeout(() => {
-      clearInterval(interval);
-      onComplete();
-      toast.success("Welcome to my portfolio!");
-    }, 3000);
+      setVisible(false);
+      setTimeout(onComplete, 600);
+    }, 2000);
 
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    };
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="grid auto-rows-min gap-1 p-1 w-full h-full">
-          {dataStream.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex justify-between w-full">
-              {row.map((binary, colIndex) => (
-                <div
-                  key={`${rowIndex}-${colIndex}`}
-                  className="text-primary/60 font-mono text-sm animate-fade-up"
-                  style={{
-                    animationDelay: `${(rowIndex * 50 + colIndex * 20)}ms`,
-                    opacity: 0
-                  }}
-                >
-                  {binary}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.div
+            className="text-4xl md:text-6xl font-bold gradient-text"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            Kevin Jojo
+          </motion.div>
+          <motion.div
+            className="text-lg md:text-xl text-muted-foreground mt-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            AI Engineer
+          </motion.div>
+          <motion.div
+            className="mt-8 w-48 h-1 bg-primary/20 rounded-full overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <motion.div
+              className="h-full bg-primary rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1.4, delay: 0.6, ease: "easeInOut" }}
+            />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
