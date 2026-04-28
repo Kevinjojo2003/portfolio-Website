@@ -103,6 +103,6 @@ export const ja = {
     "contact.success": "メッセージを送信しました！",
     "contact.error": "送信に失敗しました。もう一度お試しください。",
     
-    "footer.copyright": "© 2024 Kevin Jojo. All rights reserved."
+    "footer.copyright": "© 2025 Kevin Jojo. All rights reserved."
   }
 };

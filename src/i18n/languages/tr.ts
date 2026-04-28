@@ -133,6 +133,6 @@ export const tr = {
     "contact.success": "Mesaj başarıyla gönderildi!",
     "contact.error": "Mesaj gönderilirken hata oluştu. Lütfen tekrar deneyin.",
     
-    "footer.copyright": "© 2024 Kevin Jojo. Tüm hakları saklıdır."
+    "footer.copyright": "© 2025 Kevin Jojo. Tüm hakları saklıdır."
   }
 };

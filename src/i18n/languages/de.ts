@@ -103,6 +103,6 @@ export const de = {
     "contact.success": "Nachricht erfolgreich gesendet!",
     "contact.error": "Fehler beim Senden. Bitte versuchen Sie es erneut.",
     
-    "footer.copyright": "© 2024 Kevin Jojo. Alle Rechte vorbehalten."
+    "footer.copyright": "© 2025 Kevin Jojo. Alle Rechte vorbehalten."
   }
 };

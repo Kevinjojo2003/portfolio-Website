@@ -133,6 +133,6 @@ export const it = {
     "contact.success": "Messaggio inviato con successo!",
     "contact.error": "Impossibile inviare il messaggio. Riprova più tardi.",
     
-    "footer.copyright": "© 2024 Kevin Jojo. Tutti i diritti riservati."
+    "footer.copyright": "© 2025 Kevin Jojo. Tutti i diritti riservati."
   }
 };

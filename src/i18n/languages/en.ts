@@ -157,6 +157,6 @@ export const en = {
     "contact.success": "Message sent successfully!",
     "contact.error": "Failed to send message. Please try again.",
     
-    "footer.copyright": "© 2024 Kevin Jojo. All rights reserved."
+    "footer.copyright": "© 2025 Kevin Jojo. All rights reserved."
   }
 };

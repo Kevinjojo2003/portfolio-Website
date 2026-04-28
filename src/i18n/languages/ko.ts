@@ -133,6 +133,6 @@ export const ko = {
     "contact.success": "메시지가 성공적으로 전송되었습니다!",
     "contact.error": "메시지 전송에 실패했습니다. 다시 시도해 주세요.",
     
-    "footer.copyright": "© 2024 케빈 조조. 모든 권리 보유."
+    "footer.copyright": "© 2025 케빈 조조. 모든 권리 보유."
   }
 };
