@@ -5,6 +5,11 @@ export const en = {
     "hero.description1": "I'm Kevin Jojo, an AI Engineer and product-focused builder specializing in designing and deploying intelligent systems that solve real-world business problems.",
     "hero.description2": "My work sits at the intersection of artificial intelligence and product strategy—where I translate complex data, workflows, and domain requirements into scalable, user-facing AI solutions. From LLM-powered applications and evaluation frameworks to multi-modal prediction systems, I focus on building tools that drive efficiency, improve decision-making, and create measurable impact.",
     "hero.viewWork": "View My Work",
+    "hero.openToWork": "Open to work",
+    "hero.roleLine": "AI Engineer · LLM Systems · Product Strategy",
+    "hero.stat.ieee": "IEEE Paper",
+    "hero.stat.projects": "Projects",
+    "hero.stat.companies": "Companies",
     
     "nav.about": "About",
     "nav.skills": "Skills",
@@ -95,6 +100,19 @@ export const en = {
     "about.publications.ieee.doi": "10.1109/InC465408.2025.11256434",
     "about.publications.ieee.description": "This research introduces the Sentiment-Enhanced Stock Market Predictor (SE-SMP), a comprehensive multi-modal framework designed to improve the accuracy of stock market forecasting. The model integrates historical price data, technical indicators, market sentiment, and real-time chart analysis using computer vision techniques.",
     "about.publications.viewPublication": "View Publication",
+    "about.publications.viewIeee": "View on IEEE",
+    "about.publications.ieee.badge": "IEEE Published Research",
+    "about.experience.current": "Current",
+    "skills.level.expert": "Expert",
+    "skills.level.advanced": "Advanced",
+    "skills.level.familiar": "Familiar",
+    "projects.live": "Live",
+    "projects.metric.medical": "AI-driven clinical insight extraction",
+    "projects.metric.semp": "Multi-modal forecasting framework",
+    "projects.metric.object": "95% detection rate",
+    "projects.metric.classification": "98% accuracy",
+    "projects.metric.news": "25% interaction lift",
+    "projects.metric.asd": "20% prediction improvement",
 
     "skills.title": "Skills & Technologies",
     "skills.programming": "Programming & Development",
@@ -157,6 +175,6 @@ export const en = {
     "contact.success": "Message sent successfully!",
     "contact.error": "Failed to send message. Please try again.",
     
-    "footer.copyright": "© 2024 Kevin Jojo. All rights reserved."
+    "footer.copyright": "© 2025 Kevin Jojo. All rights reserved."
   }
 };

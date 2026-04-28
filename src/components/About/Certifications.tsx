@@ -35,7 +35,7 @@ export const Certifications = () => {
   ];
 
   return (
-    <Card className="glass-card">
+    <Card className="glass-card border border-border/60">
       <CardContent className="p-6 md:p-8">
         <div className="flex items-center gap-3 mb-6">
           <Award className="w-6 h-6 text-primary" />

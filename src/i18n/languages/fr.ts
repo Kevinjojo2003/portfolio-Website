@@ -95,6 +95,6 @@ export const fr = {
     "contact.success": "Message envoyé avec succès !",
     "contact.error": "Échec de l'envoi du message. Veuillez réessayer.",
     
-    "footer.copyright": "© 2024 Kevin Jojo. Tous droits réservés."
+    "footer.copyright": "© 2025 Kevin Jojo. Tous droits réservés."
   }
 };

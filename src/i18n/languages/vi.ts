@@ -133,6 +133,6 @@ export const vi = {
     "contact.success": "Tin nhắn đã được gửi thành công!",
     "contact.error": "Không thể gửi tin nhắn. Vui lòng thử lại.",
     
-    "footer.copyright": "© 2024 Kevin Jojo. Đã đăng ký Bản quyền."
+    "footer.copyright": "© 2025 Kevin Jojo. Đã đăng ký Bản quyền."
   }
 };
