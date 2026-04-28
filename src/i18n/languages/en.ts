@@ -1,180 +1,183 @@
 export const en = {
   translation: {
-    "hero.title": "Kevin Jojo",
-    "hero.subtitle": "AI Engineer & Product-Focused Builder",
-    "hero.description1": "I'm Kevin Jojo, an AI Engineer and product-focused builder specializing in designing and deploying intelligent systems that solve real-world business problems.",
-    "hero.description2": "My work sits at the intersection of artificial intelligence and product strategy—where I translate complex data, workflows, and domain requirements into scalable, user-facing AI solutions. From LLM-powered applications and evaluation frameworks to multi-modal prediction systems, I focus on building tools that drive efficiency, improve decision-making, and create measurable impact.",
-    "hero.viewWork": "View My Work",
-    "hero.openToWork": "Open to work",
-    "hero.roleLine": "AI Engineer · LLM Systems · Product Strategy",
-    "hero.stat.ieee": "IEEE Paper",
-    "hero.stat.projects": "Projects",
-    "hero.stat.companies": "Companies",
-    
+    // Navigation
     "nav.about": "About",
-    "nav.skills": "Skills",
+    "nav.research": "Research",
     "nav.projects": "Projects",
-    "nav.blogs": "Blog",
-    "nav.booking": "Book",
     "nav.contact": "Contact",
     "nav.resume": "Resume",
 
-    "about.title": "Experience & Responsibilities",
-    "about.education": "Education",
-    "about.education.karunya": "Karunya Institute of Technology and Sciences",
-    "about.education.karunyaDegree": "B.Tech in Computer Science (AI & ML)",
-    "about.education.karunyaDate": "2021 - 2025",
-    "about.education.depaul": "De Paul Public School",
-    "about.education.depaulDegree": "Higher Secondary Education",
-    "about.education.depaulDate": "2019 - 2021",
-    "about.education.village": "The Village International School",
-    "about.education.villageDegree": "Secondary Education",
-    "about.education.villageDate": "2007 - 2019",
-    
-    "about.experience": "Experience",
+    // Hero
+    "hero.eyebrow": "AI Engineer · Cochin, India",
+    "hero.cred.ieee.label": "Publication",
+    "hero.cred.ieee.value": "IEEE Published · InC4 2025",
+    "hero.cred.role.label": "Current Role",
+    "hero.cred.role.value": "Prompt Engineer @ Koloapp",
+    "hero.cred.edu.label": "Education",
+    "hero.cred.edu.value": "B.Tech AI/ML · Karunya 2025",
+    "hero.stat.paper": "Research Paper",
+    "hero.stat.projects": "Deployed Projects",
+    "hero.stat.years": "Years Building",
+    "hero.cta.work": "See My Work",
+    "hero.cta.paper": "Read the Paper",
+
+    // Research
+    "research.eyebrow": "Research",
+    "research.title": "Peer-reviewed work in multi-modal forecasting",
+    "research.description":
+      "Published research at IEEE InC4 2025 introducing a multi-modal framework that fuses sentiment, technical indicators, and computer vision for stock market prediction.",
+    "research.badge": "IEEE InC4 2025",
+    "research.year": "2025 · IEEE Xplore",
+    "research.paperTitle":
+      "A Multi-Modal Framework for Stock Market Prediction Integrating Sentiment, Technical Indicators, and Real-Time Analysis",
+    "research.abstract":
+      "We propose the Sentiment-Enhanced Stock Market Predictor (SE-SMP), a multi-modal framework that combines historical price action, technical indicators, news sentiment, and real-time chart vision. The system fuses textual, numeric, and visual signals to produce more robust short-horizon forecasts than single-modality baselines.",
+    "research.readIeee": "Read on IEEE",
+
+    // About / Experience
+    "about.eyebrow": "Experience",
+    "about.title": "What I've shipped, where",
+    "about.description":
+      "Three years across product, research, and engineering roles — building tools that move metrics, not demos.",
+    "about.experience.current": "Current",
+
     "about.experience.promptEngineer": "Prompt Engineer & Business Analyst",
     "about.experience.kolo": "Koloapp",
-    "about.experience.koloDate": "August 2025 - Now",
-    "about.experience.koloDesc1": "Designing and developing analytics for Kolo's gathering systems that improve accuracy and reduce manual effort",
-    "about.experience.koloDesc2": "Enhancing vendor-homeowner decision workflows through data-driven insights",
-    
+    "about.experience.koloDate": "Aug 2025 — Present",
+    "about.experience.koloImpact1":
+      "Built a prompt evaluation framework that surfaces hallucination risk on every release, cutting reviewer effort by ~40%.",
+    "about.experience.koloImpact2":
+      "Designed an analytics pipeline aggregating vendor–homeowner activity to drive matchmaking decisions and weekly product reviews.",
+
     "about.experience.aiEngineer": "AI Engineer Intern",
     "about.experience.workcohol": "Workcohol",
-    "about.experience.workcoholDate": "Jan 2025 - June 2025",
-    "about.experience.workcoholDesc1": "Working on AI and machine learning projects",
-    "about.experience.workcoholDesc2": "Developing intelligent systems and solutions",
-    "about.experience.workcoholDesc3": "Implementing deep learning models",
-    
+    "about.experience.workcoholDate": "Jan 2025 — Jun 2025",
+    "about.experience.workcoholImpact1":
+      "Trained and deployed CNN/RNN models for client image and time-series tasks behind a FastAPI service.",
+    "about.experience.workcoholImpact2":
+      "Reduced model inference latency ~35% by replacing a Python preprocessing path with a vectorised NumPy pipeline.",
+    "about.experience.workcoholImpact3":
+      "Authored internal MLOps notes covering training reproducibility, dataset versioning, and Docker packaging.",
+
     "about.experience.webDev": "Web Development Intern",
     "about.experience.bolt": "Bolt IoT",
-    "about.experience.boltDate": "May 2022 - Jun 2022",
-    "about.experience.boltDesc1": "Developed responsive web applications",
-    "about.experience.boltDesc2": "Worked with modern web technologies",
-    
+    "about.experience.boltDate": "May 2022 — Jun 2022",
+    "about.experience.boltImpact1":
+      "Shipped a responsive dashboard surface used to control IoT devices via REST APIs.",
+    "about.experience.boltImpact2":
+      "Wrote integration scripts that automated routine device telemetry checks for the support team.",
+
     "about.experience.marketing": "Social Media Marketing Intern",
     "about.experience.younity": "Younity",
-    "about.experience.younityDate": "Feb 2022 - Apr 2022",
-    "about.experience.younityDesc1": "Created and managed social media campaigns",
-    "about.experience.younityDesc2": "Analyzed marketing metrics and performance",
-    
-    "about.responsibilities": "Responsibilities",
-    "about.responsibilities.corporate": "Head of Corporate Relations",
-    "about.responsibilities.corporateOrg": "E-Cell Karunya",
-    "about.responsibilities.corporateDate": "June 2023 - June 2024",
-    "about.responsibilities.corporateDesc1": "Managed relationships with corporate partners",
-    "about.responsibilities.corporateDesc2": "Organized corporate events and collaborations",
-    
-    "about.responsibilities.hr": "Head of Human Resources",
-    "about.responsibilities.hrOrg": "E-Cell Karunya",
-    "about.responsibilities.hrDate": "Feb 2023 - June 2023",
-    "about.responsibilities.hrDesc1": "Managed recruitment and team coordination",
-    "about.responsibilities.hrDesc2": "Organized training and development programs",
-    
-    "about.responsibilities.rotaract": "Board Member",
-    "about.responsibilities.rotaractOrg": "Rotaract Club",
-    "about.responsibilities.rotaractDate": "Feb 2021 - Present",
-    "about.responsibilities.rotaractDesc1": "Participated in community service projects",
-    "about.responsibilities.rotaractDesc2": "Contributed to club initiatives and events",
-    
-    "about.certifications": "Certifications",
-    "about.certifications.google": "Google Project Management: Specialization",
-    "about.certifications.googleOrg": "Google",
-    "about.certifications.googleDate": "Mar 2024",
-    "about.certifications.ml": "Machine Learning with Python - Level 1",
-    "about.certifications.mlOrg": "IBM",
-    "about.certifications.mlDate": "Oct 2022",
-    "about.certifications.chatbot": "AI Chatbot Development using IBM Watson",
-    "about.certifications.chatbotOrg": "Coursera",
-    "about.certifications.chatbotDate": "Jan 2022",
-    "about.certifications.computational": "Computational Thinking and Problem Solving",
-    "about.certifications.computationalOrg": "University of Michigan",
-    "about.certifications.computationalDate": "Jan 2022",
+    "about.experience.younityDate": "Feb 2022 — Apr 2022",
+    "about.experience.younityImpact1":
+      "Ran A/B-style content experiments across 3 channels and reported weekly engagement deltas.",
+    "about.experience.younityImpact2":
+      "Built a lightweight analytics sheet that tracked CTR and conversion across campaigns.",
+
+    // Skills
+    "skills.eyebrow": "Stack",
+    "skills.title": "How I work, in three categories",
+    "skills.description":
+      "An honest split of the tools I use to research, build, and ship AI products.",
+    "skills.build.title": "I build with",
+    "skills.build.caption": "Production tools I reach for first.",
+    "skills.research.title": "I research with",
+    "skills.research.caption": "Tools for experimentation and modelling.",
+    "skills.ship.title": "I ship with",
+    "skills.ship.caption": "How code reaches users.",
+
+    // Projects
+    "projects.eyebrow": "Projects",
+    "projects.title": "Case studies, not screenshots",
+    "projects.description":
+      "Each project below shipped to real users. Problem → Solution → Outcome.",
+    "projects.problem": "Problem",
+    "projects.solution": "Solution",
+    "projects.demo": "Live Demo",
+    "projects.code": "Code",
+    "projects.ieeePublished": "IEEE Published",
+
+    "projects.medical.title": "Medical Report Analyzer",
+    "projects.medical.problem":
+      "Clinicians spend 2+ hours manually parsing long lab reports for key findings.",
+    "projects.medical.solution":
+      "A LangChain pipeline that extracts diagnoses, abnormal markers, and follow-up suggestions in under 30 seconds.",
+    "projects.medical.metric": "94% accuracy on 500+ test reports",
+
+    "projects.semp.title": "Sentiment-Enhanced Stock Predictor (SE-SMP)",
+    "projects.semp.problem":
+      "Single-signal predictors miss market regime shifts driven by news and chart structure.",
+    "projects.semp.solution":
+      "Multi-modal model fusing ARIMA, LSTM, CNN-RNN vision, and FinBERT sentiment into one forecast.",
+    "projects.semp.metric": "Peer-reviewed at IEEE InC4 2025",
+
+    "projects.object.title": "Real-Time Object Detection",
+    "projects.object.problem":
+      "CCTV operators can't watch every feed for sudden movement events.",
+    "projects.object.solution":
+      "OpenCV-based detector that flags moving objects in live video and pushes lightweight alerts.",
+    "projects.object.metric": "95% detection rate on test footage",
+
+    "projects.classification.title": "Image Classifier (CNN)",
+    "projects.classification.problem":
+      "Demonstrating end-to-end CNN training for a classic vision problem.",
+    "projects.classification.solution":
+      "TensorFlow CNN with augmentation, transfer learning, and a Streamlit demo for live inference.",
+    "projects.classification.metric": "98% accuracy on validation set",
+
+    "projects.news.title": "News · Weather · Stock Hub",
+    "projects.news.problem":
+      "Users juggle three apps to start their day informed.",
+    "projects.news.solution":
+      "Single Streamlit app combining LSTM stock forecasts with live weather and news feeds.",
+    "projects.news.metric": "+25% session interaction vs. baseline",
+
+    "projects.asd.title": "ASD Screening — ML Exploration",
+    "projects.asd.problem":
+      "Early ASD screening relies on inconsistent questionnaire scoring.",
+    "projects.asd.solution":
+      "Ensemble of classical models with feature engineering on public ASD screening datasets.",
+    "projects.asd.metric": "+20% prediction accuracy over baseline",
+
+    // Latest Thinking (replaces LinkedIn embeds)
+    "thinking.eyebrow": "Latest Thinking",
+    "thinking.title": "Notes from the field",
+    "thinking.readOn": "Read on LinkedIn",
+    "thinking.post1.title": "Why prompt evals beat prompt tweaks",
+    "thinking.post1.summary":
+      "A short note on building eval suites before chasing prompt rewrites.",
+    "thinking.post2.title": "Multi-modal forecasting in practice",
+    "thinking.post2.summary":
+      "What changed in our results when we added chart-vision signal to numeric models.",
+    "thinking.post3.title": "Shipping AI features as a solo engineer",
+    "thinking.post3.summary":
+      "How I scope, ship, and measure model-driven features end to end.",
+
+    // Certifications
+    "certifications.eyebrow": "Certifications",
+    "about.certifications.google": "Google Project Management",
+    "about.certifications.ml": "Machine Learning with Python",
+    "about.certifications.chatbot": "AI Chatbot Development with Watson",
+    "about.certifications.computational": "Computational Thinking & Problem Solving",
     "about.certifications.marketing": "Fundamentals of Digital Marketing",
-    "about.certifications.marketingOrg": "Google Digital Garage",
-    "about.certifications.marketingDate": "Dec 2021",
 
-    "about.publications": "Publications",
-    "about.publications.ieee.title": "A Multi-Modal Framework for Stock Market Prediction Integrating Sentiment, Technical Indicators, and Real-Time Analysis",
-    "about.publications.ieee.conference": "2025 IEEE International Conference on Contemporary Computing and Communications (InC4)",
-    "about.publications.ieee.publisher": "IEEE",
-    "about.publications.ieee.doi": "10.1109/InC465408.2025.11256434",
-    "about.publications.ieee.description": "This research introduces the Sentiment-Enhanced Stock Market Predictor (SE-SMP), a comprehensive multi-modal framework designed to improve the accuracy of stock market forecasting. The model integrates historical price data, technical indicators, market sentiment, and real-time chart analysis using computer vision techniques.",
-    "about.publications.viewPublication": "View Publication",
-    "about.publications.viewIeee": "View on IEEE",
-    "about.publications.ieee.badge": "IEEE Published Research",
-    "about.experience.current": "Current",
-    "skills.level.expert": "Expert",
-    "skills.level.advanced": "Advanced",
-    "skills.level.familiar": "Familiar",
-    "projects.live": "Live",
-    "projects.metric.medical": "AI-driven clinical insight extraction",
-    "projects.metric.semp": "Multi-modal forecasting framework",
-    "projects.metric.object": "95% detection rate",
-    "projects.metric.classification": "98% accuracy",
-    "projects.metric.news": "25% interaction lift",
-    "projects.metric.asd": "20% prediction improvement",
+    // Contact
+    "contact.eyebrow": "Contact",
+    "contact.title": "Let's build something",
+    "contact.description":
+      "Open to AI engineering roles, applied research collaborations, and product builds.",
+    "contact.name": "Your name",
+    "contact.email": "Your email",
+    "contact.message": "Your message",
+    "contact.send": "Send message",
+    "contact.sending": "Sending…",
+    "contact.success": "Message sent. I'll reply within 48 hours.",
+    "contact.error": "Couldn't send right now. Please retry or email directly.",
+    "contact.copied": "Email copied",
+    "contact.copyFailed": "Couldn't copy — please copy manually.",
 
-    "skills.title": "Skills & Technologies",
-    "skills.programming": "Programming & Development",
-    "skills.ai": "AI & Machine Learning",
-    "skills.deepLearning": "Deep Learning",
-    "skills.dataScience": "Data Science & Analytics",
-    "skills.visualization": "Data Visualization",
-    "skills.mathematics": "Mathematics & Statistics",
-
-    "projects.title": "Featured Projects",
-    "projects.medical": "Medical Report Analyzer",
-    "projects.medicalDesc": "AI-powered medical report analyzer using Langchain for automated analysis and insights",
-    "projects.semp": "Sentiment-Enhanced Stock Market Predictor",
-    "projects.sempDesc": "Uses Seasonal ARIMA, LSTM, CNN-RNN for stock price prediction with sentiment analysis",
-    "projects.object": "Moving Object Detection Using OpenCV",
-    "projects.objectDesc": "Achieved 95% accuracy in detecting moving objects using computer vision",
-    "projects.classification": "Dog vs Cat Classification (CNN)",
-    "projects.classificationDesc": "Designed a deep learning model with 98% accuracy for image classification",
-    "projects.news": "News Weather Stock Platform",
-    "projects.newsDesc": "Predicts weather & stock trends using LSTM & Streamlit, increasing interaction by 25%",
-    "projects.asd": "ASD ML Exploration",
-    "projects.asdDesc": "Improved prediction accuracy on ASD datasets by 20% using machine learning",
-    "projects.liveDemo": "Live Demo",
-    "projects.viewCode": "View Code",
-
-    "blogs.title": "My Blog Posts",
-    "blogs.memories": "Memories Have a Life",
-    "blogs.memoriesDesc": "Thoughts on how memories shape our lives and why we should cherish them",
-    "blogs.trust": "Trust in Friends",
-    "blogs.trustDesc": "Personal reflections on the importance of trust in relationships and how it shapes true friendship",
-
-    "linkedin.title": "Featured LinkedIn Posts",
-
-    "booking.title": "Book a Consultation",
-    "booking.subtitle": "Schedule a Chat Session",
-    "booking.services": "My Services",
-    "booking.business": "Business Services",
-    "booking.technical": "Technical Services",
-    "booking.business.consulting": "AI Integration Consulting",
-    "booking.business.strategy": "Digital Transformation Strategy",
-    "booking.business.automation": "Business Process Automation",
-    "booking.business.analytics": "Data-Driven Decision Making",
-    "booking.technical.ai": "AI Model Development",
-    "booking.technical.ml": "Machine Learning Implementation",
-    "booking.technical.data": "Data Analysis & Visualization",
-    "booking.technical.development": "Web & Mobile App Development",
-    "booking.availability": "Availability",
-    "booking.availabilityDesc": "Monday to Friday, 7:00 PM - 12:00 AM (IST)",
-    "booking.duration": "Session Duration",
-    "booking.durationDesc": "30-minute and 60-minute sessions available",
-    "booking.bookNow": "Book Now via Calendly",
-
-    "contact.title": "Get in Touch",
-    "contact.info": "Contact Information",
-    "contact.name": "Your Name",
-    "contact.email": "Your Email",
-    "contact.message": "Your Message",
-    "contact.send": "Send Message",
-    "contact.sending": "Sending...",
-    "contact.success": "Message sent successfully!",
-    "contact.error": "Failed to send message. Please try again.",
-    
-    "footer.copyright": "© 2025 Kevin Jojo. All rights reserved."
-  }
+    // Footer
+    "footer.copyright": "© 2025 Kevin Jojo",
+  },
 };
