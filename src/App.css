@@ -1,112 +1,21 @@
-/* Navigation styles */
-.nav-link {
-  position: relative;
-  color: var(--foreground);
-  transition: color 0.3s ease;
-  padding: 0.5rem;
-  cursor: pointer;
-  font-weight: 500;
-}
+/* App-level helpers (kept minimal — most styling is in index.css and Tailwind). */
 
-.nav-link:hover {
-  color: hsl(var(--primary));
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 50%;
-  background-color: hsl(var(--primary));
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-/* Section fade animation */
-.section-fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.section-fade[data-visible="true"] {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Mobile-specific adjustments */
 .capacitor-app {
   max-width: 100%;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
-@media (max-width: 768px) {
-  .nav-link {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 0;
-  }
-
-  .nav-link::after {
-    bottom: 4px;
-  }
-
-  section {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-}
-
-/* Improve touch targets for mobile */
-button, 
-a, 
-.nav-link {
-  min-height: 44px;
-  min-width: 44px;
-}
-
-/* Optimize forms for mobile */
-input, 
+input,
 textarea {
   font-size: 16px !important;
 }
 
-/* Safe area insets for notched devices */
 @supports (padding: max(0px)) {
   .capacitor-app {
-    padding-left: max(1rem, env(safe-area-inset-left));
-    padding-right: max(1rem, env(safe-area-inset-right));
-    padding-top: max(1rem, env(safe-area-inset-top));
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
   }
-}
-
-/* LinkedIn Follow Button */
-.libutton {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 7px;
-  text-align: center;
-  outline: none;
-  text-decoration: none !important;
-  color: hsl(var(--primary-foreground)) !important;
-  width: 200px;
-  height: 32px;
-  border-radius: 16px;
-  background-color: #0A66C2;
-  font-family: "SF Pro Text", Helvetica, sans-serif;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.libutton:hover {
-  transform: scale(1.05);
-  background-color: #004182;
 }

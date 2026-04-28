@@ -12,19 +12,15 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.5rem",
       screens: {
-        "sm": "640px",
-        "md": "768px",
-        "lg": "1024px",
-        "xl": "1280px",
-        "2xl": "1400px",
+        "2xl": "1100px",
       },
     },
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', 'sans-serif'],
-        mono: ['Fira Code', 'monospace'],
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -66,6 +62,9 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      transitionDuration: {
+        DEFAULT: "150ms",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -76,29 +75,14 @@ export default {
           to: { height: "0" },
         },
         "fade-up": {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(20px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
-        },
-        float: {
-          "0%, 100%": {
-            transform: "translateY(0)",
-          },
-          "50%": {
-            transform: "translateY(-10px)",
-          },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.5s ease-out forwards",
-        "float": "float 3s ease-in-out infinite",
       },
     },
   },

@@ -14,34 +14,26 @@ const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
-    const metaViewport = document.querySelector('meta[name=viewport]');
+    // Force dark theme — design is dark-only.
+    const root = document.documentElement;
+    root.classList.remove("light");
+    root.classList.add("dark");
+    root.style.colorScheme = "dark";
+
+    const metaViewport = document.querySelector("meta[name=viewport]");
     if (metaViewport) {
-      metaViewport.setAttribute('content', 
-        'width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no'
+      metaViewport.setAttribute(
+        "content",
+        "width=device-width, initial-scale=1.0, viewport-fit=cover"
       );
     }
-
-    const metaApple = document.createElement('meta');
-    metaApple.setAttribute('name', 'apple-mobile-web-app-capable');
-    metaApple.setAttribute('content', 'yes');
-    document.head.appendChild(metaApple);
-
-    const metaStatus = document.createElement('meta');
-    metaStatus.setAttribute('name', 'apple-mobile-web-app-status-bar-style');
-    metaStatus.setAttribute('content', 'black-translucent');
-    document.head.appendChild(metaStatus);
-
-    return () => {
-      document.head.removeChild(metaApple);
-      document.head.removeChild(metaStatus);
-    };
   }, []);
 
   return (
     <ErrorBoundary>
       <HelmetProvider>
         <QueryClientProvider client={queryClient}>
-          <ThemeProvider defaultTheme="light">
+          <ThemeProvider defaultTheme="dark">
             <TooltipProvider>
               <div className="capacitor-app">
                 <Toaster />
