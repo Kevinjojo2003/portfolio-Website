@@ -1,128 +1,77 @@
-import { Code, Database, Brain, Network, ChartBar, Calculator } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Hammer, FlaskConical, Rocket } from "lucide-react";
 import { SectionWrapper } from "./SectionWrapper";
+import { motion } from "framer-motion";
 
-type Level = "expert" | "advanced" | "familiar";
-
-interface SkillGroup {
-  category: string;
+interface SkillColumn {
+  key: string;
   icon: JSX.Element;
-  level: Level;
-  percent: number;
+  title: string;
+  caption: string;
   items: string[];
 }
 
 export const Skills = () => {
   const { t } = useTranslation();
 
-  const groups: SkillGroup[] = [
+  const columns: SkillColumn[] = [
     {
-      category: t("skills.ai"),
-      icon: <Brain className="w-6 h-6 text-primary" />,
-      level: "expert",
-      percent: 92,
-      items: ["TensorFlow", "PyTorch", "Scikit-learn", "Neural Networks", "Optimization", "EDA"],
+      key: "build",
+      icon: <Hammer className="w-4 h-4" />,
+      title: t("skills.build.title"),
+      caption: t("skills.build.caption"),
+      items: ["PyTorch", "LangChain", "FastAPI", "Docker", "Streamlit", "SQL", "Python"],
     },
     {
-      category: t("skills.programming"),
-      icon: <Code className="w-6 h-6 text-primary" />,
-      level: "expert",
-      percent: 90,
-      items: ["Python", "SQL", "JavaScript", "Flask", "Docker", "Git", "Streamlit"],
+      key: "research",
+      icon: <FlaskConical className="w-4 h-4" />,
+      title: t("skills.research.title"),
+      caption: t("skills.research.caption"),
+      items: ["TensorFlow", "Scikit-learn", "ARIMA", "LSTM", "OpenCV", "Hugging Face", "NumPy"],
     },
     {
-      category: t("skills.deepLearning"),
-      icon: <Network className="w-6 h-6 text-primary" />,
-      level: "advanced",
-      percent: 80,
-      items: ["CNN", "RNN", "FNN", "GAN", "Transfer Learning", "Computer Vision", "NLP"],
+      key: "ship",
+      icon: <Rocket className="w-4 h-4" />,
+      title: t("skills.ship.title"),
+      caption: t("skills.ship.caption"),
+      items: ["Git", "Vercel", "Netlify", "REST APIs", "Postman", "Linux", "CI/CD"],
     },
-    {
-      category: t("skills.dataScience"),
-      icon: <Database className="w-6 h-6 text-primary" />,
-      level: "advanced",
-      percent: 78,
-      items: ["Pandas", "NumPy", "Statistical Analysis", "ETL Pipelines", "NoSQL"],
-    },
-    {
-      category: t("skills.visualization"),
-      icon: <ChartBar className="w-6 h-6 text-primary" />,
-      level: "familiar",
-      percent: 65,
-      items: ["Matplotlib", "Seaborn", "Tableau", "Power BI"],
-    },
-    {
-      category: t("skills.mathematics"),
-      icon: <Calculator className="w-6 h-6 text-primary" />,
-      level: "familiar",
-      percent: 70,
-      items: ["Linear Algebra", "Calculus", "Probability", "Statistics"],
-    },
-  ];
-
-  const buckets: { key: Level; label: string; color: string }[] = [
-    { key: "expert", label: t("skills.level.expert"), color: "text-green-500" },
-    { key: "advanced", label: t("skills.level.advanced"), color: "text-primary" },
-    { key: "familiar", label: t("skills.level.familiar"), color: "text-yellow-500" },
   ];
 
   return (
-    <SectionWrapper id="skills" title={t("skills.title")} className="bg-secondary/10">
-      <div className="space-y-10">
-        {buckets.map((bucket, bi) => {
-          const items = groups.filter((g) => g.level === bucket.key);
-          if (!items.length) return null;
-          return (
-            <motion.div
-              key={bucket.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: bi * 0.1 }}
-            >
-              <h3 className={`text-lg md:text-xl font-semibold mb-4 ${bucket.color}`}>
-                {bucket.label}
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {items.map((g, i) => (
-                  <motion.div
-                    key={g.category}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.08 }}
-                  >
-                    <Card className="glass-card border border-border/60 h-full">
-                      <CardContent className="p-5 space-y-3">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            {g.icon}
-                            <h4 className="font-medium">{g.category}</h4>
-                          </div>
-                          <span className="text-sm font-semibold text-primary">{g.percent}%</span>
-                        </div>
-                        <Progress value={g.percent} className="h-2" />
-                        <div className="flex flex-wrap gap-1.5 pt-1">
-                          {g.items.map((s) => (
-                            <span
-                              key={s}
-                              className="px-2 py-0.5 text-xs rounded-md bg-primary/10 text-primary border border-primary/20"
-                            >
-                              {s}
-                            </span>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          );
-        })}
+    <SectionWrapper
+      id="skills"
+      eyebrow={t("skills.eyebrow")}
+      title={t("skills.title")}
+      description={t("skills.description")}
+    >
+      <div className="grid md:grid-cols-3 gap-4">
+        {columns.map((col, i) => (
+          <motion.div
+            key={col.key}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.4, delay: i * 0.08 }}
+            className="surface-card p-6"
+          >
+            <div className="flex items-center gap-2 text-primary mb-1">
+              {col.icon}
+              <h3 className="text-sm font-semibold uppercase tracking-wider">{col.title}</h3>
+            </div>
+            <p className="text-xs text-muted-foreground mb-5">{col.caption}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {col.items.map((s) => (
+                <span
+                  key={s}
+                  className="mono text-xs text-foreground border border-white/10 bg-white/[0.02] rounded-md px-2.5 py-1"
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </SectionWrapper>
   );
