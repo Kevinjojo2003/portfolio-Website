@@ -7,7 +7,7 @@ export const Responsibilities = () => {
   const { t } = useTranslation();
   
   return (
-    <Card className="glass-card hover:shadow-xl transition-all duration-300">
+    <Card className="glass-card border border-border/60 hover:shadow-xl transition-all duration-300">
       <CardContent className="p-8 md:p-10">
         <div className="flex items-center gap-4 mb-8">
           <Users className="w-7 h-7 text-primary" />
