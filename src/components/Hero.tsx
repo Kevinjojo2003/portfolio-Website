@@ -45,8 +45,8 @@ export const Hero = () => {
 
   const stats = [
     { v: "1", l: t("hero.stat.paper") },
-    { v: "6+", l: t("hero.stat.projects").replace("6+ ", "") + " Projects" },
-    { v: "3", l: t("hero.stat.years").replace("3 ", "") + " Companies" },
+    { v: "6+", l: "Projects" },
+    { v: "3", l: "Companies" },
   ];
 
   return (
