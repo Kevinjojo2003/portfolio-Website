@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 
-const SECTIONS = ["hero", "research", "about", "skills", "projects", "thinking", "contact"];
+const SECTIONS = ["hero", "about", "skills", "projects", "blog", "book", "contact"];
 
-// Maps any section id to one of the four nav buckets.
 const NAV_GROUP: Record<string, string> = {
   hero: "",
-  research: "research",
   about: "about",
-  skills: "about",
+  skills: "skills",
   projects: "projects",
-  thinking: "projects",
+  blog: "blog",
+  book: "book",
   contact: "contact",
   certifications: "contact",
 };

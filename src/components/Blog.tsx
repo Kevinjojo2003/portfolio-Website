@@ -1,0 +1,79 @@
+import { ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+
+interface Post {
+  title: string;
+  summary: string;
+  date: string;
+  url: string;
+}
+
+export const Blog = () => {
+  const { t } = useTranslation();
+
+  const posts: Post[] = [
+    {
+      title: t("blog.post1.title"),
+      summary: t("blog.post1.summary"),
+      date: t("blog.post1.date"),
+      url: "https://www.linkedin.com/in/kevinjojo/recent-activity/all/",
+    },
+    {
+      title: t("blog.post2.title"),
+      summary: t("blog.post2.summary"),
+      date: t("blog.post2.date"),
+      url: "https://www.linkedin.com/in/kevinjojo/recent-activity/all/",
+    },
+    {
+      title: t("blog.post3.title"),
+      summary: t("blog.post3.summary"),
+      date: t("blog.post3.date"),
+      url: "https://www.linkedin.com/in/kevinjojo/recent-activity/all/",
+    },
+  ];
+
+  return (
+    <section id="blog" className="py-20 md:py-28">
+      <div className="container-narrow">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 md:mb-14"
+        >
+          <p className="eyebrow mb-3">{t("blog.eyebrow")}</p>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight heading-gradient">
+            {t("blog.title")}
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {posts.map((p, i) => (
+            <motion.a
+              key={i}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className="surface-card-hover p-6 group flex flex-col"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs mono text-muted-foreground">{p.date}</span>
+                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              </div>
+              <h3 className="text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">
+                {p.title}
+              </h3>
+              <p className="text-sm text-muted-foreground flex-1">{p.summary}</p>
+            </motion.a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};

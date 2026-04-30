@@ -47,49 +47,38 @@ export const ProjectCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.4, delay: index * 0.06 }}
-      className={`surface-card-hover p-6 md:p-7 flex flex-col h-full ${
-        ieeePublished ? "ring-1 ring-[hsl(var(--accent))]/30" : ""
-      }`}
+      className="surface-card-hover p-6 md:p-7 flex flex-col h-full"
     >
       <div className="flex items-start justify-between gap-3 mb-4">
-        <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 text-primary">
+        <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/[0.04] border border-white/[0.06] text-primary">
           {icon}
         </div>
-        {ieeePublished && (
-          <Badge
-            variant="outline"
-            className="border-[hsl(var(--accent))]/40 bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]"
-          >
-            {t("projects.ieeePublished")}
-          </Badge>
-        )}
+        <Badge
+          variant="outline"
+          className={
+            ieeePublished
+              ? "border-[hsl(var(--accent))]/40 bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]"
+              : "border-primary/40 bg-primary/10 text-primary"
+          }
+        >
+          {ieeePublished ? t("projects.ieeePublished") : metric}
+        </Badge>
       </div>
 
-      <h3 className="text-lg font-semibold text-foreground mb-3">{title}</h3>
+      <h3 className="text-lg font-semibold text-foreground mb-2 leading-snug">{title}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+        {solution}
+      </p>
 
-      <div className="space-y-2.5 mb-4 flex-1">
-        <div>
-          <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">
-            {t("projects.problem")}
-          </p>
-          <p className="text-sm text-foreground/90">{problem}</p>
-        </div>
-        <div>
-          <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">
-            {t("projects.solution")}
-          </p>
-          <p className="text-sm text-foreground/90">{solution}</p>
-        </div>
-        <div className="pt-2">
-          <p className="text-sm font-medium text-primary">{metric}</p>
-        </div>
-      </div>
+      {ieeePublished && (
+        <p className="text-sm font-medium text-primary mb-4">{metric}</p>
+      )}
 
-      <div className="flex flex-wrap gap-1.5 mb-5 pt-4 border-t border-white/[0.06]">
+      <div className="flex flex-wrap gap-1.5 mb-5">
         {tech.map((tg) => (
           <span
             key={tg}
-            className="mono text-[11px] text-muted-foreground border border-white/10 rounded px-2 py-0.5"
+            className="mono text-[11px] text-muted-foreground border border-white/[0.06] rounded px-2 py-0.5"
           >
             {tg}
           </span>
@@ -97,15 +86,24 @@ export const ProjectCard = ({
       </div>
 
       <div className="flex gap-2">
-        <Button asChild size="sm" variant="outline" className="border-white/10 hover:border-primary/40 hover:bg-primary/5">
+        <Button
+          asChild
+          size="sm"
+          className="bg-primary hover:bg-primary/90 text-primary-foreground gap-1.5 transition-transform hover:scale-[1.02]"
+        >
           <a href={liveUrl} target="_blank" rel="noopener noreferrer" onClick={() => handleClick("Live")}>
-            <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+            <ExternalLink className="h-3.5 w-3.5" />
             {t("projects.demo")}
           </a>
         </Button>
-        <Button asChild size="sm" variant="ghost" className="hover:bg-white/5">
+        <Button
+          asChild
+          size="sm"
+          variant="outline"
+          className="border-white/[0.08] hover:border-primary/40 hover:bg-primary/5 gap-1.5 transition-transform hover:scale-[1.02]"
+        >
           <a href={githubUrl} target="_blank" rel="noopener noreferrer" onClick={() => handleClick("GitHub")}>
-            <Github className="mr-1.5 h-3.5 w-3.5" />
+            <Github className="h-3.5 w-3.5" />
             {t("projects.code")}
           </a>
         </Button>
