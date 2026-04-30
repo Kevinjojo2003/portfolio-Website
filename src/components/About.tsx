@@ -8,14 +8,25 @@ const Education = () => {
   const { t } = useTranslation();
   const items = [
     {
-      degree: t("about.education.btech"),
-      school: t("about.education.btechSchool"),
-      date: t("about.education.btechDate"),
+      degree: "B.Tech in Computer Science (AI & Machine Learning)",
+      school: "Karunya Institute of Technology and Sciences",
+      date: "2021 — 2025",
+      logo: "/lovable-uploads/e59070ab-b6cc-446a-9027-ba2a0b9045f7.png",
+      alt: "Karunya University",
     },
     {
-      degree: t("about.education.school"),
-      school: t("about.education.schoolName"),
-      date: t("about.education.schoolDate"),
+      degree: "Class 11 – 12 · CBSE (Maths with Computer Science)",
+      school: "De Paul Public School, Thodupuzha",
+      date: "2019 — 2021",
+      logo: "/lovable-uploads/71322350-15a1-4f5d-afaf-51a4d7fde786.png",
+      alt: "De Paul Public School",
+    },
+    {
+      degree: "Schooling · CBSE",
+      school: "The Village International School",
+      date: "2007 — 2019",
+      logo: "/lovable-uploads/66429d70-55c1-4c94-8ce4-d38253694b0b.png",
+      alt: "The Village International School",
     },
   ];
 
@@ -32,10 +43,10 @@ const Education = () => {
             transition={{ duration: 0.4, delay: i * 0.06 }}
             className="surface-card-hover p-5 flex gap-4"
           >
-            <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-              <GraduationCap className="w-4 h-4" />
+            <div className="w-10 h-10 rounded-full bg-white border border-white/[0.06] flex items-center justify-center overflow-hidden shrink-0">
+              <img src={it.logo} alt={it.alt} className="w-full h-full object-contain p-1" loading="lazy" />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <h4 className="text-sm font-semibold text-foreground leading-snug">{it.degree}</h4>
               <p className="text-sm text-primary mt-1">{it.school}</p>
               <p className="text-xs mono text-muted-foreground mt-1">{it.date}</p>
