@@ -1,6 +1,6 @@
 import { LineChart, Microscope, Brain, Eye, Cat, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { SectionWrapper } from "./SectionWrapper";
+import { motion } from "framer-motion";
 import { ProjectCard } from "./ProjectCard";
 
 export const Projects = () => {
@@ -22,7 +22,7 @@ export const Projects = () => {
       problem: t("projects.semp.problem"),
       solution: t("projects.semp.solution"),
       metric: t("projects.semp.metric"),
-      tech: ["ARIMA", "LSTM", "CNN-RNN", "Sentiment Analysis"],
+      tech: ["ARIMA", "LSTM", "CNN-RNN", "Sentiment"],
       liveUrl: "https://stock-sentiment-predictor.streamlit.app/",
       githubUrl: "https://github.com/kevinjojo/stock-predictor",
       icon: <LineChart className="w-5 h-5" />,
@@ -71,17 +71,28 @@ export const Projects = () => {
   ];
 
   return (
-    <SectionWrapper
-      id="projects"
-      eyebrow={t("projects.eyebrow")}
-      title={t("projects.title")}
-      description={t("projects.description")}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {projects.map((p, i) => (
-          <ProjectCard key={p.title} {...p} index={i} />
-        ))}
+    <section id="projects" className="py-20 md:py-28">
+      <div className="container-narrow">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 md:mb-14"
+        >
+          <p className="eyebrow mb-3">{t("projects.eyebrow")}</p>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight heading-gradient">
+            {t("projects.title")}
+          </h2>
+          <p className="mt-3 text-muted-foreground max-w-2xl">{t("projects.description")}</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {projects.map((p, i) => (
+            <ProjectCard key={p.title} {...p} index={i} />
+          ))}
+        </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 };
