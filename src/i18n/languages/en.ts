@@ -173,6 +173,16 @@ export const en = {
     // LinkedIn carousel
     "linkedin.eyebrow": "Recent Posts",
     "linkedin.title": "On LinkedIn",
+    "linkedin.readOn": "Read on LinkedIn →",
+    "linkedin.post1.title": "Why prompt evals beat prompt tweaks",
+    "linkedin.post1.summary":
+      "A short note on building eval suites before chasing prompt rewrites.",
+    "linkedin.post2.title": "Multi-modal forecasting in practice",
+    "linkedin.post2.summary":
+      "What changed in our results when we added chart-vision signal to numeric models.",
+    "linkedin.post3.title": "Shipping AI features as a solo engineer",
+    "linkedin.post3.summary":
+      "How I scope, ship, and measure model-driven features end to end.",
     "linkedin.prev": "Previous",
     "linkedin.next": "Next",
 
