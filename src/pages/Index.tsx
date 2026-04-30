@@ -3,16 +3,17 @@ import { MainNav } from "@/components/Navigation/MainNav";
 import { SEOHead } from "@/components/SEOHead";
 import { Hero } from "@/components/Hero";
 
-const Research = lazy(() => import("@/components/Research").then((m) => ({ default: m.Research })));
 const About = lazy(() => import("@/components/About").then((m) => ({ default: m.About })));
 const Skills = lazy(() => import("@/components/Skills").then((m) => ({ default: m.Skills })));
 const Projects = lazy(() => import("@/components/Projects").then((m) => ({ default: m.Projects })));
-const LinkedInPosts = lazy(() =>
-  import("@/components/LinkedInPosts").then((m) => ({ default: m.LinkedInPosts }))
-);
 const Certifications = lazy(() =>
   import("@/components/Certifications").then((m) => ({ default: m.Certifications }))
 );
+const LinkedInPosts = lazy(() =>
+  import("@/components/LinkedInPosts").then((m) => ({ default: m.LinkedInPosts }))
+);
+const Blog = lazy(() => import("@/components/Blog").then((m) => ({ default: m.Blog })));
+const Book = lazy(() => import("@/components/Book").then((m) => ({ default: m.Book })));
 const Contact = lazy(() => import("@/components/Contact").then((m) => ({ default: m.Contact })));
 const SiteFooter = lazy(() => import("@/components/SiteFooter").then((m) => ({ default: m.SiteFooter })));
 
@@ -30,13 +31,14 @@ const Index = () => {
         <MainNav />
         <main>
           <Hero />
-          <Suspense fallback={<SectionFallback />}><Research /></Suspense>
           <Suspense fallback={<SectionFallback />}><About /></Suspense>
           <Suspense fallback={<SectionFallback />}><Skills /></Suspense>
           <Suspense fallback={<SectionFallback />}><Projects /></Suspense>
-          <Suspense fallback={<SectionFallback />}><LinkedInPosts /></Suspense>
-          <Suspense fallback={<SectionFallback />}><Contact /></Suspense>
           <Suspense fallback={null}><Certifications /></Suspense>
+          <Suspense fallback={<SectionFallback />}><LinkedInPosts /></Suspense>
+          <Suspense fallback={<SectionFallback />}><Blog /></Suspense>
+          <Suspense fallback={<SectionFallback />}><Book /></Suspense>
+          <Suspense fallback={<SectionFallback />}><Contact /></Suspense>
         </main>
         <Suspense fallback={null}><SiteFooter /></Suspense>
       </div>
