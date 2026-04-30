@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Experience } from "./About/Experience";
-import { GraduationCap, FileText, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Education = () => {
