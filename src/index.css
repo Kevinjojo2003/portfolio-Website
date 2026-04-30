@@ -3,51 +3,52 @@
 @tailwind utilities;
 
 /*
-  Dark-only design system.
-  Background #08080E, Surface #0F0F1A, Accent #6366F1, Cyan #06B6D4, Text #F1F5F9.
-  All values stored as HSL for tailwind/shadcn compatibility.
+  Premium dark-only design system (Linear / Vercel inspired).
+  Page bg #0A0A0F, card surface #111118, indigo accent #6366F1, text #E2E8F0.
+  Strict 8px grid. No gradients on surfaces. Inter throughout. Border 1px rgba(255,255,255,0.06).
 */
 
 @layer base {
   :root,
   .dark {
-    --background: 240 22% 4%;          /* #08080E */
-    --foreground: 210 40% 96%;         /* #F1F5F9 */
+    --background: 240 22% 5%;          /* #0A0A0F */
+    --foreground: 213 27% 90%;         /* #E2E8F0 */
 
-    --card: 240 24% 8%;                /* #0F0F1A */
-    --card-foreground: 210 40% 96%;
+    --card: 240 16% 8%;                /* #111118 */
+    --card-foreground: 213 27% 90%;
 
-    --popover: 240 24% 8%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 240 16% 8%;
+    --popover-foreground: 213 27% 90%;
 
     --primary: 239 84% 67%;            /* #6366F1 indigo */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 240 18% 12%;
-    --secondary-foreground: 210 40% 96%;
+    --secondary: 240 14% 12%;
+    --secondary-foreground: 213 27% 90%;
 
-    --muted: 240 18% 12%;
-    --muted-foreground: 215 16% 65%;
+    --muted: 240 14% 12%;
+    --muted-foreground: 215 16% 60%;
 
-    --accent: 188 94% 43%;             /* #06B6D4 cyan */
+    --accent: 188 94% 43%;             /* #06B6D4 cyan (used sparingly) */
     --accent-foreground: 240 24% 8%;
 
     --destructive: 0 72% 50%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 100%;               /* used at /[0.07] opacity */
-    --input: 240 18% 14%;
+    --border: 0 0% 100%;               /* used at /[0.06] opacity */
+    --input: 240 14% 14%;
     --ring: 239 84% 67%;
 
-    --radius: 0.75rem;
+    --radius: 0.75rem;                 /* 12px */
   }
 
   * {
-    border-color: hsl(var(--border) / 0.07);
+    border-color: rgb(255 255 255 / 0.06);
   }
 
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -64,16 +65,16 @@
 
 @layer components {
   .surface-card {
-    @apply rounded-xl bg-card transition-colors duration-150;
-    border: 1px solid rgb(255 255 255 / 0.07);
+    @apply rounded-xl bg-card transition-all duration-150;
+    border: 1px solid rgb(255 255 255 / 0.06);
   }
 
   .surface-card-hover {
-    @apply surface-card hover:border-primary/40;
+    @apply surface-card hover:border-primary/40 hover:-translate-y-0.5;
   }
 
   .eyebrow {
-    @apply text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+    @apply text-[11px] md:text-[13px] font-semibold uppercase tracking-[0.18em] text-primary;
   }
 
   .mono {
@@ -85,9 +86,17 @@
     @apply mx-auto w-full px-6;
     max-width: 1100px;
   }
+
+  /* Indigo → white text gradient for section headings */
+  .heading-gradient {
+    background-image: linear-gradient(180deg, #FFFFFF 0%, #C7D2FE 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
-/* Cursor blink for terminal */
+/* Cursor blink */
 @keyframes caret-blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
@@ -100,9 +109,27 @@
   animation: caret-blink 1s steps(1) infinite;
 }
 
+/* Pulsing availability dot */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-out infinite;
+}
+
+/* Subtle dot grid background for hero */
+.dot-grid {
+  background-image: radial-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
 /* Subtle scrollbar inside scrollable strips */
 .scroll-soft::-webkit-scrollbar { height: 6px; width: 6px; }
 .scroll-soft::-webkit-scrollbar-thumb {
   background: rgb(255 255 255 / 0.08);
   border-radius: 999px;
 }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
