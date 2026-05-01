@@ -12,7 +12,7 @@ const Certifications = lazy(() =>
 const LinkedInPosts = lazy(() =>
   import("@/components/LinkedInPosts").then((m) => ({ default: m.LinkedInPosts }))
 );
-const Blog = lazy(() => import("@/components/Blog").then((m) => ({ default: m.Blog })));
+
 const Book = lazy(() => import("@/components/Book").then((m) => ({ default: m.Book })));
 const Contact = lazy(() => import("@/components/Contact").then((m) => ({ default: m.Contact })));
 const SiteFooter = lazy(() => import("@/components/SiteFooter").then((m) => ({ default: m.SiteFooter })));
@@ -36,7 +36,6 @@ const Index = () => {
           <Suspense fallback={<SectionFallback />}><Projects /></Suspense>
           <Suspense fallback={null}><Certifications /></Suspense>
           <Suspense fallback={<SectionFallback />}><LinkedInPosts /></Suspense>
-          <Suspense fallback={<SectionFallback />}><Blog /></Suspense>
           <Suspense fallback={<SectionFallback />}><Book /></Suspense>
           <Suspense fallback={<SectionFallback />}><Contact /></Suspense>
         </main>
