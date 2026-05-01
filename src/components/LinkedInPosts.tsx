@@ -8,8 +8,14 @@ interface Post {
   url: string;
 }
 
+// Featured embedded post (shown first as an iframe)
+const FEATURED_EMBED_SRC =
+  "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7306983829930393600?collapsed=1";
+const FEATURED_URL =
+  "https://www.linkedin.com/feed/update/urn:li:ugcPost:7306983829930393600/";
+
+// Other posts (different from the featured one)
 const POST_URLS = [
-  "https://www.linkedin.com/feed/update/urn:li:ugcPost:7306983829930393600/",
   "https://www.linkedin.com/feed/update/urn:li:share:7202518006206193664/",
   "https://www.linkedin.com/feed/update/urn:li:share:7180596647016501250/",
   "https://www.linkedin.com/feed/update/urn:li:ugcPost:7176867683731218432/",
@@ -54,6 +60,44 @@ export const LinkedInPosts = () => {
           </h2>
         </motion.div>
 
+        {/* Featured embedded post */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5 }}
+          className="surface-card p-2 md:p-3 mb-6 overflow-hidden"
+        >
+          <div className="flex items-center justify-between px-3 py-2 mb-2">
+            <div className="flex items-center gap-2 text-primary">
+              <Linkedin className="w-4 h-4" />
+              <span className="text-[11px] mono uppercase tracking-wider text-muted-foreground">
+                Featured Post
+              </span>
+            </div>
+            <a
+              href={FEATURED_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-primary inline-flex items-center gap-1 hover:underline"
+            >
+              Open <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+          <div className="w-full flex justify-center bg-white/[0.02] rounded-lg overflow-hidden">
+            <iframe
+              src={FEATURED_EMBED_SRC}
+              height={520}
+              width="100%"
+              style={{ maxWidth: 540, border: 0 }}
+              allowFullScreen
+              title="Embedded LinkedIn post"
+              loading="lazy"
+            />
+          </div>
+        </motion.div>
+
+        {/* Other posts grid */}
         <div className="grid md:grid-cols-3 gap-4">
           {posts.map((p, i) => (
             <motion.a
