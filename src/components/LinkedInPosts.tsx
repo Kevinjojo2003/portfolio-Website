@@ -2,10 +2,10 @@ import { ExternalLink, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
-interface Post {
-  title: string;
-  summary: string;
+interface FeaturedPost {
+  embedSrc: string;
   url: string;
+  height: number;
 }
 
 // Featured embedded post (shown first as an iframe)
@@ -14,35 +14,27 @@ const FEATURED_EMBED_SRC =
 const FEATURED_URL =
   "https://www.linkedin.com/feed/update/urn:li:ugcPost:7306983829930393600/";
 
-// Other posts (different from the featured one)
-const POST_URLS = [
-  "https://www.linkedin.com/feed/update/urn:li:share:7202518006206193664/",
-  "https://www.linkedin.com/feed/update/urn:li:share:7180596647016501250/",
-  "https://www.linkedin.com/feed/update/urn:li:ugcPost:7176867683731218432/",
-  "https://www.linkedin.com/feed/update/urn:li:share:7163570252876800000/",
-  "https://www.linkedin.com/feed/update/urn:li:share:6965137549036003329/",
+// Three additional embedded posts
+const EMBEDDED_POSTS: FeaturedPost[] = [
+  {
+    embedSrc: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7176867683731218432",
+    url: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7176867683731218432/",
+    height: 671,
+  },
+  {
+    embedSrc: "https://www.linkedin.com/embed/feed/update/urn:li:share:7163570252876800000",
+    url: "https://www.linkedin.com/feed/update/urn:li:share:7163570252876800000/",
+    height: 704,
+  },
+  {
+    embedSrc: "https://www.linkedin.com/embed/feed/update/urn:li:share:6965137549036003329",
+    url: "https://www.linkedin.com/feed/update/urn:li:share:6965137549036003329/",
+    height: 858,
+  },
 ];
 
 export const LinkedInPosts = () => {
   const { t } = useTranslation();
-
-  const posts: Post[] = [
-    {
-      title: t("linkedin.post1.title"),
-      summary: t("linkedin.post1.summary"),
-      url: POST_URLS[0],
-    },
-    {
-      title: t("linkedin.post2.title"),
-      summary: t("linkedin.post2.summary"),
-      url: POST_URLS[1],
-    },
-    {
-      title: t("linkedin.post3.title"),
-      summary: t("linkedin.post3.summary"),
-      url: POST_URLS[2],
-    },
-  ];
 
   return (
     <section id="linkedin" className="py-20 md:py-28">
@@ -97,36 +89,48 @@ export const LinkedInPosts = () => {
           </div>
         </motion.div>
 
-        {/* Other posts grid */}
-        <div className="grid md:grid-cols-3 gap-4">
-          {posts.map((p, i) => (
-            <motion.a
+        {/* Other embedded posts grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {EMBEDDED_POSTS.map((p, i) => (
+            <motion.div
               key={i}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="surface-card-hover p-6 group flex flex-col"
+              className="surface-card p-2 md:p-3 group flex flex-col overflow-hidden"
             >
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-primary">
+              <div className="flex items-center justify-between px-2 py-1.5 mb-2">
+                <div className="flex items-center gap-2 text-primary">
                   <Linkedin className="w-4 h-4" />
+                  <span className="text-[10px] mono uppercase tracking-wider text-muted-foreground">
+                    Post {i + 1}
+                  </span>
                 </div>
-                <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-muted-foreground hover:text-primary inline-flex items-center gap-1 transition-colors"
+                >
+                  Open <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
-              <h3 className="text-base font-semibold text-foreground mb-2 leading-snug group-hover:text-primary transition-colors">
-                {p.title}
-              </h3>
-              <p className="text-sm text-muted-foreground flex-1">{p.summary}</p>
-              <span className="mt-4 text-xs text-primary inline-flex items-center gap-1">
-                {t("linkedin.readOn")}
-              </span>
-            </motion.a>
+              <div className="w-full bg-white/[0.02] rounded-lg overflow-hidden flex justify-center">
+                <iframe
+                  src={p.embedSrc}
+                  height={p.height}
+                  width="100%"
+                  style={{ maxWidth: 504, border: 0 }}
+                  allowFullScreen
+                  title={`Embedded LinkedIn post ${i + 1}`}
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
           ))}
         </div>
+        <p className="sr-only">{t("linkedin.readOn")}</p>
       </div>
     </section>
   );
