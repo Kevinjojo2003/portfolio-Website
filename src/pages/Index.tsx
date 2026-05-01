@@ -12,7 +12,7 @@ const Certifications = lazy(() =>
 const LinkedInPosts = lazy(() =>
   import("@/components/LinkedInPosts").then((m) => ({ default: m.LinkedInPosts }))
 );
-const Blog = lazy(() => import("@/components/Blog").then((m) => ({ default: m.Blog })));
+
 const Book = lazy(() => import("@/components/Book").then((m) => ({ default: m.Book })));
 const Contact = lazy(() => import("@/components/Contact").then((m) => ({ default: m.Contact })));
 const SiteFooter = lazy(() => import("@/components/SiteFooter").then((m) => ({ default: m.SiteFooter })));
