@@ -2,10 +2,10 @@ import { ExternalLink, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
-interface Post {
-  title: string;
-  summary: string;
+interface FeaturedPost {
+  embedSrc: string;
   url: string;
+  height: number;
 }
 
 // Featured embedded post (shown first as an iframe)
@@ -14,35 +14,27 @@ const FEATURED_EMBED_SRC =
 const FEATURED_URL =
   "https://www.linkedin.com/feed/update/urn:li:ugcPost:7306983829930393600/";
 
-// Other posts (different from the featured one)
-const POST_URLS = [
-  "https://www.linkedin.com/feed/update/urn:li:share:7202518006206193664/",
-  "https://www.linkedin.com/feed/update/urn:li:share:7180596647016501250/",
-  "https://www.linkedin.com/feed/update/urn:li:ugcPost:7176867683731218432/",
-  "https://www.linkedin.com/feed/update/urn:li:share:7163570252876800000/",
-  "https://www.linkedin.com/feed/update/urn:li:share:6965137549036003329/",
+// Three additional embedded posts
+const EMBEDDED_POSTS: FeaturedPost[] = [
+  {
+    embedSrc: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7176867683731218432",
+    url: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7176867683731218432/",
+    height: 671,
+  },
+  {
+    embedSrc: "https://www.linkedin.com/embed/feed/update/urn:li:share:7163570252876800000",
+    url: "https://www.linkedin.com/feed/update/urn:li:share:7163570252876800000/",
+    height: 704,
+  },
+  {
+    embedSrc: "https://www.linkedin.com/embed/feed/update/urn:li:share:6965137549036003329",
+    url: "https://www.linkedin.com/feed/update/urn:li:share:6965137549036003329/",
+    height: 858,
+  },
 ];
 
 export const LinkedInPosts = () => {
   const { t } = useTranslation();
-
-  const posts: Post[] = [
-    {
-      title: t("linkedin.post1.title"),
-      summary: t("linkedin.post1.summary"),
-      url: POST_URLS[0],
-    },
-    {
-      title: t("linkedin.post2.title"),
-      summary: t("linkedin.post2.summary"),
-      url: POST_URLS[1],
-    },
-    {
-      title: t("linkedin.post3.title"),
-      summary: t("linkedin.post3.summary"),
-      url: POST_URLS[2],
-    },
-  ];
 
   return (
     <section id="linkedin" className="py-20 md:py-28">
