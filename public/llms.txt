@@ -1,0 +1,27 @@
+# Kevin Jojo
+
+> AI Engineer & Product-Focused Builder based in Cochin, Kerala, India — designing and deploying LLM-powered applications, evaluation frameworks, and multi-modal prediction systems that solve real-world business problems.
+
+Kevin Jojo is an AI Engineer specializing in Large Language Models, Generative AI, Machine Learning, Python, MLOps, and Data Science. He builds production-grade AI systems, including the Advanced Medical Report Analyzer, and shares his work through projects, LinkedIn posts, and live AI demos.
+
+- Education: Karunya University; De Paul Public School (2019–2021, Class 11–12); Village International School (2007–2019)
+- Email: kevinjojo003@gmail.com
+- LinkedIn: https://www.linkedin.com/in/kevinjojo/
+- GitHub: https://github.com/Kevinjojo2003
+
+## Pages
+
+- [Home](/): Overview of Kevin Jojo — AI Engineer portfolio with hero, about, skills, projects, certifications, research, LinkedIn posts, and contact.
+- [About](/#about): Background, education, and experience as an AI Engineer.
+- [Skills](/#skills): Technical skills including LLMs, Python, ML, MLOps, Generative AI, and data science tooling.
+- [Projects](/#projects): Featured projects, starting with the Advanced Medical Report Analyzer.
+- [Certifications](/#certifications): Professional certifications and credentials.
+- [Research](/#research): Research interests and contributions in AI/ML.
+- [LinkedIn Posts](/#linkedin): Featured LinkedIn posts and recent thought leadership.
+- [Book a Call](/#book): Schedule a meeting (Mon–Fri, 7 PM–12 AM IST).
+- [Contact](/#contact): Get in touch with Kevin Jojo.
+
+## Optional
+
+- [Resume PDF](/resume.pdf): Downloadable resume.
+- [Sitemap](/sitemap.xml): Full sitemap of the site.
