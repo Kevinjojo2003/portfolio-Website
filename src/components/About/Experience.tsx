@@ -37,6 +37,12 @@ export const Experience = () => {
       ],
       stack: ["LLM Evaluation", "Document Extraction", "SQL", "Python", "UAT"],
       current: true,
+      links: [
+        {
+          label: "MyRenoWallet on Google Play",
+          href: "https://play.google.com/store/apps/details?id=com.koloapp.homewallet",
+        },
+      ],
     },
     {
       logo: "/lovable-uploads/0b4ce4eb-de3c-47d7-ac69-6ca4b822ad37.png",
