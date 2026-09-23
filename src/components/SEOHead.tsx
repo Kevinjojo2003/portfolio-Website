@@ -15,8 +15,8 @@ const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
 export const SEOHead = ({
   title = "Kevin Jojo - AI Engineer & Product-Focused Builder",
-  description = "AI Engineer specializing in designing and deploying intelligent systems that solve real-world business problems. Explore projects, blogs, and live AI demos.",
-  keywords = "Kevin Jojo, AI Engineer, Machine Learning Engineer, LLM Developer, Generative AI, Python, Portfolio, Data Science, MLOps",
+  description = "Kevin Jojo builds reliable production LLM systems, document AI workflows, evaluation frameworks, and multi-modal research. Explore his work at Koloapp, Familiar AI, and IEEE InC4.",
+  keywords = "Kevin Jojo, AI Engineer, LLM Evaluation, Document AI, Familiar AI, MyRenoWallet, Kolo Smart Select, LangChain, RAG, Human in the Loop, IEEE InC4",
   image = DEFAULT_IMAGE,
   url = SITE_URL,
   imageWidth = 1200,

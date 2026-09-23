@@ -1,8 +1,15 @@
 # Kevin Jojo
 
-> AI Engineer & Product-Focused Builder based in Cochin, Kerala, India — designing and deploying LLM-powered applications, evaluation frameworks, and multi-modal prediction systems that solve real-world business problems.
+> AI Engineer and product-focused builder based in Cochin, Kerala, India — building reliable LLM systems, document AI workflows, evaluation frameworks, and multi-modal research.
 
-Kevin Jojo is an AI Engineer specializing in Large Language Models, Generative AI, Machine Learning, Python, MLOps, and Data Science. He builds production-grade AI systems, including the Advanced Medical Report Analyzer, and shares his work through projects, LinkedIn posts, and live AI demos.
+Kevin Jojo works on the parts of LLM systems that determine whether an output can be trusted and acted on. His work includes source-grounded validation, acceptance criteria, failure analysis, human-in-the-loop fallbacks, deterministic scoring, retrieval, document extraction, and product delivery.
+
+## Selected Experience
+
+- Koloapp (Business Analyst / Prompt Engineer, Aug 2025–Present): shipped LLM and document-extraction systems behind Kolo Smart Select, reducing client report turnaround from days to hours; owned MyRenoWallet from customer research through specifications, UAT, launch, SOPs, and reporting.
+- Workcohool Solutions (AI Engineer Intern, Jan–Jun 2025): moved a LangChain, OpenAI API, Tesseract OCR medical-report platform into a live Django application and evaluated BioBERT and ClinicalBERT.
+- Familiar AI (Co-founding attempt, 2026): explored a personal and company memory layer, led customer discovery and MVP definition, applied to Y Combinator, pitched Indian pre-seed investors, and paused the venture based on evidence.
+- E-Cell Karunya (Leadership, 2023–2024): led corporate partnerships, recruitment, and onboarding for a 500+ member entrepreneurship cell.
 
 - Education: Karunya University; De Paul Public School (2019–2021, Class 11–12); Village International School (2007–2019)
 - Email: kevinjojo003@gmail.com
@@ -13,7 +20,7 @@ Kevin Jojo is an AI Engineer specializing in Large Language Models, Generative A
 
 - [Home](/): Overview of Kevin Jojo — AI Engineer portfolio with hero, about, skills, projects, certifications, research, LinkedIn posts, and contact.
 - [About](/#about): Background, education, and experience as an AI Engineer.
-- [Skills](/#skills): Technical skills including LLMs, Python, ML, MLOps, Generative AI, and data science tooling.
+- [Skills](/#skills): LLM evaluation, prompt and context engineering, RAG, document extraction, Python, SQL, product discovery, UAT, and delivery.
 - [Projects](/#projects): Featured projects, starting with the Advanced Medical Report Analyzer.
 - [Certifications](/#certifications): Professional certifications and credentials.
 - [Research](/#research): Research interests and contributions in AI/ML.
@@ -23,5 +30,5 @@ Kevin Jojo is an AI Engineer specializing in Large Language Models, Generative A
 
 ## Optional
 
-- [Resume PDF](/resume.pdf): Downloadable resume.
+- [Resume PDF](/Kevin_Jojo_Resume.pdf): Downloadable resume.
 - [Sitemap](/sitemap.xml): Full sitemap of the site.
