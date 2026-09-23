@@ -135,6 +135,23 @@ export const Experience = () => {
                 ))}
               </ul>
 
+              {r.links && r.links.length > 0 && (
+                <div className="flex flex-wrap gap-3 mb-4">
+                  {r.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+
               <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/[0.06]">
                 {r.stack.map((s) => (
                   <span
