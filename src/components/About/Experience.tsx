@@ -1,6 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Briefcase, ExternalLink } from "lucide-react";
+
+interface Link {
+  label: string;
+  href: string;
+}
 
 interface Role {
   logo?: string;
@@ -11,6 +16,7 @@ interface Role {
   bullets: string[];
   stack: string[];
   current?: boolean;
+  links?: Link[];
 }
 
 export const Experience = () => {
