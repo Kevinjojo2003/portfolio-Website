@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Experience } from "./About/Experience";
-import { FileText, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink, Lightbulb, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Education = () => {
@@ -96,6 +96,62 @@ const PublicationsCallout = () => {
   );
 };
 
+const ResumeHighlights = () => {
+  const { t } = useTranslation();
+  const highlights = [
+    {
+      icon: <Lightbulb className="w-5 h-5" />,
+      eyebrow: t("about.highlights.familiar.eyebrow"),
+      title: t("about.highlights.familiar.title"),
+      description: t("about.highlights.familiar.description"),
+      tags: ["Customer Discovery", "RAG", "Product Strategy", "YC 2026"],
+    },
+    {
+      icon: <Users className="w-5 h-5" />,
+      eyebrow: t("about.highlights.leadership.eyebrow"),
+      title: t("about.highlights.leadership.title"),
+      description: t("about.highlights.leadership.description"),
+      tags: ["Partnerships", "Recruiting", "500+ Members"],
+    },
+  ];
+
+  return (
+    <div className="mt-10">
+      <p className="eyebrow mb-4">{t("about.highlights.eyebrow")}</p>
+      <div className="grid md:grid-cols-2 gap-4">
+        {highlights.map((item, index) => (
+          <motion.article
+            key={item.title}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.4, delay: index * 0.06 }}
+            className="surface-card-hover p-6"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span className="inline-flex w-10 h-10 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 text-primary">
+                {item.icon}
+              </span>
+              <div>
+                <p className="text-[11px] mono uppercase text-primary">{item.eyebrow}</p>
+                <h3 className="font-semibold text-foreground">{item.title}</h3>
+              </div>
+            </div>
+            <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+            <div className="flex flex-wrap gap-1.5 mt-5 pt-4 border-t border-white/[0.06]">
+              {item.tags.map((tag) => (
+                <span key={tag} className="text-[11px] mono text-muted-foreground border border-white/10 rounded px-2 py-0.5">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.article>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export const About = () => {
   const { t } = useTranslation();
 
@@ -125,6 +181,7 @@ export const About = () => {
         </div>
 
         <PublicationsCallout />
+        <ResumeHighlights />
       </div>
     </section>
   );

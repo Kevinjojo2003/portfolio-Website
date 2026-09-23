@@ -26,8 +26,10 @@ export const Experience = () => {
       bullets: [
         t("about.experience.koloImpact1"),
         t("about.experience.koloImpact2"),
+        t("about.experience.koloImpact3"),
+        t("about.experience.koloImpact4"),
       ],
-      stack: ["LLMs", "Prompt Engineering", "Analytics", "SQL", "Python"],
+      stack: ["LLM Evaluation", "Document Extraction", "SQL", "Python", "UAT"],
       current: true,
     },
     {
@@ -41,7 +43,7 @@ export const Experience = () => {
         t("about.experience.workcoholImpact2"),
         t("about.experience.workcoholImpact3"),
       ],
-      stack: ["PyTorch", "TensorFlow", "Computer Vision", "FastAPI", "Docker"],
+      stack: ["LangChain", "OpenAI API", "Tesseract OCR", "Django", "Clinical NLP"],
     },
     {
       logo: "/lovable-uploads/37d2ddda-c5e5-4bbc-9d1e-24fc8e8e6a0e.png",

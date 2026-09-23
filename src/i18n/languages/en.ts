@@ -17,7 +17,7 @@ export const en = {
     "hero.role2": "LLM Systems Builder",
     "hero.role3": "Product Strategist",
     "hero.bio":
-      "I build AI systems that ship — from IEEE-published multi-modal models to production LLM pipelines. Based in Cochin, India.",
+      "I build reliable LLM systems that turn complex documents into decisions people can trust — from production advisory workflows to IEEE-published multi-modal research.",
     "hero.stat.paper": "IEEE Paper",
     "hero.stat.projects": "6+ Projects",
     "hero.stat.years": "3 Companies",
@@ -41,7 +41,7 @@ export const en = {
     "about.eyebrow": "Experience",
     "about.title": "Where I've shipped",
     "about.description":
-      "Three years across product, research, and engineering — building tools that move metrics, not demos.",
+      "Production AI, product ownership, and research — building systems that real users trust with consequential decisions.",
     "about.education.eyebrow": "Education",
     "about.experience.current": "Current",
 
@@ -49,19 +49,33 @@ export const en = {
     "about.experience.kolo": "Koloapp",
     "about.experience.koloDate": "Aug 2025 — Present",
     "about.experience.koloImpact1":
-      "Built a prompt evaluation framework that surfaces hallucination risk on every release, cutting reviewer effort by ~40%.",
+      "Define acceptance criteria, validate outputs against source documents, and route uncertain cases to human review instead of letting the system guess.",
     "about.experience.koloImpact2":
-      "Designed an analytics pipeline aggregating vendor–homeowner activity to drive matchmaking decisions.",
+      "Shipped the LLM and document-extraction systems behind Kolo Smart Select, reducing client report turnaround from days to hours.",
+    "about.experience.koloImpact3":
+      "Build deterministic scoring models, retrieval pipelines, and SQL/Python analyses for decisions involving builder quotations and vendor rate cards.",
+    "about.experience.koloImpact4":
+      "Owned MyRenoWallet from customer research through specifications, acceptance criteria, UAT, launch, SOPs, and reporting cadence.",
 
     "about.experience.aiEngineer": "AI Engineer Intern",
     "about.experience.workcohol": "Workcohol",
     "about.experience.workcoholDate": "Jan 2025 — Jun 2025",
     "about.experience.workcoholImpact1":
-      "Trained and deployed CNN/RNN models for client image and time-series tasks behind a FastAPI service.",
+      "Took a medical-report processing platform from prototype to production inside a live Django application using LangChain, OpenAI API, and Tesseract OCR.",
     "about.experience.workcoholImpact2":
-      "Reduced model inference latency ~35% via a vectorised NumPy preprocessing pipeline.",
+      "Converted unstructured clinical PDFs and scans into structured, validated records with controls replacing manual back-office review.",
     "about.experience.workcoholImpact3":
-      "Authored internal MLOps notes on training reproducibility and Docker packaging.",
+      "Benchmarked BioBERT and ClinicalBERT against task-specific quality metrics and turned the findings into an implementation recommendation.",
+
+    "about.highlights.eyebrow": "Founder experience & leadership",
+    "about.highlights.familiar.eyebrow": "Co-founding attempt · 2026",
+    "about.highlights.familiar.title": "Familiar AI",
+    "about.highlights.familiar.description":
+      "Explored a personal and company memory layer that preserved context across existing tools. Led customer discovery, competitive analysis, roadmap and MVP definition, applied to Y Combinator, and pitched Indian pre-seed investors before pausing the venture based on evidence.",
+    "about.highlights.leadership.eyebrow": "E-Cell Karunya · 2023–2024",
+    "about.highlights.leadership.title": "Corporate Relations & HR Lead",
+    "about.highlights.leadership.description":
+      "Identified and closed corporate partnerships for a 500+ member entrepreneurship cell, managed partner relationships, and led recruitment and onboarding across multiple teams.",
 
     "about.experience.webDev": "Web Development Intern",
     "about.experience.bolt": "Bolt IoT",

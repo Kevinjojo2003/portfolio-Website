@@ -36,7 +36,7 @@ const useTypewriter = (words: string[], speed = 80, hold = 1600) => {
   return text;
 };
 
-const KEYWORDS = ["PyTorch", "LangChain", "Computer Vision", "Prompt Engineering", "IEEE Published"];
+const KEYWORDS = ["LLM Evaluation", "LangChain", "RAG", "Document AI", "IEEE Published"];
 
 export const Hero = () => {
   const { t } = useTranslation();
@@ -45,8 +45,8 @@ export const Hero = () => {
 
   const stats = [
     { v: "1", l: t("hero.stat.paper") },
-    { v: "6+", l: "Projects" },
-    { v: "3", l: "Companies" },
+    { v: "6+", l: t("hero.stat.projects") },
+    { v: "3", l: t("hero.stat.years") },
   ];
 
   return (
