@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { MainNav } from "@/components/Navigation/MainNav";
 import { SEOHead } from "@/components/SEOHead";
 import { Hero } from "@/components/Hero";
+import { TalkingAvatar } from "@/components/TalkingAvatar";
 
 const About = lazy(() => import("@/components/About").then((m) => ({ default: m.About })));
 const Skills = lazy(() => import("@/components/Skills").then((m) => ({ default: m.Skills })));
@@ -40,6 +41,7 @@ const Index = () => {
           <Suspense fallback={<SectionFallback />}><Contact /></Suspense>
         </main>
         <Suspense fallback={null}><SiteFooter /></Suspense>
+        <TalkingAvatar />
       </div>
     </>
   );
