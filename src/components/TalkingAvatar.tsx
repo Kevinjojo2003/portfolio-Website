@@ -35,6 +35,48 @@ const writeDismissed = (value: boolean) => {
   }
 };
 
+// Best-sounding male English voices first, Indian English preferred: Edge neural voices,
+// then Apple and Chrome voices. Falls back to any en-IN, then en-GB/en-US voice.
+const PREFERRED_VOICES = [
+  /Prabhat.*Natural/i,
+  /Rishi/i,
+  /(Guy|Ryan|Christopher|Eric).*Natural/i,
+  /Google UK English Male/i,
+  /Daniel/i,
+  /Aaron/i,
+];
+
+const pickVoice = (voices: SpeechSynthesisVoice[]) => {
+  for (const pattern of PREFERRED_VOICES) {
+    const match = voices.find((v) => pattern.test(v.name) && v.lang.toLowerCase().startsWith("en"));
+    if (match) return match;
+  }
+  return (
+    voices.find((v) => /en[-_]IN/i.test(v.lang)) ??
+    voices.find((v) => /en[-_](GB|US)/i.test(v.lang)) ??
+    null
+  );
+};
+
+/**
+ * Chrome loads its voice list asynchronously, so pick again whenever it changes. Returned as a ref
+ * so a late voice list never restarts a line that is already being spoken.
+ */
+const useIntroVoice = (supported: boolean) => {
+  const voice = useRef<SpeechSynthesisVoice | null>(null);
+  useEffect(() => {
+    if (!supported) return;
+    const synth = window.speechSynthesis;
+    const update = () => {
+      voice.current = pickVoice(synth.getVoices());
+    };
+    update();
+    synth.addEventListener("voiceschanged", update);
+    return () => synth.removeEventListener("voiceschanged", update);
+  }, [supported]);
+  return voice;
+};
+
 /**
  * Round video bubble: plays the walk-up-and-wave clip once, then cross-fades to Kevin's illustrated
  * portrait. Visitors who prefer reduced motion (or whose browser blocks autoplay) see only the portrait.
@@ -121,6 +163,7 @@ export const TalkingAvatar = () => {
   const [voiceOn, setVoiceOn] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const voiceSupported = typeof window !== "undefined" && "speechSynthesis" in window;
+  const voiceRef = useIntroVoice(voiceSupported);
 
   const line = lines[lineIdx] ?? "";
   const isLast = lineIdx === lines.length - 1;
@@ -158,9 +201,12 @@ export const TalkingAvatar = () => {
       const synth = window.speechSynthesis;
       synth.cancel();
       const u = new SpeechSynthesisUtterance(line.replace(/[\u{1F300}-\u{1FAFF}]/gu, ""));
-      const voice = synth.getVoices().find((v) => /en[-_](IN|GB|US)/i.test(v.lang));
-      if (voice) u.voice = voice;
-      u.rate = 1.02;
+      const voice = voiceRef.current;
+      if (voice) {
+        u.voice = voice;
+        u.lang = voice.lang;
+      }
+      u.rate = 0.98;
       u.onstart = () => setSpeaking(true);
       u.onend = () => {
         setSpeaking(false);
@@ -183,7 +229,7 @@ export const TalkingAvatar = () => {
       cancelled = true;
       window.clearTimeout(id);
     };
-  }, [phase, line, isLast, voiceOn, voiceSupported]);
+  }, [phase, line, isLast, voiceOn, voiceSupported, voiceRef]);
 
   useEffect(() => () => {
     if (voiceSupported) window.speechSynthesis.cancel();
