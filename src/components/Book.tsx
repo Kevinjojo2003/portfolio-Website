@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Check, Clock, Calendar } from "lucide-react";
+import { ArrowUpRight, Check, Clock, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const BOOKING_URL =
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3V_jQjqASYLC7q66zB6jVB396S5CvmhO8ZYcyQOPcGCTCKc5waU_0-xMZL35WFKcBQ9ebKgF6h";
 
 export const Book = () => {
   const { t } = useTranslation();
@@ -40,7 +43,7 @@ export const Book = () => {
           <p className="mt-3 text-muted-foreground max-w-2xl">{t("book.description")}</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-6">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-6">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -105,16 +108,41 @@ export const Book = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.4, delay: 0.08 }}
-            className="surface-card overflow-hidden"
+            className="surface-card relative overflow-hidden p-7 md:p-10 flex flex-col justify-center"
           >
-            <iframe
-              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3V_jQjqASYLC7q66zB6jVB396S5CvmhO8ZYcyQOPcGCTCKc5waU_0-xMZL35WFKcBQ9ebKgF6h?gv=true"
-              style={{ border: 0 }}
-              width="100%"
-              height="600"
-              title="Book a consultation"
-              loading="lazy"
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-24 -right-16 w-80 h-80 rounded-full blur-3xl opacity-40"
+              style={{ background: "hsl(var(--primary) / 0.35)" }}
             />
+            <div className="relative flex items-center gap-4 mb-6">
+              <img
+                src="/avatar/kevin-illustration.webp"
+                alt=""
+                width={56}
+                height={56}
+                className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/50"
+              />
+              <div>
+                <div className="font-semibold text-foreground">Kevin Jojo</div>
+                <div className="text-sm text-muted-foreground">{t("book.duration")} · Google Meet</div>
+              </div>
+            </div>
+            <h3 className="relative text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+              {t("book.cta.title")}
+            </h3>
+            <p className="relative mt-3 text-muted-foreground max-w-md">{t("book.cta.body")}</p>
+            <div className="relative mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-medium text-primary-foreground hover:bg-primary/90 transition-colors shadow-[0_10px_30px_-10px_hsl(var(--primary)/0.7)]"
+              >
+                <Calendar className="w-4 h-4" /> {t("book.cta.button")} <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <span className="text-xs text-muted-foreground">{t("book.cta.note")}</span>
+            </div>
           </motion.div>
         </div>
       </div>
