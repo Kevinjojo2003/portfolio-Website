@@ -4,6 +4,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 export interface ProjectCardProps {
   title: string;
@@ -16,7 +17,10 @@ export interface ProjectCardProps {
   icon: ReactNode;
   index: number;
   ieeePublished?: boolean;
+  featured?: boolean;
 }
+
+type GtagWindow = Window & { gtag?: (...args: unknown[]) => void };
 
 export const ProjectCard = ({
   title,
@@ -29,16 +33,15 @@ export const ProjectCard = ({
   icon,
   index,
   ieeePublished,
+  featured,
 }: ProjectCardProps) => {
   const { t } = useTranslation();
 
   const handleClick = (label: string) => {
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "click", {
-        event_category: "Project",
-        event_label: `${label} - ${title}`,
-      });
-    }
+    (window as GtagWindow).gtag?.("event", "click", {
+      event_category: "Project",
+      event_label: `${label} - ${title}`,
+    });
   };
 
   return (
@@ -47,7 +50,10 @@ export const ProjectCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.4, delay: index * 0.06 }}
-      className="surface-card-hover p-6 md:p-7 flex flex-col h-full"
+      className={cn(
+        "surface-card-hover flex flex-col h-full",
+        featured ? "relative overflow-hidden p-7 md:p-9" : "p-6 md:p-7",
+      )}
     >
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/[0.04] border border-white/[0.06] text-primary">
@@ -65,7 +71,22 @@ export const ProjectCard = ({
         </Badge>
       </div>
 
-      <h3 className="text-lg font-semibold text-foreground mb-2 leading-snug">{title}</h3>
+      {featured && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl opacity-40"
+          style={{ background: "hsl(var(--primary) / 0.35)" }}
+        />
+      )}
+      <h3
+        className={cn(
+          "font-semibold text-foreground mb-2 leading-snug tracking-tight",
+          featured ? "text-2xl md:text-[28px]" : "text-lg",
+        )}
+      >
+        {title}
+      </h3>
+      {featured && <p className="text-sm text-muted-foreground/90 mb-3 leading-relaxed">{problem}</p>}
       <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
         {solution}
       </p>

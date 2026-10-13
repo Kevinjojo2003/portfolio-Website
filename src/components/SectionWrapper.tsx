@@ -28,7 +28,7 @@ export const SectionWrapper = ({
           transition={{ duration: 0.5 }}
           className="mb-10 md:mb-14"
         >
-          <p className="eyebrow mb-3">{eyebrow}</p>
+          <p className="eyebrow section-eyebrow mb-3">{eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
             {title}
           </h2>

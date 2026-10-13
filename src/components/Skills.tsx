@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Brain, Code2, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface Skill {
   name: string;
-  level: number; // 0-100
   tier: "expert" | "advanced" | "familiar";
 }
 
@@ -16,17 +16,11 @@ interface SkillCategory {
   skills: Skill[];
 }
 
-const ProficiencyBar = ({ value, delay }: { value: number; delay: number }) => (
-  <div className="h-1.5 w-full bg-white/[0.04] rounded-full overflow-hidden">
-    <motion.div
-      initial={{ width: 0 }}
-      whileInView={{ width: `${value}%` }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.8, delay, ease: "easeOut" }}
-      className="h-full bg-primary rounded-full"
-    />
-  </div>
-);
+const TIER_STYLE: Record<Skill["tier"], string> = {
+  expert: "border-primary/50 bg-primary/10 text-foreground",
+  advanced: "border-white/[0.12] bg-white/[0.04] text-foreground/90",
+  familiar: "border-white/[0.07] text-muted-foreground",
+};
 
 export const Skills = () => {
   const { t } = useTranslation();
@@ -38,12 +32,12 @@ export const Skills = () => {
       title: t("skills.cat.ai.title"),
       caption: t("skills.cat.ai.caption"),
       skills: [
-        { name: "PyTorch", level: 92, tier: "expert" },
-        { name: "LangChain", level: 90, tier: "expert" },
-        { name: "Prompt Engineering", level: 95, tier: "expert" },
-        { name: "Computer Vision", level: 80, tier: "advanced" },
-        { name: "TensorFlow", level: 75, tier: "advanced" },
-        { name: "Hugging Face", level: 70, tier: "familiar" },
+        { name: "Prompt Engineering", tier: "expert" },
+        { name: "PyTorch", tier: "expert" },
+        { name: "LangChain", tier: "expert" },
+        { name: "Computer Vision", tier: "advanced" },
+        { name: "TensorFlow", tier: "advanced" },
+        { name: "Hugging Face", tier: "familiar" },
       ],
     },
     {
@@ -52,12 +46,12 @@ export const Skills = () => {
       title: t("skills.cat.eng.title"),
       caption: t("skills.cat.eng.caption"),
       skills: [
-        { name: "Python", level: 95, tier: "expert" },
-        { name: "FastAPI", level: 85, tier: "advanced" },
-        { name: "Docker", level: 75, tier: "advanced" },
-        { name: "SQL", level: 80, tier: "advanced" },
-        { name: "Git / CI", level: 80, tier: "advanced" },
-        { name: "TypeScript", level: 65, tier: "familiar" },
+        { name: "Python", tier: "expert" },
+        { name: "FastAPI", tier: "advanced" },
+        { name: "SQL", tier: "advanced" },
+        { name: "Git / CI", tier: "advanced" },
+        { name: "Docker", tier: "advanced" },
+        { name: "TypeScript", tier: "familiar" },
       ],
     },
     {
@@ -66,15 +60,16 @@ export const Skills = () => {
       title: t("skills.cat.product.title"),
       caption: t("skills.cat.product.caption"),
       skills: [
-        { name: "Analytics", level: 88, tier: "expert" },
-        { name: "Product Strategy", level: 80, tier: "advanced" },
-        { name: "Streamlit", level: 85, tier: "advanced" },
-        { name: "A/B Testing", level: 70, tier: "familiar" },
-        { name: "Looker / Sheets", level: 75, tier: "advanced" },
+        { name: "Analytics", tier: "expert" },
+        { name: "Streamlit", tier: "advanced" },
+        { name: "Product Strategy", tier: "advanced" },
+        { name: "Looker / Sheets", tier: "advanced" },
+        { name: "A/B Testing", tier: "familiar" },
       ],
     },
   ];
 
+  const tiers: Skill["tier"][] = ["expert", "advanced", "familiar"];
   const tierLabel: Record<Skill["tier"], string> = {
     expert: t("skills.expert"),
     advanced: t("skills.advanced"),
@@ -89,13 +84,22 @@ export const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="mb-10 md:mb-14"
+          className="mb-10 md:mb-14 flex flex-wrap items-end justify-between gap-6"
         >
-          <p className="eyebrow mb-3">{t("skills.eyebrow")}</p>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight heading-gradient">
-            {t("skills.title")}
-          </h2>
-          <p className="mt-3 text-muted-foreground max-w-2xl">{t("skills.description")}</p>
+          <div>
+            <p className="eyebrow section-eyebrow mb-3">{t("skills.eyebrow")}</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight heading-gradient">
+              {t("skills.title")}
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-2xl">{t("skills.description")}</p>
+          </div>
+          <ul className="flex flex-wrap gap-2" aria-label="Legend">
+            {tiers.map((tier) => (
+              <li key={tier} className={cn("text-[11px] rounded-full border px-2.5 py-1", TIER_STYLE[tier])}>
+                {tierLabel[tier]}
+              </li>
+            ))}
+          </ul>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-4">
@@ -106,26 +110,24 @@ export const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: ci * 0.08 }}
-              className="surface-card p-6"
+              className="surface-card p-6 md:p-7"
             >
-              <div className="flex items-center gap-2 text-primary mb-1">
-                {cat.icon}
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-                  {cat.title}
-                </h3>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="inline-flex w-9 h-9 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
+                  {cat.icon}
+                </span>
+                <h3 className="font-semibold text-foreground">{cat.title}</h3>
               </div>
-              <p className="text-xs text-muted-foreground mb-5">{cat.caption}</p>
+              <p className="text-sm text-muted-foreground mb-5">{cat.caption}</p>
 
-              <ul className="space-y-3.5">
-                {cat.skills.map((s, i) => (
-                  <li key={s.name}>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-sm text-foreground">{s.name}</span>
-                      <span className="text-[10px] mono uppercase tracking-wider text-muted-foreground">
-                        {tierLabel[s.tier]}
-                      </span>
-                    </div>
-                    <ProficiencyBar value={s.level} delay={ci * 0.08 + i * 0.04} />
+              <ul className="flex flex-wrap gap-2">
+                {cat.skills.map((s) => (
+                  <li
+                    key={s.name}
+                    title={tierLabel[s.tier]}
+                    className={cn("text-[13px] rounded-full border px-3 py-1.5", TIER_STYLE[s.tier])}
+                  >
+                    {s.name}
                   </li>
                 ))}
               </ul>

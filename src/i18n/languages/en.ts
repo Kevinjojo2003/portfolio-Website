@@ -131,9 +131,10 @@ export const en = {
 
     // Projects
     "projects.eyebrow": "Projects",
-    "projects.title": "Case studies, not screenshots",
+    "projects.title": "Selected projects",
     "projects.description":
-      "Each project below shipped to real users. Problem → Solution → Outcome.",
+      "Prototypes and research I built end to end — each with a live demo and the code.",
+    "projects.more": "More projects",
     "projects.problem": "Problem",
     "projects.solution": "Solution",
     "projects.demo": "Live Demo",
@@ -202,6 +203,12 @@ export const en = {
     "linkedin.eyebrow": "Recent Posts",
     "linkedin.title": "On LinkedIn",
     "linkedin.readOn": "Read on LinkedIn →",
+    "linkedin.featured": "Latest post",
+    "linkedin.untitled": "LinkedIn post",
+    "linkedin.open": "Open on LinkedIn",
+    "linkedin.preview": "Preview",
+    "linkedin.hidePreview": "Hide preview",
+    "linkedin.all": "All activity",
     "linkedin.post1.title": "Why prompt evals beat prompt tweaks",
     "linkedin.post1.summary":
       "A short note on building eval suites before chasing prompt rewrites.",
@@ -216,6 +223,11 @@ export const en = {
 
     // Book a Call
     "book.eyebrow": "Book",
+    "book.cta.title": "Pick a time that works for you",
+    "book.cta.body":
+      "Choose a slot on my calendar and you'll get a Google Meet invite straight away. Bring a problem, an idea, or just questions.",
+    "book.cta.button": "Pick a time",
+    "book.cta.note": "Opens Google Calendar in a new tab",
     "book.title": "Book a consultation",
     "book.description":
       "30-minute consultations on AI strategy, LLM systems, or product builds.",

@@ -3,47 +3,48 @@
 @tailwind utilities;
 
 /*
-  Premium dark-only design system (Linear / Vercel inspired).
-  Page bg #0A0A0F, card surface #111118, indigo accent #6366F1, text #E2E8F0.
-  Strict 8px grid. No gradients on surfaces. Inter throughout. Border 1px rgba(255,255,255,0.06).
+  Refined dark design system.
+  Deep navy page (#0A0F1E) with soft blue/violet glows, raised navy cards (#111A2E),
+  periwinkle accent (#7C9BFF) taken from the blue in Kevin's portrait, text #E6EAF2.
+  Inter for UI and body, Instrument Serif for display accents.
 */
 
 @layer base {
   :root,
   .dark {
-    --background: 240 22% 5%;          /* #0A0A0F */
-    --foreground: 213 27% 90%;         /* #E2E8F0 */
+    --background: 226 50% 8%;          /* #0A0F1E */
+    --foreground: 220 33% 93%;         /* #E6EAF2 */
 
-    --card: 240 16% 8%;                /* #111118 */
-    --card-foreground: 213 27% 90%;
+    --card: 222 46% 12%;               /* #111A2E */
+    --card-foreground: 220 33% 93%;
 
-    --popover: 240 16% 8%;
-    --popover-foreground: 213 27% 90%;
+    --popover: 222 46% 12%;
+    --popover-foreground: 220 33% 93%;
 
-    --primary: 239 84% 67%;            /* #6366F1 indigo */
-    --primary-foreground: 210 40% 98%;
+    --primary: 225 100% 74%;           /* #7C9BFF periwinkle */
+    --primary-foreground: 226 50% 10%;
 
-    --secondary: 240 14% 12%;
-    --secondary-foreground: 213 27% 90%;
+    --secondary: 222 40% 15%;
+    --secondary-foreground: 220 33% 93%;
 
-    --muted: 240 14% 12%;
-    --muted-foreground: 215 16% 60%;
+    --muted: 222 40% 15%;
+    --muted-foreground: 222 18% 68%;
 
-    --accent: 188 94% 43%;             /* #06B6D4 cyan (used sparingly) */
-    --accent-foreground: 240 24% 8%;
+    --accent: 262 83% 76%;             /* #B79CFA soft violet (used sparingly) */
+    --accent-foreground: 226 50% 10%;
 
     --destructive: 0 72% 50%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 0 0% 100%;               /* used at /[0.06] opacity */
-    --input: 240 14% 14%;
-    --ring: 239 84% 67%;
+    --input: 222 40% 16%;
+    --ring: 225 100% 74%;
 
-    --radius: 0.75rem;                 /* 12px */
+    --radius: 1rem;                    /* 16px */
   }
 
   * {
-    border-color: rgb(255 255 255 / 0.06);
+    border-color: rgb(255 255 255 / 0.07);
   }
 
   html {
@@ -53,6 +54,12 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    /* Soft glows: blue from the top right, violet from the left. Fixed so they don't scroll away. */
+    background-image:
+      radial-gradient(1100px 620px at 88% -8%, hsl(var(--primary) / 0.13), transparent 62%),
+      radial-gradient(900px 560px at -12% 38%, hsl(var(--accent) / 0.07), transparent 60%),
+      radial-gradient(1000px 600px at 50% 120%, hsl(var(--primary) / 0.06), transparent 60%);
+    background-attachment: fixed;
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
   }
@@ -65,8 +72,10 @@
 
 @layer components {
   .surface-card {
-    @apply rounded-xl bg-card transition-all duration-150;
-    border: 1px solid rgb(255 255 255 / 0.06);
+    @apply rounded-2xl bg-card/80 transition-all duration-200;
+    border: 1px solid rgb(255 255 255 / 0.07);
+    background-image: linear-gradient(180deg, rgb(255 255 255 / 0.035), transparent 40%);
+    backdrop-filter: blur(6px);
   }
 
   .surface-card-hover {
@@ -74,7 +83,21 @@
   }
 
   .eyebrow {
-    @apply text-[11px] md:text-[13px] font-semibold uppercase tracking-[0.18em] text-primary;
+    @apply text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.2em] text-primary;
+  }
+
+  /* Section headers get a running number: "01 — Experience". */
+  main { counter-reset: section; }
+  .section-eyebrow::before {
+    counter-increment: section;
+    content: counter(section, decimal-leading-zero) "  —  ";
+    @apply text-muted-foreground;
+  }
+
+  .font-display {
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   .mono {
@@ -84,15 +107,13 @@
 
   .container-narrow {
     @apply mx-auto w-full px-6;
-    max-width: 1100px;
+    max-width: 1160px;
   }
 
-  /* Indigo → white text gradient for section headings */
+  /* Section headings: solid, bright and tight. */
   .heading-gradient {
-    background-image: linear-gradient(180deg, #FFFFFF 0%, #C7D2FE 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    @apply text-foreground;
+    letter-spacing: -0.025em;
   }
 }
 
