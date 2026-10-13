@@ -135,32 +135,35 @@
 .no-scrollbar { scrollbar-width: none; }
 
 /* Talking avatar */
-.avatar-figure .avatar-leg-front,
-.avatar-figure .avatar-leg-back,
-.avatar-figure .avatar-arm-front,
-.avatar-figure .avatar-arm-back,
-.avatar-figure .avatar-body {
-  transform-box: view-box;
+.avatar-figure { transform-origin: 50% 100%; }
+.avatar-portrait {
+  /* Fade out the cropped bottom edge of the portrait. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  filter: drop-shadow(0 10px 18px rgb(0 0 0 / 0.45));
 }
-@keyframes avatar-swing-a { 0%, 100% { transform: rotate(22deg); } 50% { transform: rotate(-22deg); } }
-@keyframes avatar-swing-b { 0%, 100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
-@keyframes avatar-bob { 0%, 50%, 100% { transform: translateY(0); } 25%, 75% { transform: translateY(-3px); } }
-@keyframes avatar-wave { 0%, 100% { transform: rotate(-150deg); } 50% { transform: rotate(-125deg); } }
-@keyframes avatar-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
-@keyframes avatar-talk { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(1); } }
-
-.avatar-figure.is-walking .avatar-body { animation: avatar-bob 0.6s ease-in-out infinite; }
-.avatar-figure.is-walking .avatar-leg-front,
-.avatar-figure.is-walking .avatar-arm-back { animation: avatar-swing-a 0.6s ease-in-out infinite; }
-.avatar-figure.is-walking .avatar-leg-back,
-.avatar-figure.is-walking .avatar-arm-front { animation: avatar-swing-b 0.6s ease-in-out infinite; }
-.avatar-figure .avatar-arm-front { transition: transform 0.3s ease; }
-.avatar-figure .avatar-arm-front.is-waving { animation: avatar-wave 0.3s ease-in-out infinite; }
-.avatar-figure .avatar-eyes { transform-box: view-box; animation: avatar-blink 4s infinite; }
-.avatar-figure .avatar-mouth { transform-box: view-box; opacity: 0; }
-.avatar-figure.is-talking .avatar-smile { opacity: 0; }
-.avatar-figure.is-talking .avatar-mouth { opacity: 1; animation: avatar-talk 0.22s ease-in-out infinite; }
+@keyframes avatar-hop {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  25% { transform: translateY(-9px) rotate(0deg); }
+  50% { transform: translateY(0) rotate(3deg); }
+  75% { transform: translateY(-9px) rotate(0deg); }
+}
+@keyframes avatar-nod {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  30% { transform: rotate(-1.5deg) translateY(-2px); }
+  60% { transform: rotate(1deg) translateY(0); }
+}
+@keyframes avatar-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015); } }
+@keyframes avatar-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-20deg); }
+  75% { transform: rotate(20deg); }
+}
+.avatar-figure.is-walking { animation: avatar-hop 0.7s ease-in-out infinite; }
+.avatar-figure.is-talking { animation: avatar-nod 1.1s ease-in-out infinite; }
+.avatar-figure.is-idle { animation: avatar-breathe 3.5s ease-in-out infinite; }
+.avatar-wave { display: inline-block; transform-origin: 70% 80%; animation: avatar-wave 0.35s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  .avatar-figure * { animation: none !important; }
+  .avatar-figure, .avatar-figure * { animation: none !important; }
 }
