@@ -131,9 +131,10 @@ export const en = {
 
     // Projects
     "projects.eyebrow": "Projects",
-    "projects.title": "Case studies, not screenshots",
+    "projects.title": "Selected projects",
     "projects.description":
-      "Each project below shipped to real users. Problem → Solution → Outcome.",
+      "Prototypes and research I built end to end — each with a live demo and the code.",
+    "projects.more": "More projects",
     "projects.problem": "Problem",
     "projects.solution": "Solution",
     "projects.demo": "Live Demo",

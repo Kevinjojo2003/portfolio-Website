@@ -37,7 +37,7 @@ export const LinkedInPosts = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="linkedin" className="py-20 md:py-28">
+    <section id="blog" className="py-20 md:py-28">
       <div className="container-narrow">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -46,7 +46,7 @@ export const LinkedInPosts = () => {
           transition={{ duration: 0.5 }}
           className="mb-10 md:mb-14"
         >
-          <p className="eyebrow mb-3">{t("linkedin.eyebrow")}</p>
+          <p className="eyebrow section-eyebrow mb-3">{t("linkedin.eyebrow")}</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight heading-gradient">
             {t("linkedin.title")}
           </h2>

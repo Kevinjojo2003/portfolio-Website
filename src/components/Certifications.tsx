@@ -31,7 +31,7 @@ export const Certifications = () => {
           className="mb-8 md:mb-10 flex items-end justify-between gap-4 flex-wrap"
         >
           <div>
-            <p className="eyebrow mb-3">{t("certifications.eyebrow")}</p>
+            <p className="eyebrow section-eyebrow mb-3">{t("certifications.eyebrow")}</p>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight heading-gradient">
               Certifications
             </h2>
