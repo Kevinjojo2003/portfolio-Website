@@ -24,6 +24,20 @@ export const en = {
     "hero.cta.work": "View My Work",
     "hero.cta.book": "Book a Call",
 
+    // Talking avatar
+    "avatar.line1": "Hey there! I'm Kevin 👋",
+    "avatar.line2":
+      "I build LLM systems that turn messy documents into decisions people can trust.",
+    "avatar.line3":
+      "Right now I'm at Kolo, shipping the document AI behind MyRenoWallet and Kolo Smart Select.",
+    "avatar.line4": "I've also published multi-modal research at IEEE InC4 2025.",
+    "avatar.line5": "Want to see what I've built — or just grab a quick call?",
+    "avatar.listen": "Hear me say it",
+    "avatar.mute": "Stop voice",
+    "avatar.replay": "Replay",
+    "avatar.close": "Dismiss avatar",
+    "avatar.reopen": "Say hi to Kevin",
+
     // Research
     "research.eyebrow": "Research",
     "research.title": "Peer-reviewed multi-modal forecasting",
