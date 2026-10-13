@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Calendar, RotateCcw, Volume2, VolumeX, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
-type Phase = "walking" | "waving" | "talking" | "done";
+type Phase = "intro" | "talking" | "done";
 
-const WALK_MS = 3600;
-const WAVE_MS = 900;
+// The clip shows Kevin walking up, then waving from about 4s; the intro text starts with the wave.
+const TALK_AT_SECONDS = 4;
 const TYPE_MS = 28;
 const LINE_HOLD_MS = 1800;
 const DISMISS_KEY = "kj-avatar-dismissed";
@@ -35,29 +35,77 @@ const writeDismissed = (value: boolean) => {
   }
 };
 
-/** Kevin's illustrated portrait. Hops while walking, waves on arrival, nods while talking, breathes when idle. */
-const Character = ({ walking, waving, talking }: { walking: boolean; waving: boolean; talking: boolean }) => (
-  <div
-    className={cn(
-      "avatar-figure relative w-full h-full",
-      walking ? "is-walking" : talking ? "is-talking" : "is-idle",
-    )}
-  >
-    <img
-      src="/kevin-avatar.webp"
-      alt=""
-      width={400}
-      height={391}
-      draggable={false}
-      className="avatar-portrait absolute inset-x-0 bottom-0 w-full h-auto select-none"
-    />
-    {waving && (
-      <span className="avatar-wave absolute -top-1 -left-3 text-2xl md:text-3xl" aria-hidden="true">
-        👋
-      </span>
-    )}
-  </div>
-);
+/**
+ * Round video bubble: plays the walk-up-and-wave clip once, then cross-fades to Kevin's illustrated
+ * portrait. Visitors who prefer reduced motion (or whose browser blocks autoplay) see only the portrait.
+ */
+const AvatarBubble = ({
+  playVideo,
+  speaking,
+  onTalkPoint,
+  onVideoUnavailable,
+}: {
+  playVideo: boolean;
+  speaking: boolean;
+  onTalkPoint: () => void;
+  onVideoUnavailable: () => void;
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [ended, setEnded] = useState(!playVideo);
+
+  useEffect(() => {
+    if (!playVideo) return;
+    videoRef.current?.play().catch(() => {
+      setEnded(true);
+      onVideoUnavailable();
+    });
+  }, [playVideo, onVideoUnavailable]);
+
+  return (
+    <div
+      className={cn(
+        "avatar-bubble relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden bg-card ring-2 ring-primary/70 shadow-2xl shadow-black/60",
+        speaking && "is-speaking",
+      )}
+    >
+      <img
+        src="/avatar/kevin-illustration.webp"
+        alt=""
+        width={320}
+        height={320}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {playVideo && (
+        <video
+          ref={videoRef}
+          className={cn(
+            "absolute inset-0 w-full h-full object-cover transition-opacity duration-700",
+            ended && "opacity-0",
+          )}
+          poster="/avatar/kevin-wave-poster.webp"
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          onTimeUpdate={(e) => {
+            if (e.currentTarget.currentTime >= TALK_AT_SECONDS) onTalkPoint();
+          }}
+          onEnded={() => {
+            setEnded(true);
+            onTalkPoint();
+          }}
+          onError={() => {
+            setEnded(true);
+            onVideoUnavailable();
+          }}
+        >
+          <source src="/avatar/kevin-wave.webm" type="video/webm" />
+          <source src="/avatar/kevin-wave.mp4" type="video/mp4" />
+        </video>
+      )}
+    </div>
+  );
+};
 
 export const TalkingAvatar = () => {
   const { t } = useTranslation();
@@ -65,7 +113,9 @@ export const TalkingAvatar = () => {
   const lines = [t("avatar.line1"), t("avatar.line2"), t("avatar.line3"), t("avatar.line4"), t("avatar.line5")];
 
   const [visible, setVisible] = useState(() => !readDismissed());
-  const [phase, setPhase] = useState<Phase>(reduceMotion ? "talking" : "walking");
+  const [phase, setPhase] = useState<Phase>(reduceMotion ? "talking" : "intro");
+  // Bumped to remount the video bubble so Replay / reopen play the clip again.
+  const [clipRun, setClipRun] = useState(0);
   const [lineIdx, setLineIdx] = useState(0);
   const [typed, setTyped] = useState("");
   const [voiceOn, setVoiceOn] = useState(false);
@@ -75,13 +125,9 @@ export const TalkingAvatar = () => {
   const line = lines[lineIdx] ?? "";
   const isLast = lineIdx === lines.length - 1;
 
-  // Walk in, wave, then start talking.
-  useEffect(() => {
-    if (!visible || phase === "talking" || phase === "done") return;
-    const next = phase === "walking" ? "waving" : "talking";
-    const id = window.setTimeout(() => setPhase(next), phase === "walking" ? WALK_MS : WAVE_MS);
-    return () => window.clearTimeout(id);
-  }, [phase, visible]);
+  const startTalking = useCallback(() => {
+    setPhase((p) => (p === "intro" ? "talking" : p));
+  }, []);
 
   // Typewriter for the current line.
   useEffect(() => {
@@ -148,6 +194,12 @@ export const TalkingAvatar = () => {
     setPhase("talking");
   }, []);
 
+  const replayWithClip = () => {
+    setLineIdx(0);
+    setPhase(reduceMotion ? "talking" : "intro");
+    setClipRun((n) => n + 1);
+  };
+
   const toggleVoice = () => {
     if (voiceOn) {
       setVoiceOn(false);
@@ -166,8 +218,7 @@ export const TalkingAvatar = () => {
 
   const reopen = () => {
     writeDismissed(false);
-    setLineIdx(0);
-    setPhase(reduceMotion ? "talking" : "walking");
+    replayWithClip();
     setVisible(true);
   };
 
@@ -180,10 +231,11 @@ export const TalkingAvatar = () => {
           <motion.aside
             key="avatar"
             className="fixed bottom-3 right-3 md:bottom-6 md:right-6 z-40 flex items-end gap-2 pointer-events-none"
-            initial={reduceMotion ? { opacity: 0 } : { x: "-100vw" }}
-            animate={reduceMotion ? { opacity: 1 } : { x: 0 }}
-            exit={reduceMotion ? { opacity: 0 } : { x: 160, opacity: 0, transition: { duration: 0.6, ease: "easeIn" } }}
-            transition={{ duration: WALK_MS / 1000, ease: [0.2, 0, 0.4, 1] }}
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.6, y: 24 }}
+            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.25 } }}
+            transition={{ type: "spring", stiffness: 260, damping: 22, delay: reduceMotion ? 0 : 0.8 }}
+            style={{ transformOrigin: "bottom right" }}
             aria-label="Kevin's introduction"
           >
             {/* Speech bubble */}
@@ -195,7 +247,7 @@ export const TalkingAvatar = () => {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.25 }}
                   style={{ transformOrigin: "bottom right" }}
-                  className="pointer-events-auto relative mb-16 md:mb-24 w-[min(68vw,300px)] surface-card p-4 shadow-2xl shadow-black/50"
+                  className="pointer-events-auto relative mb-12 md:mb-16 w-[min(68vw,300px)] surface-card p-4 shadow-2xl shadow-black/50"
                 >
                   <button
                     onClick={dismiss}
@@ -249,7 +301,7 @@ export const TalkingAvatar = () => {
                     <div className="flex items-center gap-1">
                       {phase === "done" && (
                         <button
-                          onClick={replay}
+                          onClick={replayWithClip}
                           className="inline-flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground px-1.5 py-1"
                         >
                           <RotateCcw className="w-3 h-3" /> {t("avatar.replay")}
@@ -276,9 +328,14 @@ export const TalkingAvatar = () => {
               )}
             </AnimatePresence>
 
-            {/* Character */}
-            <div className="w-[112px] h-[110px] md:w-[156px] md:h-[152px] shrink-0">
-              <Character walking={phase === "walking"} waving={phase === "waving"} talking={isSpeaking} />
+            <div className="pointer-events-auto shrink-0">
+              <AvatarBubble
+                key={clipRun}
+                playVideo={!reduceMotion}
+                speaking={isSpeaking}
+                onTalkPoint={startTalking}
+                onVideoUnavailable={startTalking}
+              />
             </div>
           </motion.aside>
         )}
