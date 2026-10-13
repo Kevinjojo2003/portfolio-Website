@@ -35,7 +35,15 @@ const writeDismissed = (value: boolean) => {
   }
 };
 
-/** Flat illustrated character. `walking` swings limbs, `waving` raises the right arm, `talking` moves the mouth. */
+// Palette sampled from Kevin's headshot: warm brown skin, black hair and beard, navy blazer, white shirt.
+const SKIN = "#B0734D";
+const SKIN_SHADE = "#965E3D";
+const HAIR = "#141414";
+const BLAZER = "#1F2A44";
+const BLAZER_SHADE = "#18213A";
+const TROUSERS = "#1C2333";
+
+/** Illustrated Kevin. `walking` swings limbs, `waving` raises the right arm, `talking` moves the mouth. */
 const Character = ({ walking, waving, talking }: { walking: boolean; waving: boolean; talking: boolean }) => (
   <svg
     viewBox="0 0 120 220"
@@ -43,62 +51,82 @@ const Character = ({ walking, waving, talking }: { walking: boolean; waving: boo
     aria-hidden="true"
   >
     {/* Ground shadow */}
-    <ellipse cx="60" cy="214" rx="30" ry="5" fill="rgb(0 0 0 / 0.35)" />
+    <ellipse cx="60" cy="214" rx="32" ry="5" fill="rgb(0 0 0 / 0.35)" />
 
     <g className="avatar-body">
       {/* Legs */}
-      <g className="avatar-leg-back" style={{ transformOrigin: "52px 132px" }}>
-        <rect x="45" y="128" width="14" height="66" rx="7" fill="#1E293B" />
-        <rect x="40" y="190" width="22" height="10" rx="5" fill="#0F172A" />
+      <g className="avatar-leg-back" style={{ transformOrigin: "52px 134px" }}>
+        <rect x="44" y="130" width="15" height="64" rx="6" fill={TROUSERS} />
+        <path d="M39 194 Q39 188 46 188 L58 188 Q62 188 62 194 L62 199 L39 199 Z" fill="#5A3A28" stroke="#2A1A12" strokeWidth="1" />
       </g>
-      <g className="avatar-leg-front" style={{ transformOrigin: "68px 132px" }}>
-        <rect x="61" y="128" width="14" height="66" rx="7" fill="#273449" />
-        <rect x="58" y="190" width="22" height="10" rx="5" fill="#0F172A" />
-      </g>
-
-      {/* Left arm (swings while walking) */}
-      <g className="avatar-arm-back" style={{ transformOrigin: "36px 80px" }}>
-        <rect x="29" y="76" width="13" height="52" rx="6.5" fill="#5458E8" />
-        <circle cx="35.5" cy="130" r="6.5" fill="#C68A62" />
-      </g>
-      {/* Right arm (swings while walking, waves on arrival) */}
-      <g className={cn("avatar-arm-front", waving && "is-waving")} style={{ transformOrigin: "84px 80px" }}>
-        <rect x="78" y="76" width="13" height="52" rx="6.5" fill="#5458E8" />
-        <circle cx="84.5" cy="130" r="6.5" fill="#D39A72" />
+      <g className="avatar-leg-front" style={{ transformOrigin: "68px 134px" }}>
+        <rect x="61" y="130" width="15" height="64" rx="6" fill="#232B3D" />
+        <path d="M58 194 Q58 188 64 188 L76 188 Q81 188 81 194 L81 199 L58 199 Z" fill="#5A3A28" stroke="#2A1A12" strokeWidth="1" />
       </g>
 
-      {/* Torso: indigo hoodie */}
-      <path d="M38 84 C38 74 46 68 60 68 C74 68 82 74 82 84 L80 134 C80 137 78 139 75 139 L45 139 C42 139 40 137 40 134 Z" fill="#6366F1" />
-      <path d="M51 69 L60 83 L69 69" fill="none" stroke="#A5B4FC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <line x1="56" y1="84" x2="55" y2="98" stroke="#A5B4FC" strokeWidth="1.6" strokeLinecap="round" />
-      <line x1="64" y1="84" x2="65" y2="98" stroke="#A5B4FC" strokeWidth="1.6" strokeLinecap="round" />
-      <rect x="47" y="110" width="26" height="14" rx="5" fill="#5458E8" />
+      {/* Left arm */}
+      <g className="avatar-arm-back" style={{ transformOrigin: "35px 82px" }}>
+        <rect x="28" y="76" width="14" height="54" rx="7" fill={BLAZER_SHADE} />
+        <rect x="29" y="122" width="12" height="5" rx="2" fill="#F1F5F9" />
+        <circle cx="35" cy="132" r="6.5" fill={SKIN_SHADE} />
+      </g>
+      {/* Right arm (waves on arrival) */}
+      <g className={cn("avatar-arm-front", waving && "is-waving")} style={{ transformOrigin: "85px 82px" }}>
+        <rect x="78" y="76" width="14" height="54" rx="7" fill={BLAZER_SHADE} />
+        <rect x="79" y="122" width="12" height="5" rx="2" fill="#F1F5F9" />
+        <circle cx="85" cy="132" r="6.5" fill={SKIN} />
+      </g>
 
-      {/* Neck + head */}
-      <rect x="54" y="58" width="12" height="14" rx="4" fill="#C68A62" />
+      {/* Torso: white shirt under a navy blazer */}
+      <path d="M37 86 C37 75 46 68 60 68 C74 68 83 75 83 86 L81 138 C81 140 79 142 77 142 L43 142 C41 142 39 140 39 138 Z" fill={BLAZER} />
+      <path d="M50 69 L60 69 L70 69 L66 108 L60 112 L54 108 Z" fill="#F8FAFC" />
+      {/* Collar */}
+      <path d="M51 69 L57 79 L60 72 L63 79 L69 69" fill="#F8FAFC" stroke="#CBD5E1" strokeWidth="1" strokeLinejoin="round" />
+      {/* Lapels */}
+      <path d="M49 70 L56 86 L52 90 L60 114 L44 84 Z" fill={BLAZER_SHADE} />
+      <path d="M71 70 L64 86 L68 90 L60 114 L76 84 Z" fill={BLAZER_SHADE} />
+      <circle cx="60" cy="96" r="1.1" fill="#CBD5E1" />
+      <circle cx="60" cy="122" r="1.6" fill="#0F172A" />
+      <line x1="68" y1="118" x2="77" y2="117" stroke="#0F172A" strokeWidth="1.4" strokeLinecap="round" />
+
+      {/* Neck */}
+      <rect x="53" y="56" width="14" height="15" rx="5" fill={SKIN_SHADE} />
+
+      {/* Head */}
       <g className="avatar-head" style={{ transformOrigin: "60px 60px" }}>
-        <ellipse cx="60" cy="38" rx="21" ry="23" fill="#D39A72" />
         {/* Ears */}
-        <ellipse cx="39.5" cy="40" rx="3.5" ry="5" fill="#C68A62" />
-        <ellipse cx="80.5" cy="40" rx="3.5" ry="5" fill="#C68A62" />
-        {/* Hair */}
+        <ellipse cx="38.5" cy="38" rx="4" ry="6" fill={SKIN_SHADE} />
+        <ellipse cx="81.5" cy="38" rx="4" ry="6" fill={SKIN_SHADE} />
+        {/* Face */}
+        <path d="M39 32 C39 17 49 12 60 12 C71 12 81 17 81 32 L81 42 C81 56 71 64 60 64 C49 64 39 56 39 42 Z" fill={SKIN} />
+        {/* Full beard along the jaw */}
         <path
-          d="M38 36 C36 16 50 8 62 9 C76 10 86 18 82 36 C80 28 74 22 66 22 C58 24 48 22 42 28 C40 31 39 34 38 36 Z"
-          fill="#1A1A1A"
+          d="M39 38 C40 46 42 52 46 56 C50 61 55 64 60 64 C65 64 70 61 74 56 C78 52 80 46 81 38 L79 40 C77 46 74 50 70 51 C66 51 63 50.5 60 50.5 C57 50.5 54 51 50 51 C46 50 43 46 41 40 Z"
+          fill={HAIR}
         />
+        {/* Moustache */}
+        <path d="M50 47.5 C53 44.5 57 44.5 60 46 C63 44.5 67 44.5 70 47.5 C66 48.5 63 48 60 47.6 C57 48 54 48.5 50 47.5 Z" fill={HAIR} />
+        {/* Thick, tousled hair */}
+        <path
+          d="M36 35 C32 24 35 13 43 8 C46 3 53 1 59 3 C64 0 72 1 76 5 C82 7 87 14 86 22 C87 28 85 32 83 36 C82 30 80 26 77 24 C74 27 70 27 67 24 C64 27 59 27 56 24 C53 27 48 27 45 24 C42 26 40 30 39 35 Z"
+          fill={HAIR}
+        />
+        <path d="M44 10 C47 6 52 6 55 8 M60 5 C64 3 69 4 72 7 M47 16 C51 13 56 13 59 15" stroke="#2A2A2A" strokeWidth="1.3" strokeLinecap="round" fill="none" />
         {/* Brows */}
-        <path d="M47 33 Q51 31 55 33" stroke="#1A1A1A" strokeWidth="2" fill="none" strokeLinecap="round" />
-        <path d="M65 33 Q69 31 73 33" stroke="#1A1A1A" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M45.5 30 Q50 27.5 55 29.5" stroke={HAIR} strokeWidth="2.6" fill="none" strokeLinecap="round" />
+        <path d="M65 29.5 Q70 27.5 74.5 30" stroke={HAIR} strokeWidth="2.6" fill="none" strokeLinecap="round" />
         {/* Eyes (blink) */}
-        <g className="avatar-eyes" style={{ transformOrigin: "60px 39px" }}>
-          <ellipse cx="51" cy="39" rx="2.4" ry="2.8" fill="#111" />
-          <ellipse cx="69" cy="39" rx="2.4" ry="2.8" fill="#111" />
+        <g className="avatar-eyes" style={{ transformOrigin: "60px 35px" }}>
+          <ellipse cx="50.5" cy="35" rx="2.5" ry="2.7" fill="#140D09" />
+          <ellipse cx="69.5" cy="35" rx="2.5" ry="2.7" fill="#140D09" />
+          <circle cx="51.3" cy="34.2" r="0.7" fill="#fff" />
+          <circle cx="70.3" cy="34.2" r="0.7" fill="#fff" />
         </g>
         {/* Nose */}
-        <path d="M60 41 Q58 47 61 48" stroke="#A86F4B" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-        {/* Mouth: smile when idle, opens while talking */}
-        <path d="M52 52 Q60 58 68 52" stroke="#7A3E2A" strokeWidth="2.2" fill="none" strokeLinecap="round" className="avatar-smile" />
-        <ellipse cx="60" cy="53.5" rx="5" ry="3.2" fill="#7A3E2A" className="avatar-mouth" style={{ transformOrigin: "60px 53.5px" }} />
+        <path d="M60 36 Q57.5 42 59 43.5 Q60.5 44.2 62 43.4" stroke={SKIN_SHADE} strokeWidth="1.7" fill="none" strokeLinecap="round" />
+        {/* Mouth: toothy smile when idle, opens while talking */}
+        <path d="M53.5 50 Q60 55.5 66.5 50 Z" fill="#F8FAFC" stroke="#5B2A1C" strokeWidth="1.2" strokeLinejoin="round" className="avatar-smile" />
+        <ellipse cx="60" cy="51.5" rx="5" ry="3.4" fill="#4A1F14" className="avatar-mouth" style={{ transformOrigin: "60px 50px" }} />
       </g>
     </g>
   </svg>
@@ -250,7 +278,21 @@ export const TalkingAvatar = () => {
                     <X className="w-3.5 h-3.5" />
                   </button>
 
-                  <p className="text-sm text-foreground leading-relaxed pr-5 min-h-[3.5em]" aria-live="polite">
+                  <div className="flex items-center gap-2.5 mb-2.5 pr-6">
+                    <img
+                      src="/kevin-jojo-face.webp"
+                      alt="Kevin Jojo"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 rounded-full object-cover border border-white/10"
+                    />
+                    <div className="leading-tight">
+                      <div className="text-xs font-semibold text-foreground">Kevin Jojo</div>
+                      <div className="text-[10px] text-muted-foreground">{t("hero.role1")}</div>
+                    </div>
+                  </div>
+
+                  <p className="text-sm text-foreground leading-relaxed min-h-[3.5em]" aria-live="polite">
                     {phase === "done" ? line : typed}
                     {phase === "talking" && typed.length < line.length && <span className="caret">&nbsp;</span>}
                   </p>

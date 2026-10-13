@@ -74,12 +74,13 @@ export const Hero = () => {
           className="flex justify-center mb-6"
         >
           <div className="relative">
-            <div
-              className="w-[72px] h-[72px] rounded-full bg-card flex items-center justify-center text-2xl font-bold text-primary"
-              style={{ border: "1px solid rgb(255 255 255 / 0.06)" }}
-            >
-              KJ
-            </div>
+            <img
+              src="/kevin-jojo.webp"
+              alt="Kevin Jojo"
+              width={112}
+              height={112}
+              className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover ring-1 ring-white/10 ring-offset-4 ring-offset-background"
+            />
           </div>
         </motion.div>
 
