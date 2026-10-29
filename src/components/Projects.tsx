@@ -9,6 +9,7 @@ export const Projects = () => {
   const projects = [
     {
       title: t("projects.medical.title"),
+      narrate: "medical",
       problem: t("projects.medical.problem"),
       solution: t("projects.medical.solution"),
       metric: t("projects.medical.metric"),
@@ -19,6 +20,7 @@ export const Projects = () => {
     },
     {
       title: t("projects.semp.title"),
+      narrate: "semp",
       problem: t("projects.semp.problem"),
       solution: t("projects.semp.solution"),
       metric: t("projects.semp.metric"),
@@ -30,6 +32,7 @@ export const Projects = () => {
     },
     {
       title: t("projects.object.title"),
+      narrate: "object",
       problem: t("projects.object.problem"),
       solution: t("projects.object.solution"),
       metric: t("projects.object.metric"),
@@ -40,6 +43,7 @@ export const Projects = () => {
     },
     {
       title: t("projects.classification.title"),
+      narrate: "classification",
       problem: t("projects.classification.problem"),
       solution: t("projects.classification.solution"),
       metric: t("projects.classification.metric"),
@@ -50,6 +54,7 @@ export const Projects = () => {
     },
     {
       title: t("projects.news.title"),
+      narrate: "news",
       problem: t("projects.news.problem"),
       solution: t("projects.news.solution"),
       metric: t("projects.news.metric"),
@@ -60,6 +65,7 @@ export const Projects = () => {
     },
     {
       title: t("projects.asd.title"),
+      narrate: "asd",
       problem: t("projects.asd.problem"),
       solution: t("projects.asd.solution"),
       metric: t("projects.asd.metric"),

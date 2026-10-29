@@ -16,6 +16,8 @@ interface Role {
   bullets: string[];
   stack: string[];
   current?: boolean;
+  /** Key of the avatar's hover narration (narrate.<id>). */
+  narrate: string;
   links?: Link[];
 }
 
@@ -26,6 +28,7 @@ export const Experience = () => {
     {
       logo: "/lovable-uploads/kolo-logo.png",
       alt: "Koloapp",
+      narrate: "kolo",
       title: t("about.experience.promptEngineer"),
       company: t("about.experience.kolo"),
       date: t("about.experience.koloDate"),
@@ -47,6 +50,7 @@ export const Experience = () => {
     {
       logo: "/lovable-uploads/0b4ce4eb-de3c-47d7-ac69-6ca4b822ad37.png",
       alt: "Workcohol",
+      narrate: "workcohol",
       title: t("about.experience.aiEngineer"),
       company: t("about.experience.workcohol"),
       date: t("about.experience.workcoholDate"),
@@ -60,6 +64,7 @@ export const Experience = () => {
     {
       logo: "/lovable-uploads/37d2ddda-c5e5-4bbc-9d1e-24fc8e8e6a0e.png",
       alt: "Bolt IoT",
+      narrate: "bolt",
       title: t("about.experience.webDev"),
       company: t("about.experience.bolt"),
       date: t("about.experience.boltDate"),
@@ -72,6 +77,7 @@ export const Experience = () => {
     {
       logo: "/lovable-uploads/dea0126d-86ea-4f83-b953-a62129e31dd7.png",
       alt: "Younity",
+      narrate: "younity",
       title: t("about.experience.marketing"),
       company: t("about.experience.younity"),
       date: t("about.experience.younityDate"),
@@ -111,7 +117,7 @@ export const Experience = () => {
               )}
             </div>
 
-            <div className="surface-card-hover p-5 md:p-6">
+            <div className="surface-card-hover p-5 md:p-6" data-narrate={r.narrate}>
               <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h4 className="font-semibold text-foreground">{r.title}</h4>
