@@ -13,6 +13,7 @@ const Education = () => {
       date: "2021 — 2025",
       logo: "/lovable-uploads/e59070ab-b6cc-446a-9027-ba2a0b9045f7.png",
       alt: "Karunya University",
+      narrate: "btech",
     },
     {
       degree: "Class 11 – 12 · CBSE (Maths with Computer Science)",
@@ -20,6 +21,7 @@ const Education = () => {
       date: "2019 — 2021",
       logo: "/lovable-uploads/71322350-15a1-4f5d-afaf-51a4d7fde786.png",
       alt: "De Paul Public School",
+      narrate: "depaul",
     },
     {
       degree: "Schooling · CBSE",
@@ -27,6 +29,7 @@ const Education = () => {
       date: "2007 — 2019",
       logo: "/lovable-uploads/66429d70-55c1-4c94-8ce4-d38253694b0b.png",
       alt: "The Village International School",
+      narrate: "village",
     },
   ];
 
@@ -42,6 +45,7 @@ const Education = () => {
             viewport={{ once: true, margin: "-30px" }}
             transition={{ duration: 0.4, delay: i * 0.06 }}
             className="surface-card-hover p-5 flex gap-4"
+            data-narrate={it.narrate}
           >
             <div className="w-10 h-10 rounded-full bg-white border border-white/[0.06] flex items-center justify-center overflow-hidden shrink-0">
               <img src={it.logo} alt={it.alt} className="w-full h-full object-contain p-1" loading="lazy" />
@@ -67,6 +71,7 @@ const PublicationsCallout = () => {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5 }}
       className="surface-card p-6 md:p-8 mt-10"
+      data-narrate="research"
     >
       <div className="flex flex-col md:flex-row gap-6 md:items-center">
         <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
@@ -105,6 +110,7 @@ const ResumeHighlights = () => {
       title: t("about.highlights.familiar.title"),
       description: t("about.highlights.familiar.description"),
       tags: ["Customer Discovery", "RAG", "Product Strategy", "YC 2026"],
+      narrate: "familiar",
     },
     {
       icon: <Users className="w-5 h-5" />,
@@ -112,6 +118,7 @@ const ResumeHighlights = () => {
       title: t("about.highlights.leadership.title"),
       description: t("about.highlights.leadership.description"),
       tags: ["Partnerships", "Recruiting", "500+ Members"],
+      narrate: "ecell",
     },
   ];
 
@@ -127,6 +134,7 @@ const ResumeHighlights = () => {
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.4, delay: index * 0.06 }}
             className="surface-card-hover p-6"
+            data-narrate={item.narrate}
           >
             <div className="flex items-center gap-3 mb-4">
               <span className="inline-flex w-10 h-10 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 text-primary">

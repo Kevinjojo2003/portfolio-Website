@@ -38,6 +38,42 @@ export const en = {
     "avatar.close": "Dismiss avatar",
     "avatar.reopen": "Say hi to Kevin",
 
+    // Avatar hover narration: what Kevin says when a visitor hovers an item. Each line has a
+    // pre-rendered clip in his cloned voice (public/avatar/narrate/<id>), so regenerate the
+    // clips after editing these.
+    "narrate.kolo":
+      "This is Koloapp, where I work now as a Prompt Engineer and Business Analyst. I shipped the document AI behind Kolo Smart Select and owned MyRenoWallet from research to launch.",
+    "narrate.workcohol":
+      "At Workcohol I was an AI Engineer Intern. I took a medical report platform from prototype to production, turning messy clinical PDFs into validated records.",
+    "narrate.bolt":
+      "At Bolt IoT I interned in web development, building a dashboard that controls IoT devices through REST APIs.",
+    "narrate.younity":
+      "At Younity I interned in social media marketing, running content experiments across three channels and tracking what worked.",
+    "narrate.familiar":
+      "Familiar AI was my co-founding attempt: a memory layer for people and companies. I led customer discovery, applied to Y Combinator, and pitched investors.",
+    "narrate.ecell":
+      "At E-Cell Karunya I led corporate relations and HR, closing partnerships for a five hundred member entrepreneurship cell.",
+    "narrate.btech":
+      "I studied computer science, specialising in AI and machine learning, at Karunya Institute of Technology and Sciences.",
+    "narrate.depaul":
+      "I did classes eleven and twelve at De Paul Public School, Thodupuzha, with maths and computer science.",
+    "narrate.village":
+      "I went to school at The Village International School, from 2007 to 2019.",
+    "narrate.research":
+      "This is my IEEE paper: a multi-modal stock predictor that fuses news sentiment, technical indicators and chart vision.",
+    "narrate.medical":
+      "The Medical Report Analyzer pulls diagnoses and abnormal markers out of long lab reports in under thirty seconds.",
+    "narrate.semp":
+      "The Sentiment-Enhanced Stock Predictor combines ARIMA, LSTM, chart vision and FinBERT sentiment. It's the project behind my IEEE paper.",
+    "narrate.object":
+      "This one detects moving objects in live CCTV video and sends lightweight alerts, so operators don't miss sudden events.",
+    "narrate.classification":
+      "An image classifier built with TensorFlow, using augmentation and transfer learning, with a Streamlit demo.",
+    "narrate.news":
+      "A single app for your morning: stock forecasts, live weather and news, all in one place.",
+    "narrate.asd":
+      "An exploration of autism screening with classical machine learning models, beating the baseline by twenty percent.",
+
     // Research
     "research.eyebrow": "Research",
     "research.title": "Peer-reviewed multi-modal forecasting",

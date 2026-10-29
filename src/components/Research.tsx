@@ -70,7 +70,7 @@ export const Research = () => {
       title={t("research.title")}
       description={t("research.description")}
     >
-      <article className="surface-card p-6 md:p-8 lg:p-10 space-y-6">
+      <article className="surface-card p-6 md:p-8 lg:p-10 space-y-6" data-narrate="research">
         <div className="flex flex-wrap items-center gap-2">
           <Badge
             variant="outline"

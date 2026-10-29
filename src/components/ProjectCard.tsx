@@ -18,6 +18,8 @@ export interface ProjectCardProps {
   index: number;
   ieeePublished?: boolean;
   featured?: boolean;
+  /** Key of the avatar's hover narration (narrate.<id>). */
+  narrate?: string;
 }
 
 type GtagWindow = Window & { gtag?: (...args: unknown[]) => void };
@@ -34,6 +36,7 @@ export const ProjectCard = ({
   index,
   ieeePublished,
   featured,
+  narrate,
 }: ProjectCardProps) => {
   const { t } = useTranslation();
 
@@ -54,6 +57,7 @@ export const ProjectCard = ({
         "surface-card-hover flex flex-col h-full",
         featured ? "relative overflow-hidden p-7 md:p-9" : "p-6 md:p-7",
       )}
+      data-narrate={narrate}
     >
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/[0.04] border border-white/[0.06] text-primary">
