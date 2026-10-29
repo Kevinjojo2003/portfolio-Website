@@ -11,6 +11,9 @@ const TALK_AT_SECONDS = 4;
 const TYPE_MS = 28;
 const LINE_HOLD_MS = 1800;
 const DISMISS_KEY = "kj-avatar-dismissed";
+// Pre-rendered clips of avatar.line1..5 in Kevin's cloned voice (English only). Regenerate them
+// whenever those lines change in en.ts.
+const clonedVoiceClip = (lineIdx: number) => `/voice/line${lineIdx + 1}.m4a`;
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id);
@@ -150,7 +153,7 @@ const AvatarBubble = ({
 };
 
 export const TalkingAvatar = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const reduceMotion = useReducedMotion();
   const lines = [t("avatar.line1"), t("avatar.line2"), t("avatar.line3"), t("avatar.line4"), t("avatar.line5")];
 
@@ -162,8 +165,10 @@ export const TalkingAvatar = () => {
   const [typed, setTyped] = useState("");
   const [voiceOn, setVoiceOn] = useState(false);
   const [speaking, setSpeaking] = useState(false);
-  const voiceSupported = typeof window !== "undefined" && "speechSynthesis" in window;
-  const voiceRef = useIntroVoice(voiceSupported);
+  const speechSupported = typeof window !== "undefined" && "speechSynthesis" in window;
+  const clonedVoice = typeof window !== "undefined" && (i18n.resolvedLanguage ?? i18n.language ?? "").startsWith("en");
+  const voiceSupported = speechSupported || clonedVoice;
+  const voiceRef = useIntroVoice(speechSupported);
 
   const line = lines[lineIdx] ?? "";
   const isLast = lineIdx === lines.length - 1;
@@ -197,43 +202,84 @@ export const TalkingAvatar = () => {
       else setLineIdx((i) => i + 1);
     };
 
+    const holdId = { current: 0 };
+    const advanceAfterTyping = () => {
+      holdId.current = window.setTimeout(advance, line.length * TYPE_MS + LINE_HOLD_MS);
+    };
+
     if (voiceOn && voiceSupported) {
-      const synth = window.speechSynthesis;
-      synth.cancel();
-      const u = new SpeechSynthesisUtterance(line.replace(/[\u{1F300}-\u{1FAFF}]/gu, ""));
-      const voice = voiceRef.current;
-      if (voice) {
-        u.voice = voice;
-        u.lang = voice.lang;
+      const speakWithBrowser = () => {
+        if (cancelled) return;
+        if (!speechSupported) {
+          setSpeaking(false);
+          advanceAfterTyping();
+          return;
+        }
+        const synth = window.speechSynthesis;
+        synth.cancel();
+        const u = new SpeechSynthesisUtterance(line.replace(/[\u{1F300}-\u{1FAFF}]/gu, ""));
+        const voice = voiceRef.current;
+        if (voice) {
+          u.voice = voice;
+          u.lang = voice.lang;
+        }
+        u.rate = 0.98;
+        u.onstart = () => setSpeaking(true);
+        u.onend = () => {
+          setSpeaking(false);
+          window.setTimeout(advance, 350);
+        };
+        u.onerror = () => {
+          setSpeaking(false);
+          advance();
+        };
+        synth.speak(u);
+      };
+
+      // Kevin's own (cloned) voice for the English intro; the browser voice covers other
+      // languages and any clip that fails to load or play.
+      let audio: HTMLAudioElement | null = null;
+      if (clonedVoice) {
+        let fellBack = false;
+        const fallBack = () => {
+          if (fellBack) return;
+          fellBack = true;
+          speakWithBrowser();
+        };
+        audio = new Audio(clonedVoiceClip(lineIdx));
+        audio.onplaying = () => setSpeaking(true);
+        audio.onended = () => {
+          setSpeaking(false);
+          window.setTimeout(advance, 350);
+        };
+        audio.onerror = fallBack;
+        audio.play().catch(fallBack);
+      } else {
+        speakWithBrowser();
       }
-      u.rate = 0.98;
-      u.onstart = () => setSpeaking(true);
-      u.onend = () => {
-        setSpeaking(false);
-        window.setTimeout(advance, 350);
-      };
-      u.onerror = () => {
-        setSpeaking(false);
-        advance();
-      };
-      synth.speak(u);
+
       return () => {
         cancelled = true;
-        synth.cancel();
+        window.clearTimeout(holdId.current);
+        if (audio) {
+          audio.onerror = null;
+          audio.pause();
+        }
+        if (speechSupported) window.speechSynthesis.cancel();
         setSpeaking(false);
       };
     }
 
-    const id = window.setTimeout(advance, line.length * TYPE_MS + LINE_HOLD_MS);
+    advanceAfterTyping();
     return () => {
       cancelled = true;
-      window.clearTimeout(id);
+      window.clearTimeout(holdId.current);
     };
-  }, [phase, line, isLast, voiceOn, voiceSupported, voiceRef]);
+  }, [phase, line, lineIdx, isLast, voiceOn, voiceSupported, speechSupported, clonedVoice, voiceRef]);
 
   useEffect(() => () => {
-    if (voiceSupported) window.speechSynthesis.cancel();
-  }, [voiceSupported]);
+    if (speechSupported) window.speechSynthesis.cancel();
+  }, [speechSupported]);
 
   const replay = useCallback(() => {
     setLineIdx(0);
