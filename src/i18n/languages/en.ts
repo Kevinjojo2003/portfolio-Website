@@ -310,6 +310,6 @@ export const en = {
     "contact.copyFailed": "Couldn't copy — please copy manually.",
 
     // Footer
-    "footer.copyright": "© 2025 Kevin Jojo. All rights reserved.",
+    "footer.copyright": "© 2026 Kevin Jojo. All rights reserved.",
   },
 };

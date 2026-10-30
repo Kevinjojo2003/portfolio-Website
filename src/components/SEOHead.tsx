@@ -10,7 +10,7 @@ interface SEOHeadProps {
   imageHeight?: number;
 }
 
-const SITE_URL = "https://portfolio-palette-95.lovable.app";
+const SITE_URL = "https://kevinjojo.netlify.app";
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
 export const SEOHead = ({
