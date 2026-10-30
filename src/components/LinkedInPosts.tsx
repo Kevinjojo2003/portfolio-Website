@@ -1,34 +1,30 @@
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Linkedin } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import posts from "@/data/linkedin-posts.json";
 
 interface Post {
   urn: string;
   /** Short headline for the card. Leave empty to show a generic "LinkedIn post" label. */
   title?: string;
   embedHeight: number;
+  publishedAt?: number;
 }
 
-// Newest first. The publish date is decoded from the post id, so only the urn needs updating.
-const POSTS: Post[] = [
-  {
-    urn: "urn:li:activity:7500584856742068224",
-    title: "Simplifying Messy Processes with Product Thinking",
-    embedHeight: 560,
-  },
-  { urn: "urn:li:ugcPost:7306983829930393600", embedHeight: 560 },
-  { urn: "urn:li:ugcPost:7176867683731218432", embedHeight: 671 },
-  { urn: "urn:li:share:7163570252876800000", embedHeight: 704 },
-  { urn: "urn:li:share:6965137549036003329", embedHeight: 858 },
-];
+// The scheduled LinkedIn sync updates this data file, newest first.
+const POSTS = posts as Post[];
 
 const postUrl = (urn: string) => `https://www.linkedin.com/feed/update/${urn}/`;
 const embedUrl = (urn: string) => `https://www.linkedin.com/embed/feed/update/${urn}`;
 
 /** LinkedIn activity ids carry their creation time (ms since epoch) in the top 41 bits. */
-const postDate = (urn: string, locale: string) => {
+const postDate = (post: Post, locale: string) => {
+  if (post.publishedAt) {
+    return new Date(post.publishedAt).toLocaleDateString(locale, { month: "short", year: "numeric" });
+  }
+  const urn = post.urn;
   const id = BigInt(urn.split(":").pop() ?? "0");
   const date = new Date(Number(id >> 22n));
   return date.toLocaleDateString(locale, { month: "short", year: "numeric" });
@@ -36,7 +32,6 @@ const postDate = (urn: string, locale: string) => {
 
 const PostCard = ({ post, featured }: { post: Post; featured: boolean }) => {
   const { t, i18n } = useTranslation();
-  const [open, setOpen] = useState(false);
 
   return (
     <motion.article
@@ -60,7 +55,7 @@ const PostCard = ({ post, featured }: { post: Post; featured: boolean }) => {
         <span className="inline-flex w-10 h-10 items-center justify-center rounded-xl bg-[#0A66C2]/15 border border-[#0A66C2]/30 text-[#70B5F9]">
           <Linkedin className="w-4 h-4" />
         </span>
-        <span className="text-xs mono text-muted-foreground">{postDate(post.urn, i18n.language)}</span>
+        <span className="text-xs mono text-muted-foreground">{postDate(post, i18n.language)}</span>
       </div>
 
       {featured && <p className="eyebrow mb-2">{t("linkedin.featured")}</p>}
@@ -73,7 +68,7 @@ const PostCard = ({ post, featured }: { post: Post; featured: boolean }) => {
         {post.title || t("linkedin.untitled")}
       </h3>
 
-      <div className="mt-auto pt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+      <div className="pt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
         <a
           href={postUrl(post.urn)}
           target="_blank"
@@ -82,30 +77,20 @@ const PostCard = ({ post, featured }: { post: Post; featured: boolean }) => {
         >
           {t("linkedin.open")} <ArrowUpRight className="w-4 h-4" />
         </a>
-        <button
-          onClick={() => setOpen((o) => !o)}
-          aria-expanded={open}
-          className="inline-flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
-        >
-          {open ? t("linkedin.hidePreview") : t("linkedin.preview")}
-          <ChevronDown className={cn("w-4 h-4 transition-transform", open && "rotate-180")} />
-        </button>
       </div>
 
-      {/* The embed is only loaded when the visitor asks for it. */}
-      {open && (
-        <div className="mt-5 rounded-xl overflow-hidden border border-white/[0.07] bg-white flex justify-center">
-          <iframe
-            src={embedUrl(post.urn)}
-            height={post.embedHeight}
-            width="100%"
-            style={{ maxWidth: 540, border: 0 }}
-            title={post.title || t("linkedin.untitled")}
-            loading="lazy"
-            allowFullScreen
-          />
-        </div>
-      )}
+      <div className="mt-5 w-full overflow-hidden rounded-xl border border-white/[0.07] bg-white">
+        <iframe
+          src={embedUrl(post.urn)}
+          height={post.embedHeight}
+          width="100%"
+          className="mx-auto block w-full"
+          style={{ maxWidth: 540, border: 0 }}
+          title={post.title || t("linkedin.untitled")}
+          loading="lazy"
+          allowFullScreen
+        />
+      </div>
     </motion.article>
   );
 };

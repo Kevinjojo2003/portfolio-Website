@@ -34,6 +34,7 @@ export const en = {
     "avatar.line5": "Want to see what I've built — or just grab a quick call?",
     "avatar.listen": "Hear me say it",
     "avatar.mute": "Stop voice",
+    "avatar.hearAbout": "Hear about this",
     "avatar.replay": "Replay",
     "avatar.close": "Dismiss avatar",
     "avatar.reopen": "Say hi to Kevin",

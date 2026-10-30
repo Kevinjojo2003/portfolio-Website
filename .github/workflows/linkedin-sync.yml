@@ -1,0 +1,46 @@
+name: Sync LinkedIn posts
+
+on:
+  schedule:
+    # Twice monthly, close to every two weeks.
+    - cron: "0 9 1,15 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch latest public posts from LinkedIn
+        run: |
+          if [ -z "$LINKEDIN_ACCESS_TOKEN" ] || [ -z "$LINKEDIN_AUTHOR_URN" ]; then
+            echo "::warning::LinkedIn sync is not enabled yet. Configure LINKEDIN_ACCESS_TOKEN and LINKEDIN_AUTHOR_URN repository secrets."
+            exit 0
+          fi
+          node scripts/sync-linkedin-posts.mjs
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
+          LINKEDIN_API_VERSION: "202610"
+
+      - name: Publish updated post list
+        run: |
+          if git diff --quiet -- src/data/linkedin-posts.json; then
+            echo "LinkedIn posts have not changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/linkedin-posts.json
+          git commit -m "Sync recent LinkedIn posts"
+          git push

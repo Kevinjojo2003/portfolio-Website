@@ -14,6 +14,7 @@ Personal portfolio for Kevin Jojo, an AI and machine learning engineer. The site
 - SEO, Open Graph, Twitter card, sitemap, and robots metadata
 - Netlify deployment configuration with a single-page application fallback
 - Capacitor configuration for iOS and Android projects
+- Scheduled LinkedIn post sync to the portfolio carousel
 
 ## Technology
 
@@ -58,6 +59,17 @@ Vite prints the local development URL in the terminal.
 The site is hosted on [Netlify](https://kevinjojo.netlify.app). The repository's [`netlify.toml`](netlify.toml) sets the build command to `npm run build`, publishes the `dist` directory, and routes application paths to `index.html`.
 
 To deploy through Netlify, connect the GitHub repository and use the build settings from `netlify.toml`. The production domain is `https://kevinjojo.netlify.app`.
+
+### Automatic LinkedIn post sync
+
+The GitHub Actions workflow in [`.github/workflows/linkedin-sync.yml`](.github/workflows/linkedin-sync.yml) checks for public posts on the 1st and 15th of each month and updates the five newest posts in [`src/data/linkedin-posts.json`](src/data/linkedin-posts.json). When it commits an update to `main`, the Netlify Git integration deploys the refreshed carousel.
+
+To enable the sync, create a LinkedIn developer app with approved member-post read access using the [LinkedIn Posts API](https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api?view=li-lms-2026-10), then add these repository Actions secrets under **Settings → Secrets and variables → Actions**:
+
+- `LINKEDIN_ACCESS_TOKEN` — OAuth access token with `r_member_social` permission
+- `LINKEDIN_AUTHOR_URN` — your author URN, in the format `urn:li:person:...`
+
+LinkedIn restricts `r_member_social` to approved applications. The workflow skips safely and logs a warning until both secrets are configured. It only reads public posts; it does not publish to LinkedIn.
 
 ## Mobile app
 

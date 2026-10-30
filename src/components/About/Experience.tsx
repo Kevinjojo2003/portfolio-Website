@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Briefcase, ExternalLink } from "lucide-react";
+import { AvatarNarrationButton } from "@/components/AvatarNarrationButton";
 
 interface Link {
   label: string;
@@ -158,7 +159,7 @@ export const Experience = () => {
                 </div>
               )}
 
-              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/[0.06]">
+              <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-white/[0.06]">
                 {r.stack.map((s) => (
                   <span
                     key={s}
@@ -167,6 +168,9 @@ export const Experience = () => {
                     {s}
                   </span>
                 ))}
+                <div className="ml-auto mt-1">
+                  <AvatarNarrationButton />
+                </div>
               </div>
             </div>
           </motion.li>
