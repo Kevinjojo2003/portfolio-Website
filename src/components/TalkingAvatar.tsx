@@ -457,7 +457,7 @@ export const TalkingAvatar = () => {
           {/* Full-body cartoon sprite. */}
           <div
             aria-hidden="true"
-            className={cn("walker-sprite w-full h-[200px] md:h-[320px]", spritePose)}
+            className={cn("walker-sprite aspect-square w-full", spritePose)}
           />
         </motion.aside>
       )}
