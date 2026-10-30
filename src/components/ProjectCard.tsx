@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { AvatarNarrationButton } from "@/components/AvatarNarrationButton";
 
 export interface ProjectCardProps {
   title: string;
@@ -110,7 +111,7 @@ export const ProjectCard = ({
         ))}
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <Button
           asChild
           size="sm"
@@ -132,6 +133,7 @@ export const ProjectCard = ({
             {t("projects.code")}
           </a>
         </Button>
+        {narrate && <AvatarNarrationButton />}
       </div>
     </motion.article>
   );

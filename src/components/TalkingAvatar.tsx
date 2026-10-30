@@ -7,26 +7,22 @@ import { cn } from "@/lib/utils";
 /**
  * Kevin walks in along the bottom edge of the page (the screen edge hides everything below his
  * chest), waves, and introduces himself with lip-synced clips in his cloned voice. Afterwards,
- * resting the mouse on any element marked `data-narrate="<id>"` makes him walk over and say the
+ * hovering over a marked card or activating its narration button makes him walk over and say the
  * matching `narrate.<id>` line.
  *
  * Clips are transparent video: HEVC-with-alpha .mov for Safari, VP9-alpha .webm elsewhere. They
  * are pre-rendered for English only; other languages fall back to the browser voice over the still.
  */
 
-type Phase = "walk" | "wave" | "talk" | "idle";
+type Phase = "walk" | "sneak" | "wave" | "talk" | "idle";
 
 interface Clip {
   /** Text shown in the speech bubble. */
   text: string;
-  /** Path without extension of the lip-synced video (English only). */
-  video?: string;
   /** Matching cloned-voice audio. */
   audio?: string;
 }
 
-const STILL = "/avatar/walk/still.webp";
-const WAVE = "/avatar/walk/wave";
 const WALK_PX_PER_SECOND = 420;
 const TYPE_MS = 28;
 const LINE_HOLD_MS = 1800;
@@ -58,11 +54,7 @@ const writeDismissed = (value: boolean) => {
   }
 };
 
-// Safari only renders alpha from HEVC; every other browser gets VP9 with alpha.
-const isSafari = () => typeof navigator !== "undefined" && /^((?!chrome|chromium|android|crios|fxios).)*safari/i.test(navigator.userAgent);
-const videoSrc = (base: string) => `${base}${isSafari() ? ".mov" : ".webm"}`;
-
-const figureWidth = () => (window.innerWidth < 768 ? 150 : 210);
+const figureWidth = () => (window.innerWidth < 768 ? 112 : 210);
 const restX = () => window.innerWidth - figureWidth() - (window.innerWidth < 768 ? 8 : 32);
 const clampX = (x: number) => Math.min(Math.max(x, 8), window.innerWidth - figureWidth() - 8);
 
@@ -87,12 +79,10 @@ export const TalkingAvatar = () => {
 
   const introClips: Clip[] = [1, 2, 3, 4, 5].map((n) => ({
     text: t(`avatar.line${n}`),
-    video: english ? `/avatar/walk/line${n}` : undefined,
     audio: english ? `/voice/line${n}.m4a` : undefined,
   }));
   const narrationClip = (id: string): Clip => ({
     text: t(`narrate.${id}`),
-    video: english ? `/avatar/narrate/${id}` : undefined,
     audio: english ? `/voice/narrate/${id}.m4a` : undefined,
   });
 
@@ -107,17 +97,15 @@ export const TalkingAvatar = () => {
   const [bubbleOpen, setBubbleOpen] = useState(false);
   const [typed, setTyped] = useState("");
   const [voiceOn, setVoiceOn] = useState(false);
-  // Clips that failed to load or play; those lines fall back to the still.
-  const [failedVideos, setFailedVideos] = useState<string[]>([]);
-  const markFailed = useCallback((video?: string) => {
-    if (video) setFailedVideos((list) => (list.includes(video) ? list : [...list, video]));
-  }, []);
-  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+  const [reaction, setReaction] = useState<"wave" | "sneak" | null>(null);
   // Which side of him the bubble goes during hover narration (null: toward the page's middle).
   const [bubbleSide, setBubbleSide] = useState<"left" | "right" | null>(null);
   const [runId, setRunId] = useState(0);
 
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const avatarRef = useRef<HTMLElement | null>(null);
+  const cursorNearAvatar = useRef(false);
+  const lastReactionAt = useRef(0);
+  const reactionTimers = useRef<number[]>([]);
   const afterWalk = useRef<() => void>(() => {});
 
   const clip = phase === "talk" ? queue[clipIdx] : undefined;
@@ -125,7 +113,7 @@ export const TalkingAvatar = () => {
 
   /** Walk (with the bob) from `from` (default: where he stands) to `targetX`, then run `next`. */
   const walkTo = useCallback(
-    (targetX: number, next: () => void, from = x ?? window.innerWidth + 20) => {
+    (targetX: number, next: () => void, from = x ?? window.innerWidth + 20, gait: "walk" | "sneak" = "walk") => {
       const distance = Math.abs(targetX - from);
       if (reduceMotion || distance < 12) {
         setX(targetX);
@@ -134,7 +122,7 @@ export const TalkingAvatar = () => {
       }
       afterWalk.current = next;
       setWalkSeconds(Math.max(0.6, distance / WALK_PX_PER_SECOND));
-      setPhase("walk");
+      setPhase(gait);
       setX(targetX);
     },
     [x, reduceMotion],
@@ -147,6 +135,15 @@ export const TalkingAvatar = () => {
     setBubbleOpen(true);
     setPhase("talk");
   }, []);
+
+  // The sprite sheet supplies the wave animation now; keep the greeting sequence timed to it.
+  useEffect(() => {
+    if (phase !== "wave") return;
+    const id = window.setTimeout(() => play(introClips, true), 900);
+    return () => window.clearTimeout(id);
+    // introClips intentionally captures the selected language when the wave starts.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, play, i18n.language]);
 
   const startIntro = useCallback(() => {
     walkTo(
@@ -179,6 +176,39 @@ export const TalkingAvatar = () => {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
+  // Playful reactions when a desktop visitor brings the pointer near the resting avatar.
+  useEffect(() => {
+    if (!visible || !introDone || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = avatarRef.current?.getBoundingClientRect();
+      if (!rect || phase !== "idle" || bubbleOpen) return;
+      const padding = 72;
+      const near = event.clientX >= rect.left - padding && event.clientX <= rect.right + padding &&
+        event.clientY >= rect.top - padding && event.clientY <= rect.bottom + padding;
+      if (!near) {
+        cursorNearAvatar.current = false;
+        return;
+      }
+      if (cursorNearAvatar.current || Date.now() - lastReactionAt.current < 2800) return;
+
+      cursorNearAvatar.current = true;
+      lastReactionAt.current = Date.now();
+      setReaction("wave");
+      reactionTimers.current.forEach(window.clearTimeout);
+      reactionTimers.current = [
+        window.setTimeout(() => setReaction("sneak"), 700),
+        window.setTimeout(() => setReaction(null), 1550),
+      ];
+    };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      reactionTimers.current.forEach(window.clearTimeout);
+      reactionTimers.current = [];
+    };
+  }, [visible, introDone, phase, bubbleOpen]);
 
   // Typewriter for the current line.
   useEffect(() => {
@@ -214,18 +244,11 @@ export const TalkingAvatar = () => {
     };
     const byTextLength = () => timers.push(window.setTimeout(next, clip.text.length * TYPE_MS + LINE_HOLD_MS));
 
-    const video = videoRef.current;
-    const hasVideo = !!clip.video && !failedVideos.includes(clip.video) && !!video;
-    if (hasVideo) {
-      video.onended = next;
-      video.currentTime = 0;
-      video.play().catch(() => markFailed(clip.video));
-    }
     if (audio) {
-      audio.onerror = () => !hasVideo && byTextLength();
-      if (!hasVideo) audio.onended = next;
-      audio.play().catch(() => !hasVideo && byTextLength());
-    } else if (!hasVideo) {
+      audio.onerror = byTextLength;
+      audio.onended = next;
+      audio.play().catch(byTextLength);
+    } else {
       if (!(voiceOn && speakWithBrowser(clip.text, i18n.language, () => timers.push(window.setTimeout(next, 300))))) {
         byTextLength();
       }
@@ -234,41 +257,59 @@ export const TalkingAvatar = () => {
     return () => {
       finished = true;
       timers.forEach((id) => window.clearTimeout(id));
-      if (video) video.onended = null;
       audio?.pause();
       if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     };
-  }, [phase, clip, clipIdx, queue.length, isIntro, voiceOn, failedVideos, markFailed, i18n.language]);
+  }, [phase, clip, clipIdx, queue.length, isIntro, voiceOn, i18n.language]);
 
-  // Hover narration: rest the pointer on a [data-narrate] element and he walks over to explain it.
+  // Desktop hover and explicit narration buttons share the same card narration behavior.
   useEffect(() => {
     if (!visible || !introDone) return;
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const narrate = (el: Element | null) => {
+      const id = el?.getAttribute("data-narrate");
+      if (!el || !id || !i18n.exists(`narrate.${id}`)) return;
+      const rect = el.getBoundingClientRect();
+      const standRight = rect.right + figureWidth() + 16 <= window.innerWidth;
+      const side = standRight ? rect.right + 16 : rect.left - figureWidth() - 16;
+      setBubbleOpen(false);
+      // Keep the bubble away from the card being explained.
+      setBubbleSide(standRight ? "right" : "left");
+      walkTo(clampX(side), () => play([narrationClip(id)], false), undefined, "sneak");
+    };
+
+    const onNarrateRequest = (event: Event) => {
+      setVoiceOn(true);
+      narrate((event as CustomEvent<Element>).detail);
+    };
+    window.addEventListener("avatar:narrate", onNarrateRequest);
+
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return () => window.removeEventListener("avatar:narrate", onNarrateRequest);
+    }
+
     let timer = 0;
     let current: Element | null = null;
 
     const onOver = (e: PointerEvent) => {
+      if ((e.target as Element | null)?.closest?.("[data-avatar-narration-button]")) {
+        current = null;
+        window.clearTimeout(timer);
+        return;
+      }
       const el = (e.target as Element | null)?.closest?.("[data-narrate]") ?? null;
       if (el === current) return;
       current = el;
       window.clearTimeout(timer);
       if (!el) return;
       timer = window.setTimeout(() => {
-        const id = el.getAttribute("data-narrate");
-        if (!id || !i18n.exists(`narrate.${id}`)) return;
-        const rect = el.getBoundingClientRect();
-        const standRight = rect.right + figureWidth() + 16 <= window.innerWidth;
-        const side = standRight ? rect.right + 16 : rect.left - figureWidth() - 16;
-        setBubbleOpen(false);
-        // Speak away from the item so the bubble doesn't cover what the visitor is reading.
-        setBubbleSide(standRight ? "right" : "left");
-        walkTo(clampX(side), () => play([narrationClip(id)], false));
+        narrate(el);
       }, NARRATE_DWELL_MS);
     };
 
     document.addEventListener("pointerover", onOver);
     return () => {
       document.removeEventListener("pointerover", onOver);
+      window.removeEventListener("avatar:narrate", onNarrateRequest);
       window.clearTimeout(timer);
     };
     // narrationClip only reads t(); walkTo/play are stable enough for a hover handler.
@@ -276,7 +317,6 @@ export const TalkingAvatar = () => {
   }, [visible, introDone, walkTo, play, i18n]);
 
   const replay = () => {
-    setFailedVideos([]);
     setRunId((n) => n + 1);
   };
 
@@ -302,8 +342,19 @@ export const TalkingAvatar = () => {
     setRunId((n) => n + 1);
   };
 
-  // Which video (if any) is on screen: the wave during the greeting, the lip-sync clip while talking.
-  const videoBase = phase === "wave" ? WAVE : clip?.video && !failedVideos.includes(clip.video) ? clip.video : null;
+  const spritePose = phase === "walk"
+    ? "is-running"
+    : phase === "sneak"
+      ? "is-sneaking"
+      : reaction === "wave"
+        ? "is-waving"
+        : reaction === "sneak"
+          ? "is-sneaking"
+      : phase === "talk"
+        ? "is-talking"
+        : phase === "wave" || bubbleOpen
+        ? "is-waving"
+        : "is-peeking";
   const bubbleText = phase === "talk" ? typed : (lastClip?.text ?? "");
   const typing = phase === "talk" && !!clip && typed.length < clip.text.length;
   const fitsRight = x !== null && x + figureWidth() * 0.55 + BUBBLE_WIDTH <= window.innerWidth;
@@ -316,13 +367,14 @@ export const TalkingAvatar = () => {
     <>
       {visible && x !== null && (
         <motion.aside
+          ref={avatarRef}
           className="fixed bottom-0 left-0 z-40 pointer-events-none"
           style={{ width: figureWidth() }}
           initial={{ x: window.innerWidth + 20 }}
           animate={{ x }}
-          transition={{ duration: phase === "walk" ? walkSeconds : 0, ease: "linear" }}
+          transition={{ duration: phase === "walk" || phase === "sneak" ? walkSeconds : 0, ease: "linear" }}
           onAnimationComplete={() => {
-            if (phase !== "walk") return;
+            if (phase !== "walk" && phase !== "sneak") return;
             const next = afterWalk.current;
             afterWalk.current = () => {};
             next();
@@ -402,34 +454,11 @@ export const TalkingAvatar = () => {
             )}
           </AnimatePresence>
 
-          {/* Kevin, cut off by the bottom of the screen */}
+          {/* Full-body cartoon sprite. */}
           <div
-            className={cn("walker relative aspect-square w-full", phase === "walk" && !reduceMotion && "is-walking", phase === "idle" && "is-idle")}
-          >
-            {/* The clips are transparent, so hide the still once a clip is actually showing. */}
-            <img
-              src={STILL}
-              alt=""
-              className={cn("absolute inset-0 w-full h-full object-contain", videoBase && playingVideo === videoBase && "invisible")}
-              draggable={false}
-            />
-            {videoBase && (
-              <video
-                key={videoBase}
-                ref={videoRef}
-                className="absolute inset-0 w-full h-full object-contain"
-                src={videoSrc(videoBase)}
-                muted
-                playsInline
-                autoPlay={phase === "wave"}
-                preload="auto"
-                aria-hidden="true"
-                onPlaying={() => setPlayingVideo(videoBase)}
-                onEnded={phase === "wave" ? () => play(introClips, true) : undefined}
-                onError={() => (phase === "wave" ? play(introClips, true) : markFailed(clip?.video))}
-              />
-            )}
-          </div>
+            aria-hidden="true"
+            className={cn("walker-sprite w-full h-[200px] md:h-[320px]", spritePose)}
+          />
         </motion.aside>
       )}
 

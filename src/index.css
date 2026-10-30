@@ -155,19 +155,41 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 
-/* Walking avatar: a step bob while he moves, a slow breath while he stands */
-@keyframes walker-step {
-  0%, 100% { transform: translateY(0) rotate(-1.2deg); }
-  50% { transform: translateY(-7px) rotate(1.2deg); }
+/* Full-body cartoon avatar states use a transparent 2x2 sprite sheet. */
+@keyframes walker-run {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-7px) rotate(1.5deg); }
 }
-@keyframes walker-breathe {
+@keyframes walker-sneak {
+  0%, 100% { transform: translateY(0) rotate(-1deg) scaleY(0.98); }
+  50% { transform: translateY(-2px) rotate(1deg) scaleY(1); }
+}
+@keyframes walker-wave {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-3px) rotate(1deg); }
+}
+@keyframes walker-talk {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-1.5px) scale(1.008); }
+  50% { transform: translateY(-2px) scale(1.01); }
 }
-.walker { transform-origin: 50% 100%; filter: drop-shadow(0 -6px 18px rgb(0 0 0 / 0.45)); }
-.walker.is-walking { animation: walker-step 0.42s ease-in-out infinite; }
-.walker.is-idle { animation: walker-breathe 3.6s ease-in-out infinite; }
+@keyframes walker-peek {
+  0%, 72%, 100% { transform: translateX(0); }
+  82%, 92% { transform: translateX(-5px); }
+}
+.walker-sprite {
+  background-image: url("/avatar/kevin-cartoon-sprites.png");
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  background-position: 0 0;
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 -6px 18px rgb(0 0 0 / 0.4));
+}
+.walker-sprite.is-running { background-position: 0 0; animation: walker-run 0.42s ease-in-out infinite; }
+.walker-sprite.is-waving { background-position: 100% 0; animation: walker-wave 0.85s ease-in-out infinite; }
+.walker-sprite.is-talking { background-position: 100% 0; animation: walker-talk 0.75s ease-in-out infinite; }
+.walker-sprite.is-sneaking { background-position: 0 100%; animation: walker-sneak 0.6s ease-in-out infinite; }
+.walker-sprite.is-peeking { background-position: 100% 100%; animation: walker-peek 3.2s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  .walker { animation: none !important; }
+  .walker-sprite { animation: none !important; }
 }
