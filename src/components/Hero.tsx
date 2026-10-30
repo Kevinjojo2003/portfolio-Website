@@ -133,10 +133,10 @@ export const Hero = () => {
             <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/70 to-transparent" />
           </div>
 
-          {/* Floating "now" card */}
+          {/* Availability card */}
           <div className="absolute -left-4 sm:-left-8 bottom-6 surface-card px-4 py-3 shadow-xl shadow-black/40 hidden sm:block">
-            <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Now</div>
-            <div className="text-sm font-medium text-foreground mt-0.5">Prompt Engineer · Kolo</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Available</div>
+            <div className="text-sm font-medium text-foreground mt-0.5">Open to AI engineering roles</div>
           </div>
         </motion.div>
       </div>

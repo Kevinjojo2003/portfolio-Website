@@ -29,7 +29,7 @@ export const en = {
     "avatar.line2":
       "I build LLM systems that turn messy documents into decisions people can trust.",
     "avatar.line3":
-      "Right now I'm at Kolo, shipping the document AI behind MyRenoWallet and Kolo Smart Select.",
+      "I recently wrapped up my work at Kolo, where I shipped document AI behind MyRenoWallet and Kolo Smart Select.",
     "avatar.line4": "I've also published multi-modal research at IEEE InC4 2025.",
     "avatar.line5": "Want to see what I've built — or just grab a quick call?",
     "avatar.listen": "Hear me say it",
@@ -43,7 +43,7 @@ export const en = {
     // pre-rendered clip in his cloned voice (public/avatar/narrate/<id>), so regenerate the
     // clips after editing these.
     "narrate.kolo":
-      "This is Koloapp, where I work now as a Prompt Engineer and Business Analyst. I shipped the document AI behind Kolo Smart Select and owned MyRenoWallet from research to launch.",
+      "At Koloapp, I worked as a Prompt Engineer and Business Analyst. I shipped the document AI behind Kolo Smart Select and owned MyRenoWallet from research to launch.",
     "narrate.workcohol":
       "At Workcohol I was an AI Engineer Intern. I took a medical report platform from prototype to production, turning messy clinical PDFs into validated records.",
     "narrate.bolt":
@@ -94,11 +94,10 @@ export const en = {
     "about.description":
       "Production AI, product ownership, and research — building systems that real users trust with consequential decisions.",
     "about.education.eyebrow": "Education",
-    "about.experience.current": "Current",
 
     "about.experience.promptEngineer": "Prompt Engineer & Business Analyst",
     "about.experience.kolo": "Koloapp",
-    "about.experience.koloDate": "Aug 2025 — Present",
+    "about.experience.koloDate": "Aug 2025 — Oct 2026",
     "about.experience.koloImpact1":
       "Define acceptance criteria, validate outputs against source documents, and route uncertain cases to human review instead of letting the system guess.",
     "about.experience.koloImpact2":
