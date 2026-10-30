@@ -1,132 +1,97 @@
-
 # Kevin Jojo Portfolio
-A modern, responsive portfolio website showcasing Kevin Jojo's skills, projects, and experiences as an AI & Machine Learning Engineer.
 
-## 🚀 Features
+Personal portfolio for Kevin Jojo, an AI and machine learning engineer. The site presents work experience, skills, selected projects, certifications, LinkedIn posts, a booking section, and contact details.
 
-- **Responsive Design**: Fully responsive across all device sizes
-- **Multilingual Support**: Available in multiple languages including English, French, German, Arabic and more
-- **Dark/Light Mode**: Toggle between dark and light themes
-- **Interactive UI**: Engaging animations and transitions
-- **Project Showcase**: Detailed display of AI and ML projects with live demos
-- **Contact Form**: Direct messaging capability for inquiries and collaborations
-- **Booking System**: Schedule consultations through Calendly integration
-- **Blog Section**: Featured blog posts and LinkedIn content
+- **Live site:** [kevinjojo.netlify.app](https://kevinjojo.netlify.app)
+- **Source:** [github.com/Kevinjojo2003/portfolio-Website](https://github.com/Kevinjojo2003/portfolio-Website)
 
-## 💻 Technologies Used
+## Features
 
-- **React**: Frontend library for building the user interface
-- **TypeScript**: For type-safe code
-- **Tailwind CSS**: Utility-first CSS framework for styling
-- **Shadcn UI**: Component library for UI elements
-- **i18next**: Internationalization framework
-- **EmailJS**: For contact form functionality
-- **React Router**: For navigation
-- **Three.js**: For 3D animations
-- **Lucide Icons**: For beautiful SVG icons
+- Responsive single-page portfolio with project demos and source links
+- English plus 19 additional language options, powered by i18next
+- Dark themed interface with animated sections and an interactive talking avatar
+- Resume download, booking link, LinkedIn posts, and contact form
+- SEO, Open Graph, Twitter card, sitemap, and robots metadata
+- Netlify deployment configuration with a single-page application fallback
+- Capacitor configuration for iOS and Android projects
 
-## 🔧 Installation & Setup
+## Technology
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/portfolio-website.git
-   cd portfolio-website
-   ```
+- React 18, TypeScript, and Vite
+- Tailwind CSS, Radix UI, and Lucide icons
+- Framer Motion animations
+- i18next and react-i18next
+- EmailJS contact form
+- React Router, TanStack Query, and Supabase client integration
+- Capacitor for native mobile wrappers
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+## Local development
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
+### Requirements
 
-4. Build for production:
-   ```bash
-   npm run build
-   ```
+- Node.js 18 or later
+- npm
 
-## 🌐 Deployment
+### Setup
 
-The site is deployed using Netlify with continuous deployment from the main branch.
-
-## 📱 Mobile App
-
-This portfolio is also available as a mobile application for both Android and iOS, built using Capacitor.
-
-To build the mobile app:
-
-1. Install Capacitor:
-   ```bash
-   npm install @capacitor/core @capacitor/cli
-   ```
-
-2. Add platforms:
-   ```bash
-   npx cap add ios
-   npx cap add android
-   ```
-
-3. Build the web app:
-   ```bash
-   npm run build
-   ```
-
-4. Sync with Capacitor:
-   ```bash
-   npx cap sync
-   ```
-
-5. Open in respective IDE:
-   ```bash
-   npx cap open ios     # For iOS (requires macOS)
-   npx cap open android # For Android
-   ```
-
-## 🧩 Project Structure
-
+```bash
+git clone https://github.com/Kevinjojo2003/portfolio-Website.git
+cd portfolio-Website
+npm install
+npm run dev
 ```
+
+Vite prints the local development URL in the terminal.
+
+## Available commands
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the local Vite development server |
+| `npm run build` | Create a production build in `dist/` |
+| `npm run build:dev` | Create a development-mode build |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Run ESLint |
+
+## Deployment
+
+The site is hosted on [Netlify](https://kevinjojo.netlify.app). The repository's [`netlify.toml`](netlify.toml) sets the build command to `npm run build`, publishes the `dist` directory, and routes application paths to `index.html`.
+
+To deploy through Netlify, connect the GitHub repository and use the build settings from `netlify.toml`. The production domain is `https://kevinjojo.netlify.app`.
+
+## Mobile app
+
+The project includes Capacitor configuration for the app ID `com.kevinjojo.portfolio` and uses `dist` as its web assets directory. To create native platform projects, install the project dependencies, build the web app, and add the desired platform:
+
+```bash
+npm run build
+npx cap add android
+# or
+npx cap add ios
+npx cap sync
+```
+
+Open the generated project with Android Studio or Xcode using `npx cap open android` or `npx cap open ios`. iOS builds require macOS and Xcode. Review `capacitor.config.ts` and set the appropriate app configuration before producing a release build.
+
+## Project structure
+
+```text
 src/
-├── components/        # UI components
-├── pages/             # Page components
-├── i18n/              # Translation files
-│   └── languages/     # Language-specific translations
-├── hooks/             # Custom React hooks
-├── lib/               # Utility functions
-└── main.tsx           # Application entry point
+├── components/       # Page sections, shared UI, and navigation
+├── hooks/            # Reusable React hooks
+├── i18n/             # i18next setup and translations
+├── integrations/     # External service clients and types
+├── lib/              # Shared utilities
+├── pages/            # Page composition
+├── App.tsx           # Application providers and routes
+└── main.tsx          # Vite entry point
+public/               # Static assets, resume, robots.txt, and sitemap.xml
 ```
 
-## 🌍 Language Support
+## Languages
 
-Currently supported languages:
-- English (en)
-- French (fr)
-- German (de)
-- Arabic (ar)
-- Spanish (es)
-- Portuguese (pt)
-- Russian (ru)
-- Japanese (ja)
-- Chinese (zh)
-- Hindi (hi)
-- And more...
+English, Arabic, Bengali, Chinese, French, German, Hindi, Italian, Japanese, Kannada, Korean, Malay, Malayalam, Portuguese, Russian, Spanish, Tamil, Telugu, Turkish, and Vietnamese.
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License.
-
-## 🙏 Acknowledgements
-
-- Special thanks to [Shadcn](https://ui.shadcn.com/) for the amazing UI components
-- [Lucide Icons](https://lucide.dev/) for the beautiful SVG icons
-- [i18next](https://www.i18next.com/) for internationalization support
-
-## 📬 Contact
-
-For any inquiries, please reach out through the contact form on the website or via email.
-
----
-
-Made with ❤️ by Kevin Jojo
+This project is licensed under the MIT License. See [LICENSE](LICENSE).

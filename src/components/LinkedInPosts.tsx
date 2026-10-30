@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ArrowUpRight, ChevronDown, Linkedin } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface Post {
@@ -13,6 +13,11 @@ interface Post {
 
 // Newest first. The publish date is decoded from the post id, so only the urn needs updating.
 const POSTS: Post[] = [
+  {
+    urn: "urn:li:activity:7500584856742068224",
+    title: "Simplifying Messy Processes with Product Thinking",
+    embedHeight: 560,
+  },
   { urn: "urn:li:ugcPost:7306983829930393600", embedHeight: 560 },
   { urn: "urn:li:ugcPost:7176867683731218432", embedHeight: 671 },
   { urn: "urn:li:share:7163570252876800000", embedHeight: 704 },
@@ -29,19 +34,18 @@ const postDate = (urn: string, locale: string) => {
   return date.toLocaleDateString(locale, { month: "short", year: "numeric" });
 };
 
-const PostCard = ({ post, featured, index }: { post: Post; featured: boolean; index: number }) => {
+const PostCard = ({ post, featured }: { post: Post; featured: boolean }) => {
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -24 }}
+      transition={{ duration: 0.25 }}
       className={cn(
-        "surface-card-hover p-6 md:p-7 flex flex-col",
-        featured && "md:col-span-2 lg:col-span-3 relative overflow-hidden",
+        "surface-card-hover relative overflow-hidden p-6 md:p-7 flex flex-col min-h-[250px]",
       )}
     >
       {featured && (
@@ -108,6 +112,10 @@ const PostCard = ({ post, featured, index }: { post: Post; featured: boolean; in
 
 export const LinkedInPosts = () => {
   const { t } = useTranslation();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const showPost = (index: number) => {
+    setActiveIndex((index + POSTS.length) % POSTS.length);
+  };
 
   return (
     <section id="blog" className="py-20 md:py-28">
@@ -135,10 +143,53 @@ export const LinkedInPosts = () => {
           </a>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {POSTS.map((post, i) => (
-            <PostCard key={post.urn} post={post} featured={i === 0} index={i} />
-          ))}
+        <div
+          className="mx-auto max-w-3xl"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label={t("linkedin.title")}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <PostCard
+              key={POSTS[activeIndex].urn}
+              post={POSTS[activeIndex]}
+              featured={activeIndex === 0}
+            />
+          </AnimatePresence>
+          <div className="mt-4 flex items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={() => showPost(activeIndex - 1)}
+              aria-label={t("linkedin.prev")}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <div className="flex items-center gap-2" aria-live="polite">
+              {POSTS.map((post, index) => (
+                <button
+                  key={post.urn}
+                  type="button"
+                  onClick={() => showPost(index)}
+                  aria-label={`${index + 1} / ${POSTS.length}`}
+                  aria-current={index === activeIndex ? "true" : undefined}
+                  className={cn(
+                    "h-2 rounded-full transition-all",
+                    index === activeIndex ? "w-6 bg-primary" : "w-2 bg-muted-foreground/40 hover:bg-muted-foreground",
+                  )}
+                />
+              ))}
+              <span className="sr-only">{activeIndex + 1} / {POSTS.length}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => showPost(activeIndex + 1)}
+              aria-label={t("linkedin.next")}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

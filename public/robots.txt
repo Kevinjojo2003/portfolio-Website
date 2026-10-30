@@ -57,4 +57,4 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
-Sitemap: https://portfolio-palette-95.lovable.app/sitemap.xml
+Sitemap: https://kevinjojo.netlify.app/sitemap.xml
