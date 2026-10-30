@@ -16,7 +16,6 @@ interface Role {
   date: string;
   bullets: string[];
   stack: string[];
-  current?: boolean;
   /** Key of the avatar's hover narration (narrate.<id>). */
   narrate: string;
   links?: Link[];
@@ -40,7 +39,6 @@ export const Experience = () => {
         t("about.experience.koloImpact4"),
       ],
       stack: ["LLM Evaluation", "Document Extraction", "SQL", "Python", "UAT"],
-      current: true,
       links: [
         {
           label: "MyRenoWallet on Google Play",
@@ -122,12 +120,6 @@ export const Experience = () => {
               <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h4 className="font-semibold text-foreground">{r.title}</h4>
-                  {r.current && (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-400/10 border border-emerald-400/30 rounded-full px-2 py-0.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      {t("about.experience.current")}
-                    </span>
-                  )}
                 </div>
                 <span className="text-xs mono text-muted-foreground">{r.date}</span>
               </div>
