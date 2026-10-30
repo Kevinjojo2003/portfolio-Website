@@ -152,7 +152,7 @@ export const TalkingAvatar = () => {
         if (reduceMotion) play(introClips, true);
         else setPhase("wave");
       },
-      window.innerWidth + 20,
+      -figureWidth() - 20,
     );
     // introClips is rebuilt each render; the intro only needs the texts of the moment it starts.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -370,7 +370,7 @@ export const TalkingAvatar = () => {
           ref={avatarRef}
           className="fixed bottom-0 left-0 z-40 pointer-events-none"
           style={{ width: figureWidth() }}
-          initial={{ x: window.innerWidth + 20 }}
+          initial={{ x: -figureWidth() - 20 }}
           animate={{ x }}
           transition={{ duration: phase === "walk" || phase === "sneak" ? walkSeconds : 0, ease: "linear" }}
           onAnimationComplete={() => {
