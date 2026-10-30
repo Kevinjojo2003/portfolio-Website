@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
  * are pre-rendered for English only; other languages fall back to the browser voice over the still.
  */
 
-type Phase = "walk" | "sneak" | "wave" | "talk" | "idle";
+type Phase = "peek" | "walk" | "sneak" | "wave" | "talk" | "idle";
 
 interface Clip {
   /** Text shown in the speech bubble. */
@@ -103,6 +103,7 @@ export const TalkingAvatar = () => {
   const [runId, setRunId] = useState(0);
 
   const avatarRef = useRef<HTMLElement | null>(null);
+  const entranceTimer = useRef<number | null>(null);
   const cursorNearAvatar = useRef(false);
   const lastReactionAt = useRef(0);
   const reactionTimers = useRef<number[]>([]);
@@ -146,14 +147,25 @@ export const TalkingAvatar = () => {
   }, [phase, play, i18n.language]);
 
   const startIntro = useCallback(() => {
-    walkTo(
-      restX(),
-      () => {
-        if (reduceMotion) play(introClips, true);
-        else setPhase("wave");
-      },
-      window.innerWidth + 20,
-    );
+    if (reduceMotion) {
+      walkTo(restX(), () => play(introClips, true), -figureWidth() - 20);
+      return;
+    }
+
+    // A little character entrance: peek from the corner, sneak to centre, then run home.
+    setX(-figureWidth() * 0.36);
+    setPhase("peek");
+    entranceTimer.current = window.setTimeout(() => {
+      const middle = Math.max(8, window.innerWidth * 0.46 - figureWidth() / 2);
+      walkTo(
+        middle,
+        () => {
+          walkTo(restX(), () => setPhase("wave"), undefined, "walk");
+        },
+        -figureWidth() * 0.36,
+        "sneak",
+      );
+    }, 900);
     // introClips is rebuilt each render; the intro only needs the texts of the moment it starts.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walkTo, play, reduceMotion, english]);
@@ -161,12 +173,16 @@ export const TalkingAvatar = () => {
   // Walk in once on mount (and on each replay / reopen).
   useEffect(() => {
     if (!visible) return;
+    if (entranceTimer.current) window.clearTimeout(entranceTimer.current);
     setX(null);
     setIntroDone(false);
     setBubbleOpen(false);
     setBubbleSide(null);
     const id = window.requestAnimationFrame(() => startIntro());
-    return () => window.cancelAnimationFrame(id);
+    return () => {
+      window.cancelAnimationFrame(id);
+      if (entranceTimer.current) window.clearTimeout(entranceTimer.current);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, runId]);
 
@@ -346,6 +362,8 @@ export const TalkingAvatar = () => {
     ? "is-running"
     : phase === "sneak"
       ? "is-sneaking"
+      : phase === "peek"
+        ? "is-peeking"
       : reaction === "wave"
         ? "is-waving"
         : reaction === "sneak"
@@ -370,7 +388,7 @@ export const TalkingAvatar = () => {
           ref={avatarRef}
           className="fixed bottom-0 left-0 z-40 pointer-events-none"
           style={{ width: figureWidth() }}
-          initial={{ x: window.innerWidth + 20 }}
+          initial={{ x: -figureWidth() - 20 }}
           animate={{ x }}
           transition={{ duration: phase === "walk" || phase === "sneak" ? walkSeconds : 0, ease: "linear" }}
           onAnimationComplete={() => {
@@ -457,7 +475,7 @@ export const TalkingAvatar = () => {
           {/* Full-body cartoon sprite. */}
           <div
             aria-hidden="true"
-            className={cn("walker-sprite w-full h-[200px] md:h-[320px]", spritePose)}
+            className={cn("walker-sprite aspect-square w-full", spritePose)}
           />
         </motion.aside>
       )}
