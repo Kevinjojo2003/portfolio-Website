@@ -69,6 +69,19 @@ const speakWithBrowser = (text: string, lang: string, onEnd: () => void) => {
   return true;
 };
 
+const speakWithElevenLabs = async (text: string, signal: AbortSignal) => {
+  const response = await fetch("/.netlify/functions/avatar-speech", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ text }),
+    signal,
+  });
+  if (!response.ok) throw new Error("ElevenLabs voice request failed");
+  const url = URL.createObjectURL(await response.blob());
+  const audio = new Audio(url);
+  return { audio, url };
+};
+
 export const TalkingAvatar = () => {
   const { t, i18n } = useTranslation();
   const reduceMotion = useReducedMotion();
@@ -241,7 +254,9 @@ export const TalkingAvatar = () => {
     if (phase !== "talk" || !clip) return;
     let finished = false;
     const timers: number[] = [];
-    const audio = voiceOn && clip.audio ? new Audio(clip.audio) : null;
+    let audio: HTMLAudioElement | null = null;
+    let audioUrl: string | null = null;
+    const controller = new AbortController();
 
     const next = () => {
       if (finished) return;
@@ -256,20 +271,43 @@ export const TalkingAvatar = () => {
     };
     const byTextLength = () => timers.push(window.setTimeout(next, clip.text.length * TYPE_MS + LINE_HOLD_MS));
 
-    if (audio) {
-      audio.onerror = byTextLength;
-      audio.onended = next;
-      audio.play().catch(byTextLength);
-    } else {
-      if (!(voiceOn && speakWithBrowser(clip.text, i18n.language, () => timers.push(window.setTimeout(next, 300))))) {
+    const playVoice = async () => {
+      if (!voiceOn) {
         byTextLength();
+        return;
       }
-    }
+      try {
+        const generated = await speakWithElevenLabs(clip.text, controller.signal);
+        if (finished) {
+          URL.revokeObjectURL(generated.url);
+          return;
+        }
+        audio = generated.audio;
+        audioUrl = generated.url;
+        audio.onerror = byTextLength;
+        audio.onended = next;
+        await audio.play();
+      } catch {
+        if (finished || controller.signal.aborted) return;
+        // Local recordings and browser speech keep the avatar useful without a configured API.
+        audio = clip.audio ? new Audio(clip.audio) : null;
+        if (audio) {
+          audio.onerror = byTextLength;
+          audio.onended = next;
+          audio.play().catch(byTextLength);
+        } else if (!speakWithBrowser(clip.text, i18n.language, () => timers.push(window.setTimeout(next, 300)))) {
+          byTextLength();
+        }
+      }
+    };
+    void playVoice();
 
     return () => {
       finished = true;
       timers.forEach((id) => window.clearTimeout(id));
+      controller.abort();
       audio?.pause();
+      if (audioUrl) URL.revokeObjectURL(audioUrl);
       if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     };
   }, [phase, clip, clipIdx, queue.length, isIntro, voiceOn, i18n.language]);
