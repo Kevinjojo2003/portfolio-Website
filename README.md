@@ -60,6 +60,18 @@ The site is hosted on [Netlify](https://kevinjojo.netlify.app). The repository's
 
 To deploy through Netlify, connect the GitHub repository and use the build settings from `netlify.toml`. The production domain is `https://kevinjojo.netlify.app`.
 
+### Optional ElevenLabs avatar voice
+
+The avatar can use ElevenLabs only after a visitor deliberately activates narration. The API key is handled by a Netlify Function, so it must **never** be placed in a `VITE_*` variable, source file, or committed `.env` file.
+
+In **Netlify → Site configuration → Environment variables**, set:
+
+- `ELEVENLABS_API_KEY` — a current ElevenLabs API key
+- `ELEVENLABS_VOICE_ID` — the selected ElevenLabs voice ID
+- `ELEVENLABS_MODEL_ID` — optional; defaults to `eleven_multilingual_v2`
+
+Add the variables for production and deploy previews, then redeploy. When the function is not configured or the provider is unavailable, the site falls back to its local recordings or browser speech.
+
 ### Automatic LinkedIn post sync
 
 The GitHub Actions workflow in [`.github/workflows/linkedin-sync.yml`](.github/workflows/linkedin-sync.yml) checks for public posts on the 1st and 15th of each month and updates the five newest posts in [`src/data/linkedin-posts.json`](src/data/linkedin-posts.json). When it commits an update to `main`, the Netlify Git integration deploys the refreshed carousel.
