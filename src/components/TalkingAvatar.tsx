@@ -5,13 +5,11 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
 /**
- * Kevin walks in along the bottom edge of the page (the screen edge hides everything below his
- * chest), waves, and introduces himself with lip-synced clips in his cloned voice. Afterwards,
- * hovering over a marked card or activating its narration button makes him walk over and say the
- * matching `narrate.<id>` line.
+ * Kevin arrives once along the bottom edge of the page, then stays as a quiet, optional guide.
+ * Voice is always visitor-initiated: use the intro control or a card's “Hear about this” button.
  *
- * Clips are transparent video: HEVC-with-alpha .mov for Safari, VP9-alpha .webm elsewhere. They
- * are pre-rendered for English only; other languages fall back to the browser voice over the still.
+ * Pre-recorded English clips are used when available; other languages use the visitor's browser
+ * voice only after they explicitly choose to listen.
  */
 
 type Phase = "peek" | "walk" | "sneak" | "wave" | "talk" | "idle";
@@ -26,7 +24,6 @@ interface Clip {
 const WALK_PX_PER_SECOND = 420;
 const TYPE_MS = 28;
 const LINE_HOLD_MS = 1800;
-const NARRATE_DWELL_MS = 450;
 const BUBBLE_LINGER_MS = 4000;
 const BUBBLE_WIDTH = 300;
 const DISMISS_KEY = "kj-avatar-dismissed";
@@ -99,7 +96,7 @@ export const TalkingAvatar = () => {
   const [bubbleOpen, setBubbleOpen] = useState(false);
   const [typed, setTyped] = useState("");
   const [voiceOn, setVoiceOn] = useState(false);
-  const [reaction, setReaction] = useState<"wave" | "sneak" | null>(null);
+  const [reaction, setReaction] = useState<"wave" | null>(null);
   // Which side of him the bubble goes during hover narration (null: toward the page's middle).
   const [bubbleSide, setBubbleSide] = useState<"left" | "right" | null>(null);
   const [runId, setRunId] = useState(0);
@@ -150,24 +147,24 @@ export const TalkingAvatar = () => {
 
   const startIntro = useCallback(() => {
     if (reduceMotion) {
-      walkTo(restX(), () => play(introClips, true), -figureWidth() - 20);
+      walkTo(restX(), () => {
+        setPhase("idle");
+        setIntroDone(true);
+        setBubbleOpen(true);
+      }, window.innerWidth + 20);
       return;
     }
 
-    // A little character entrance: peek from the corner, sneak to centre, then run home.
-    setX(-figureWidth() * 0.36);
-    setPhase("peek");
-    entranceTimer.current = window.setTimeout(() => {
-      const middle = Math.max(8, window.innerWidth * 0.46 - figureWidth() / 2);
-      walkTo(
-        middle,
-        () => {
-          walkTo(restX(), () => setPhase("wave"), undefined, "walk");
-        },
-        -figureWidth() * 0.36,
-        "sneak",
-      );
-    }, 900);
+    // One clear arrival, rather than a long scripted routine competing with the page content.
+    walkTo(
+      restX(),
+      () => {
+        setPhase("idle");
+        setIntroDone(true);
+        setBubbleOpen(true);
+      },
+      window.innerWidth + 20,
+    );
     // introClips is rebuilt each render; the intro only needs the texts of the moment it starts.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walkTo, play, reduceMotion, english]);
@@ -214,10 +211,7 @@ export const TalkingAvatar = () => {
       lastReactionAt.current = Date.now();
       setReaction("wave");
       reactionTimers.current.forEach(window.clearTimeout);
-      reactionTimers.current = [
-        window.setTimeout(() => setReaction("sneak"), 700),
-        window.setTimeout(() => setReaction(null), 1550),
-      ];
+      reactionTimers.current = [window.setTimeout(() => setReaction(null), 900)];
     };
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -242,7 +236,7 @@ export const TalkingAvatar = () => {
     return () => window.clearInterval(id);
   }, [clip]);
 
-  // Play the current clip: lip-synced video (muted) plus the voice track when voice is on.
+  // Play the current clip only after an explicit visitor action.
   useEffect(() => {
     if (phase !== "talk" || !clip) return;
     let finished = false;
@@ -280,7 +274,7 @@ export const TalkingAvatar = () => {
     };
   }, [phase, clip, clipIdx, queue.length, isIntro, voiceOn, i18n.language]);
 
-  // Desktop hover and explicit narration buttons share the same card narration behavior.
+  // Narration is intentional, never triggered merely by moving a pointer over a card.
   useEffect(() => {
     if (!visible || !introDone) return;
     const narrate = (el: Element | null) => {
@@ -301,34 +295,8 @@ export const TalkingAvatar = () => {
     };
     window.addEventListener("avatar:narrate", onNarrateRequest);
 
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      return () => window.removeEventListener("avatar:narrate", onNarrateRequest);
-    }
-
-    let timer = 0;
-    let current: Element | null = null;
-
-    const onOver = (e: PointerEvent) => {
-      if ((e.target as Element | null)?.closest?.("[data-avatar-narration-button]")) {
-        current = null;
-        window.clearTimeout(timer);
-        return;
-      }
-      const el = (e.target as Element | null)?.closest?.("[data-narrate]") ?? null;
-      if (el === current) return;
-      current = el;
-      window.clearTimeout(timer);
-      if (!el) return;
-      timer = window.setTimeout(() => {
-        narrate(el);
-      }, NARRATE_DWELL_MS);
-    };
-
-    document.addEventListener("pointerover", onOver);
     return () => {
-      document.removeEventListener("pointerover", onOver);
       window.removeEventListener("avatar:narrate", onNarrateRequest);
-      window.clearTimeout(timer);
     };
     // narrationClip only reads t(); walkTo/play are stable enough for a hover handler.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -368,14 +336,12 @@ export const TalkingAvatar = () => {
         ? "is-peeking"
       : reaction === "wave"
         ? "is-waving"
-        : reaction === "sneak"
-          ? "is-sneaking"
-      : phase === "talk"
+        : phase === "talk"
         ? "is-talking"
-        : phase === "wave" || bubbleOpen
+        : phase === "wave"
         ? "is-waving"
-        : "is-peeking";
-  const bubbleText = phase === "talk" ? typed : (lastClip?.text ?? "");
+        : "is-idle";
+  const bubbleText = phase === "talk" ? typed : (lastClip?.text ?? t("avatar.line1"));
   const typing = phase === "talk" && !!clip && typed.length < clip.text.length;
   const fitsRight = x !== null && x + figureWidth() * 0.55 + BUBBLE_WIDTH <= window.innerWidth;
   const fitsLeft = x !== null && x + figureWidth() * 0.45 - BUBBLE_WIDTH >= 0;
@@ -474,11 +440,16 @@ export const TalkingAvatar = () => {
             )}
           </AnimatePresence>
 
-          {/* Full-body cartoon sprite. */}
-          <div
-            aria-hidden="true"
-            className={cn("walker-sprite aspect-square w-full", spritePose)}
-          />
+          {/* A small target makes the companion feel interactive without covering page controls. */}
+          <button
+            type="button"
+            onClick={() => setBubbleOpen((open) => !open)}
+            className="pointer-events-auto block w-full rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            aria-label="Show or hide Kevin's introduction"
+            aria-expanded={bubbleOpen}
+          >
+            <span aria-hidden="true" className={cn("walker-sprite aspect-square block w-full", spritePose)} />
+          </button>
         </motion.aside>
       )}
 

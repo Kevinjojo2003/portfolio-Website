@@ -190,6 +190,7 @@
   filter: drop-shadow(0 -6px 18px rgb(0 0 0 / 0.4));
 }
 .walker-sprite.is-running { background-position: 0 0; animation: walker-run 0.42s ease-in-out infinite; }
+.walker-sprite.is-idle { background-position: 100% 0; }
 .walker-sprite.is-waving { background-position: 100% 0; animation: walker-wave 0.85s ease-in-out infinite, walker-smile 2.6s ease-in-out infinite; }
 .walker-sprite.is-talking { background-position: 100% 0; animation: walker-talk 0.75s ease-in-out infinite, walker-smile 2.6s ease-in-out infinite; }
 .walker-sprite.is-sneaking { background-position: 0 100%; animation: walker-sneak 0.6s ease-in-out infinite; }
