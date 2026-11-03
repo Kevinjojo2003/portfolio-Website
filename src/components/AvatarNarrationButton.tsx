@@ -11,6 +11,7 @@ export const AvatarNarrationButton = () => {
       onClick={(event) => {
         const card = event.currentTarget.closest<HTMLElement>("[data-narrate]");
         if (!card) return;
+        (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "avatar_narration_click", { section: card.dataset.narrate });
         window.dispatchEvent(new CustomEvent("avatar:narrate", { detail: card }));
       }}
       className="inline-flex min-h-9 items-center gap-1.5 rounded-md border border-primary/25 px-3 py-1.5 text-xs font-medium text-primary transition-colors hover:border-primary/50 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

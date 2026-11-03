@@ -112,6 +112,7 @@ export const TalkingAvatar = () => {
   // Which side of him the bubble goes during hover narration (null: toward the page's middle).
   const [bubbleSide, setBubbleSide] = useState<"left" | "right" | null>(null);
   const [runId, setRunId] = useState(0);
+  const [currentSection, setCurrentSection] = useState("hero");
 
   const avatarRef = useRef<HTMLElement | null>(null);
   const entranceTimer = useRef<number | null>(null);
@@ -119,6 +120,17 @@ export const TalkingAvatar = () => {
   const lastReactionAt = useRef(0);
   const reactionTimers = useRef<number[]>([]);
   const afterWalk = useRef<() => void>(() => {});
+
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-narrate]"));
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries.find((item) => item.isIntersecting);
+      const id = entry?.target.getAttribute("data-narrate");
+      if (id) setCurrentSection(id);
+    }, { threshold: 0.35 });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [visible]);
 
   const clip = phase === "talk" ? queue[clipIdx] : undefined;
   const lastClip = queue[queue.length - 1];
@@ -300,6 +312,7 @@ export const TalkingAvatar = () => {
         audio.onended = next;
         await audio.play();
       } catch {
+        (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "avatar_voice_failure", { section: currentSection });
         if (finished || controller.signal.aborted) return;
         // Local recordings and browser speech keep the avatar useful without a configured API.
         audio = clip.audio ? new Audio(clip.audio) : null;
@@ -354,6 +367,13 @@ export const TalkingAvatar = () => {
 
   const replay = () => {
     setRunId((n) => n + 1);
+  };
+
+  const narrateCurrentSection = () => {
+    if (phase !== "idle") return;
+    const id = currentSection || "hero";
+    play(narrationClip(id), false);
+    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "avatar_section_narration", { section: id });
   };
 
   const toggleVoice = () => {
@@ -502,7 +522,7 @@ export const TalkingAvatar = () => {
           <button
             type="button"
             onPointerDown={(event) => runAwayFrom(event.clientX)}
-            onClick={() => setBubbleOpen((open) => !open)}
+            onClick={() => (bubbleOpen ? setBubbleOpen(false) : narrateCurrentSection())}
             className="pointer-events-auto block w-full rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label="Show or hide Kevin's introduction"
             aria-expanded={bubbleOpen}
