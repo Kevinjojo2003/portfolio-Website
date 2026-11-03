@@ -29,7 +29,7 @@ export const en = {
     "avatar.line2":
       "I build LLM systems that turn messy documents into decisions people can trust.",
     "avatar.line3":
-      "I recently wrapped up my work at Kolo, where I shipped document AI behind MyRenoWallet and Kolo Smart Select.",
+      "I’m now in the Founders’ Office at Basil Health, helping build what comes next in healthcare.",
     "avatar.line4": "I've also published multi-modal research at IEEE InC4 2025.",
     "avatar.line5": "Want to see what I've built — or just grab a quick call?",
     "avatar.listen": "Hear me say it",
@@ -44,6 +44,8 @@ export const en = {
     // clips after editing these.
     "narrate.kolo":
       "At Koloapp, I worked as a Prompt Engineer and Business Analyst. I shipped the document AI behind Kolo Smart Select and owned MyRenoWallet from research to launch.",
+    "narrate.basil":
+      "I’m currently in the Founders’ Office at Basil Health, working closely with the team on high-leverage healthcare products and operations.",
     "narrate.workcohol":
       "At Workcohol I was an AI Engineer Intern. I took a medical report platform from prototype to production, turning messy clinical PDFs into validated records.",
     "narrate.bolt":
@@ -98,6 +100,15 @@ export const en = {
     "about.experience.promptEngineer": "Prompt Engineer & Business Analyst",
     "about.experience.kolo": "Koloapp",
     "about.experience.koloDate": "Aug 2025 — Oct 2026",
+    "about.experience.foundersOffice": "Founders’ Office",
+    "about.experience.basil": "Basil Health",
+    "about.experience.basilDate": "Nov 2026 — Present",
+    "about.experience.basilImpact1":
+      "Work closely with the founders on high-priority healthcare initiatives, turning ambiguous problems into clear plans and shipped outcomes.",
+    "about.experience.basilImpact2":
+      "Support product, operations, and customer insight work across the company’s fastest-moving priorities.",
+    "about.experience.basilImpact3":
+      "Bring an AI and systems perspective to decisions that improve how healthcare products are researched, built, and delivered.",
     "about.experience.koloImpact1":
       "Define acceptance criteria, validate outputs against source documents, and route uncertain cases to human review instead of letting the system guess.",
     "about.experience.koloImpact2":

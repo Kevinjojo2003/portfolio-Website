@@ -26,6 +26,19 @@ export const Experience = () => {
 
   const roles: Role[] = [
     {
+      alt: "Basil Health",
+      narrate: "basil",
+      title: t("about.experience.foundersOffice"),
+      company: t("about.experience.basil"),
+      date: t("about.experience.basilDate"),
+      bullets: [
+        t("about.experience.basilImpact1"),
+        t("about.experience.basilImpact2"),
+        t("about.experience.basilImpact3"),
+      ],
+      stack: ["Product Strategy", "Healthcare", "Operations", "AI Systems"],
+    },
+    {
       logo: "/lovable-uploads/kolo-logo.png",
       alt: "Koloapp",
       narrate: "kolo",
