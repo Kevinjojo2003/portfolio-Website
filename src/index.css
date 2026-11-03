@@ -190,6 +190,9 @@
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-1px) scale(1.006); }
 }
+@keyframes avatar-blink { 0%, 42%, 48%, 100% { transform: scaleY(0.08); opacity: 0; } 44%, 46% { transform: scaleY(1); opacity: .75; } }
+@keyframes avatar-shadow { 0%, 100% { transform: scaleX(1); opacity: .35; } 50% { transform: scaleX(.78); opacity: .2; } }
+@keyframes avatar-hover { 0%, 100% { filter: drop-shadow(0 -6px 18px rgb(0 0 0 / .4)); } 50% { filter: drop-shadow(0 -9px 22px rgb(88 116 255 / .28)); } }
 @keyframes avatar-laugh { 0%, 100% { transform: rotate(0) translateY(0); } 35% { transform: rotate(-5deg) translateY(-4px); } 65% { transform: rotate(5deg) translateY(-2px); } }
 @keyframes avatar-surprised { 0%, 100% { transform: scale(1); } 35%, 65% { transform: scale(1.08) translateY(-3px); } }
 @keyframes avatar-hide { 0%, 100% { transform: translateX(0); opacity: 1; } 45%, 75% { transform: translateX(-18px); opacity: .45; } }
@@ -206,6 +209,37 @@
   background-position: 0 0;
   transform-origin: 50% 100%;
   filter: drop-shadow(0 -6px 18px rgb(0 0 0 / 0.4));
+  transition: background-position .28s ease, filter .28s ease, opacity .28s ease;
+  will-change: transform, filter;
+  animation-name: avatar-hover;
+  animation-duration: 4.8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.avatar-live-stage::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  bottom: -1px;
+  width: 64%;
+  height: 12px;
+  border-radius: 50%;
+  background: rgb(0 0 0 / .42);
+  filter: blur(5px);
+  pointer-events: none;
+  animation: avatar-shadow 1.1s ease-in-out infinite;
+}
+.walker-sprite:not(.is-talking)::before {
+  content: "";
+  position: absolute;
+  left: 42%;
+  top: 29%;
+  width: 15%;
+  height: 2.2%;
+  border-radius: 999px;
+  background: rgb(20 16 18 / .8);
+  transform-origin: center;
+  animation: avatar-blink 5.2s ease-in-out infinite;
 }
 .avatar-webm {
   object-fit: contain;
@@ -238,5 +272,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .walker-sprite, .walker-sprite.is-talking::after { animation: none !important; }
+  .walker-sprite, .walker-sprite::before, .walker-sprite.is-talking::after { animation: none !important; }
 }
