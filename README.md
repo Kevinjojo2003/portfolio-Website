@@ -69,6 +69,8 @@ In **Netlify → Site configuration → Environment variables**, set:
 - `ELEVENLABS_API_KEY` — a current ElevenLabs API key
 - `ELEVENLABS_VOICE_ID` — the selected ElevenLabs voice ID
 - `ELEVENLABS_MODEL_ID` — optional; defaults to `eleven_multilingual_v2`
+- `SARVAM_API_KEY` — optional; takes priority for the cloned Kevin voice
+- `SARVAM_VOICE_ID` — optional; the saved Sarvam voice ID (`svc-...`)
 
 Add the variables for production and deploy previews, then redeploy. When the function is not configured or the provider is unavailable, the site falls back to its local recordings or browser speech.
 
