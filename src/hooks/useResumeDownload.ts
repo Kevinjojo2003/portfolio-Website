@@ -1,6 +1,8 @@
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 
+type AnalyticsWindow = Window & { gtag?: (...args: unknown[]) => void };
+
 export const useResumeDownload = () => {
   const { t } = useTranslation();
 
@@ -9,8 +11,8 @@ export const useResumeDownload = () => {
 
     try {
       // Track in GA4
-      if (typeof window !== "undefined" && (window as any).gtag) {
-        (window as any).gtag("event", "file_download", {
+      if (typeof window !== "undefined" && (window as AnalyticsWindow).gtag) {
+        (window as AnalyticsWindow).gtag("event", "file_download", {
           event_category: "Resume",
           event_label: "Resume Download",
         });

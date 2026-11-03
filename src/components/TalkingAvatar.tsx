@@ -224,9 +224,10 @@ export const TalkingAvatar = () => {
     setBubbleOpen(false);
     setBubbleSide(null);
     const id = window.requestAnimationFrame(() => startIntro());
+    const timer = entranceTimer.current;
     return () => {
       window.cancelAnimationFrame(id);
-      if (entranceTimer.current) window.clearTimeout(entranceTimer.current);
+      if (timer) window.clearTimeout(timer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, runId]);
@@ -345,7 +346,7 @@ export const TalkingAvatar = () => {
       if (audioUrl) URL.revokeObjectURL(audioUrl);
       if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     };
-  }, [phase, clip, clipIdx, queue.length, isIntro, voiceOn, i18n.language]);
+  }, [phase, clip, clipIdx, queue.length, isIntro, voiceOn, i18n.language, currentSection]);
 
   // Narration is intentional, never triggered merely by moving a pointer over a card.
   useEffect(() => {
