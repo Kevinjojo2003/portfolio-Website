@@ -55,6 +55,16 @@ const figureWidth = () => (window.innerWidth < 768 ? 112 : 210);
 const restX = () => window.innerWidth - figureWidth() - (window.innerWidth < 768 ? 8 : 32);
 const clampX = (x: number) => Math.min(Math.max(x, 8), window.innerWidth - figureWidth() - 8);
 
+// Keep polished copy on screen, but expand shorthand for natural narration.
+const normalizeSpeech = (text: string) => text
+  .replace(/\bINC\s*2025\b/gi, "I-N-C twenty twenty-five")
+  .replace(/\bAI\b/g, "A-I")
+  .replace(/\bAPI\b/g, "A-P-I")
+  .replace(/\bKolo\b/g, "Ko-lo")
+  .replace(/\bBasil Health\b/g, "Basil Health, ")
+  .replace(/(\d+)\+\b/g, "$1 plus")
+  .replace(/\s*—\s*/g, ", ");
+
 // Browser speech for languages without pre-rendered clips.
 const speakWithBrowser = (text: string, lang: string, onEnd: () => void) => {
   if (!("speechSynthesis" in window)) return false;
@@ -112,6 +122,7 @@ export const TalkingAvatar = () => {
   // Which side of him the bubble goes during hover narration (null: toward the page's middle).
   const [bubbleSide, setBubbleSide] = useState<"left" | "right" | null>(null);
   const [runId, setRunId] = useState(0);
+  const [currentSection, setCurrentSection] = useState("hero");
 
   const avatarRef = useRef<HTMLElement | null>(null);
   const entranceTimer = useRef<number | null>(null);
@@ -119,6 +130,17 @@ export const TalkingAvatar = () => {
   const lastReactionAt = useRef(0);
   const reactionTimers = useRef<number[]>([]);
   const afterWalk = useRef<() => void>(() => {});
+
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-narrate]"));
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries.find((item) => item.isIntersecting);
+      const id = entry?.target.getAttribute("data-narrate");
+      if (id) setCurrentSection(id);
+    }, { threshold: 0.35 });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [visible]);
 
   const clip = phase === "talk" ? queue[clipIdx] : undefined;
   const lastClip = queue[queue.length - 1];
@@ -289,7 +311,7 @@ export const TalkingAvatar = () => {
         return;
       }
       try {
-        const generated = await speakWithElevenLabs(clip.text, controller.signal);
+        const generated = await speakWithElevenLabs(normalizeSpeech(clip.text), controller.signal);
         if (finished) {
           URL.revokeObjectURL(generated.url);
           return;
@@ -300,6 +322,7 @@ export const TalkingAvatar = () => {
         audio.onended = next;
         await audio.play();
       } catch {
+        (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "avatar_voice_failure", { section: currentSection });
         if (finished || controller.signal.aborted) return;
         // Local recordings and browser speech keep the avatar useful without a configured API.
         audio = clip.audio ? new Audio(clip.audio) : null;
@@ -307,7 +330,7 @@ export const TalkingAvatar = () => {
           audio.onerror = byTextLength;
           audio.onended = next;
           audio.play().catch(byTextLength);
-        } else if (!speakWithBrowser(clip.text, i18n.language, () => timers.push(window.setTimeout(next, 300)))) {
+        } else if (!speakWithBrowser(normalizeSpeech(clip.text), i18n.language, () => timers.push(window.setTimeout(next, 300)))) {
           byTextLength();
         }
       }
@@ -354,6 +377,13 @@ export const TalkingAvatar = () => {
 
   const replay = () => {
     setRunId((n) => n + 1);
+  };
+
+  const narrateCurrentSection = () => {
+    if (phase !== "idle") return;
+    const id = currentSection || "hero";
+    play(narrationClip(id), false);
+    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "avatar_section_narration", { section: id });
   };
 
   const toggleVoice = () => {
@@ -502,7 +532,7 @@ export const TalkingAvatar = () => {
           <button
             type="button"
             onPointerDown={(event) => runAwayFrom(event.clientX)}
-            onClick={() => setBubbleOpen((open) => !open)}
+            onClick={() => (bubbleOpen ? setBubbleOpen(false) : narrateCurrentSection())}
             className="pointer-events-auto block w-full rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label="Show or hide Kevin's introduction"
             aria-expanded={bubbleOpen}

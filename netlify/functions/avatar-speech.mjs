@@ -1,4 +1,7 @@
 const MAX_TEXT_LENGTH = 520;
+const WINDOW_MS = 60_000;
+const MAX_REQUESTS = 8;
+const requestLog = new Map();
 
 const json = (statusCode, body) => new Response(JSON.stringify(body), {
   status: statusCode,
@@ -34,6 +37,14 @@ export default async (request) => {
   if (typeof text !== "string" || !text.trim() || text.length > MAX_TEXT_LENGTH) {
     return json(400, { error: `Text must be between 1 and ${MAX_TEXT_LENGTH} characters.` });
   }
+
+  const forwarded = request.headers.get("x-forwarded-for") || "anonymous";
+  const ip = forwarded.split(",")[0].trim();
+  const now = Date.now();
+  const recent = (requestLog.get(ip) || []).filter((timestamp) => now - timestamp < WINDOW_MS);
+  if (recent.length >= MAX_REQUESTS) return json(429, { error: "Too many voice requests. Please try again in a minute." });
+  recent.push(now);
+  requestLog.set(ip, recent);
 
   if (sarvamKey && sarvamVoiceId) {
     const form = new FormData();
