@@ -140,6 +140,18 @@ export const TalkingAvatar = () => {
     [x, reduceMotion],
   );
 
+  // A playful escape when the visitor actually touches/clicks Kevin.
+  const runAwayFrom = useCallback((clientX: number) => {
+    if (reduceMotion || x === null || phase !== "idle") return;
+    const center = x + figureWidth() / 2;
+    const preferred = clientX < center ? x + 150 : x - 150;
+    const target = clampX(preferred);
+    const fallback = target === x ? clampX(clientX < center ? x - 190 : x + 190) : target;
+    setBubbleOpen(false);
+    setReaction(null);
+    walkTo(fallback, () => setPhase("idle"), x, "sneak");
+  }, [phase, reduceMotion, walkTo, x]);
+
   const play = useCallback((clips: Clip[], intro: boolean) => {
     setQueue(clips);
     setClipIdx(0);
@@ -480,6 +492,7 @@ export const TalkingAvatar = () => {
           {/* A small target makes the companion feel interactive without covering page controls. */}
           <button
             type="button"
+            onPointerDown={(event) => runAwayFrom(event.clientX)}
             onClick={() => setBubbleOpen((open) => !open)}
             className="pointer-events-auto block w-full rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label="Show or hide Kevin's introduction"
