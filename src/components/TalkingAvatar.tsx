@@ -89,13 +89,12 @@ export const TalkingAvatar = () => {
 
   const introClips: Clip[] = [1, 2, 3, 4, 5].map((n) => ({
     text: t(`avatar.line${n}`),
-    // Line 4 references the current role, so use browser speech until a refreshed recording is added.
-    audio: english && n !== 4 ? `/voice/line${n}.m4a` : undefined,
+    // Lines 3–4 changed with the role transition; use browser speech until refreshed recordings exist.
+    audio: english && n !== 3 && n !== 4 ? `/voice/line${n}.m4a` : undefined,
   }));
   const narrationClip = (id: string): Clip => ({
     text: t(`narrate.${id}`),
-    // The Kolo recording refers to an active role; keep its audio aligned with the updated copy.
-    audio: english && id !== "kolo" ? `/voice/narrate/${id}.m4a` : undefined,
+    audio: english && id !== "basil" ? `/voice/narrate/${id}.m4a` : undefined,
   });
 
   const [visible, setVisible] = useState(() => !readDismissed());
