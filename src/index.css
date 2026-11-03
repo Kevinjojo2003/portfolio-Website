@@ -190,6 +190,14 @@
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-1px) scale(1.006); }
 }
+@keyframes avatar-laugh { 0%, 100% { transform: rotate(0) translateY(0); } 35% { transform: rotate(-5deg) translateY(-4px); } 65% { transform: rotate(5deg) translateY(-2px); } }
+@keyframes avatar-surprised { 0%, 100% { transform: scale(1); } 35%, 65% { transform: scale(1.08) translateY(-3px); } }
+@keyframes avatar-hide { 0%, 100% { transform: translateX(0); opacity: 1; } 45%, 75% { transform: translateX(-18px); opacity: .45; } }
+@keyframes avatar-follow { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg) translateY(-2px); } }
+.walker-sprite.reaction-laugh { animation: avatar-laugh .7s ease-in-out infinite; }
+.walker-sprite.reaction-surprised { animation: avatar-surprised .55s ease-in-out infinite; }
+.walker-sprite.reaction-hide { animation: avatar-hide .8s ease-in-out forwards; }
+.walker-sprite.reaction-follow { animation: avatar-follow .8s ease-in-out infinite; }
 .walker-sprite {
   position: relative;
   background-image: url("/avatar/kevin-cartoon-sprites.png");

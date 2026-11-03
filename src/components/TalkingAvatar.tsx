@@ -108,7 +108,7 @@ export const TalkingAvatar = () => {
   const [bubbleOpen, setBubbleOpen] = useState(false);
   const [typed, setTyped] = useState("");
   const [voiceOn, setVoiceOn] = useState(false);
-  const [reaction, setReaction] = useState<"wave" | null>(null);
+  const [reaction, setReaction] = useState<"wave" | "laugh" | "surprised" | "hide" | "follow" | null>(null);
   // Which side of him the bubble goes during hover narration (null: toward the page's middle).
   const [bubbleSide, setBubbleSide] = useState<"left" | "right" | null>(null);
   const [runId, setRunId] = useState(0);
@@ -148,7 +148,7 @@ export const TalkingAvatar = () => {
     const target = clampX(preferred);
     const fallback = target === x ? clampX(clientX < center ? x - 190 : x + 190) : target;
     setBubbleOpen(false);
-    setReaction(null);
+    setReaction("hide");
     walkTo(fallback, () => setPhase("idle"), x, "sneak");
   }, [phase, reduceMotion, walkTo, x]);
 
@@ -233,7 +233,8 @@ export const TalkingAvatar = () => {
 
       cursorNearAvatar.current = true;
       lastReactionAt.current = Date.now();
-      setReaction("wave");
+      const reactions = ["wave", "laugh", "surprised", "follow"] as const;
+      setReaction(reactions[Math.floor(Math.random() * reactions.length)]);
       reactionTimers.current.forEach(window.clearTimeout);
       reactionTimers.current = [window.setTimeout(() => setReaction(null), 900)];
     };
@@ -384,7 +385,15 @@ export const TalkingAvatar = () => {
       : phase === "peek"
         ? "is-peeking"
       : reaction === "wave"
-        ? "is-waving"
+        ? "is-waving reaction-wave"
+        : reaction === "laugh"
+          ? "is-waving reaction-laugh"
+          : reaction === "surprised"
+            ? "is-idle reaction-surprised"
+            : reaction === "hide"
+              ? "is-peeking reaction-hide"
+              : reaction === "follow"
+                ? "is-idle reaction-follow"
         : phase === "talk"
         ? "is-talking"
         : phase === "wave"
