@@ -160,6 +160,14 @@
   0%, 100% { transform: translateY(0) rotate(-1.5deg); }
   50% { transform: translateY(-7px) rotate(1.5deg); }
 }
+@keyframes walker-run-frames {
+  0%, 45% { background-position: 66.66% 100%; }
+  55%, 100% { background-position: 100% 100%; }
+}
+@keyframes walker-blink-frame {
+  0%, 84%, 100% { background-position: 0 0; }
+  88%, 92% { background-position: 66.66% 0; }
+}
 @keyframes walker-sneak {
   0%, 100% { transform: translateY(0) rotate(-1deg) scaleY(0.98); }
   50% { transform: translateY(-2px) rotate(1deg) scaleY(1); }
@@ -203,9 +211,9 @@
 .walker-sprite.reaction-follow { animation: avatar-follow .8s ease-in-out infinite; }
 .walker-sprite {
   position: relative;
-  background-image: url("/avatar/kevin-cartoon-sprites.png");
+  background-image: url("/avatar/kevin-cartoon-live-sprites.png");
   background-repeat: no-repeat;
-  background-size: 200% 200%;
+  background-size: 400% 400%;
   background-position: 0 0;
   transform-origin: 50% 100%;
   filter: drop-shadow(0 -6px 18px rgb(0 0 0 / 0.4));
@@ -241,22 +249,12 @@
   transform-origin: center;
   animation: avatar-blink 5.2s ease-in-out infinite;
 }
-.avatar-webm {
-  object-fit: contain;
-  object-position: bottom center;
-  filter: drop-shadow(0 -6px 18px rgb(0 0 0 / .4));
-  animation: avatar-video-presence .8s ease both;
-}
-@keyframes avatar-video-presence {
-  from { opacity: 0; transform: translateY(8px) scale(.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-.walker-sprite.is-running { background-position: 0 0; animation: walker-run 0.42s ease-in-out infinite; }
-.walker-sprite.is-idle { background-position: 100% 0; animation: avatar-idle-breathe 3.4s ease-in-out infinite; }
-.walker-sprite.is-waving { background-position: 100% 0; animation: walker-wave 0.85s ease-in-out infinite, walker-smile 2.6s ease-in-out infinite; }
-.walker-sprite.is-talking { background-position: 100% 0; animation: walker-talk 0.75s ease-in-out infinite, walker-smile 2.6s ease-in-out infinite; }
+.walker-sprite.is-running { background-position: 66.66% 100%; animation: walker-run 0.42s ease-in-out infinite, walker-run-frames 0.42s steps(2, end) infinite; }
+.walker-sprite.is-idle { background-position: 0 0; animation: avatar-idle-breathe 3.4s ease-in-out infinite, walker-blink-frame 5.2s steps(1, end) infinite; }
+.walker-sprite.is-waving { background-position: 33.33% 33.33%; animation: walker-wave 0.85s ease-in-out infinite, walker-smile 2.6s ease-in-out infinite; }
+.walker-sprite.is-talking { background-position: 0 66.66%; animation: walker-talk 0.75s ease-in-out infinite, walker-smile 2.6s ease-in-out infinite; }
 .walker-sprite.is-sneaking { background-position: 0 100%; animation: walker-sneak 0.6s ease-in-out infinite; }
-.walker-sprite.is-peeking { background-position: 100% 100%; animation: walker-peek 3.2s ease-in-out infinite; }
+.walker-sprite.is-peeking { background-position: 33.33% 100%; animation: walker-peek 3.2s ease-in-out infinite; }
 .walker-sprite.is-talking::after {
   content: "";
   position: absolute;
