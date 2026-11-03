@@ -26,6 +26,7 @@ export const Experience = () => {
 
   const roles: Role[] = [
     {
+      logo: "/avatar/basil-health-logo.png",
       alt: "Basil Health",
       narrate: "basil",
       title: t("about.experience.foundersOffice"),
