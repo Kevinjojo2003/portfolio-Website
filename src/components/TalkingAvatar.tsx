@@ -406,7 +406,11 @@ export const TalkingAvatar = () => {
   const preferLeft = bubbleSide ? bubbleSide === "left" : x !== null && x + figureWidth() / 2 > window.innerWidth / 2;
   const bubbleOnLeft = preferLeft ? fitsLeft || !fitsRight : !fitsRight && fitsLeft;
   const showCtas = phase === "idle" && isIntro;
-  const motionClip = phase === "wave" ? "/avatar/walk/wave.webm" : phase === "talk" ? "/avatar/walk/line1.webm" : null;
+  const motionClip = phase === "wave"
+    ? "/avatar/walk/wave.webm"
+    : phase === "talk"
+      ? `/avatar/walk/line${Math.min(clipIdx + 1, 5)}.webm`
+      : null;
 
   return (
     <>
@@ -517,6 +521,7 @@ export const TalkingAvatar = () => {
                 loop
                 muted
                 playsInline
+                preload="auto"
                 aria-hidden="true"
               />
             ) : (
