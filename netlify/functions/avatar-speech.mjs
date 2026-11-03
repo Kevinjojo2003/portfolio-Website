@@ -17,9 +17,11 @@ export default async (request) => {
     return json(403, { error: "This endpoint is only available to the portfolio site." });
   }
 
-  const apiKey = process.env.ELEVENLABS_API_KEY;
-  const voiceId = process.env.ELEVENLABS_VOICE_ID;
-  if (!apiKey || !voiceId) {
+  const sarvamKey = process.env.SARVAM_API_KEY;
+  const sarvamVoiceId = process.env.SARVAM_VOICE_ID;
+  const elevenLabsKey = process.env.ELEVENLABS_API_KEY;
+  const elevenLabsVoiceId = process.env.ELEVENLABS_VOICE_ID;
+  if ((!sarvamKey || !sarvamVoiceId) && (!elevenLabsKey || !elevenLabsVoiceId)) {
     return json(503, { error: "Avatar voice is not configured yet." });
   }
 
@@ -33,11 +35,32 @@ export default async (request) => {
     return json(400, { error: `Text must be between 1 and ${MAX_TEXT_LENGTH} characters.` });
   }
 
-  const upstream = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(voiceId)}/stream`, {
+  if (sarvamKey && sarvamVoiceId) {
+    const form = new FormData();
+    form.append("voice_id", sarvamVoiceId);
+    form.append("text", text.trim());
+    form.append("language_code", "en-IN");
+    form.append("output_audio_codec", "wav");
+    const upstream = await fetch("https://api.sarvam.ai/voices/clone", {
+      method: "POST",
+      headers: { "api-subscription-key": sarvamKey },
+      body: form,
+    });
+    if (!upstream.ok) return json(502, { error: "Sarvam voice generation is unavailable." });
+    const payload = await upstream.json();
+    const encoded = payload.audio_b64 || payload.audio;
+    if (!encoded) return json(502, { error: "Sarvam returned no audio." });
+    return new Response(Buffer.from(encoded, "base64"), {
+      status: 200,
+      headers: { "content-type": "audio/wav", "cache-control": "private, max-age=300" },
+    });
+  }
+
+  const upstream = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(elevenLabsVoiceId)}/stream`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      "xi-api-key": apiKey,
+      "xi-api-key": elevenLabsKey,
       accept: "audio/mpeg",
     },
     body: JSON.stringify({
