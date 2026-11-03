@@ -55,6 +55,16 @@ const figureWidth = () => (window.innerWidth < 768 ? 112 : 210);
 const restX = () => window.innerWidth - figureWidth() - (window.innerWidth < 768 ? 8 : 32);
 const clampX = (x: number) => Math.min(Math.max(x, 8), window.innerWidth - figureWidth() - 8);
 
+// Keep polished copy on screen, but expand shorthand for natural narration.
+const normalizeSpeech = (text: string) => text
+  .replace(/\bINC\s*2025\b/gi, "I-N-C twenty twenty-five")
+  .replace(/\bAI\b/g, "A-I")
+  .replace(/\bAPI\b/g, "A-P-I")
+  .replace(/\bKolo\b/g, "Ko-lo")
+  .replace(/\bBasil Health\b/g, "Basil Health, ")
+  .replace(/(\d+)\+\b/g, "$1 plus")
+  .replace(/\s*—\s*/g, ", ");
+
 // Browser speech for languages without pre-rendered clips.
 const speakWithBrowser = (text: string, lang: string, onEnd: () => void) => {
   if (!("speechSynthesis" in window)) return false;
@@ -289,7 +299,7 @@ export const TalkingAvatar = () => {
         return;
       }
       try {
-        const generated = await speakWithElevenLabs(clip.text, controller.signal);
+        const generated = await speakWithElevenLabs(normalizeSpeech(clip.text), controller.signal);
         if (finished) {
           URL.revokeObjectURL(generated.url);
           return;
@@ -307,7 +317,7 @@ export const TalkingAvatar = () => {
           audio.onerror = byTextLength;
           audio.onended = next;
           audio.play().catch(byTextLength);
-        } else if (!speakWithBrowser(clip.text, i18n.language, () => timers.push(window.setTimeout(next, 300)))) {
+        } else if (!speakWithBrowser(normalizeSpeech(clip.text), i18n.language, () => timers.push(window.setTimeout(next, 300)))) {
           byTextLength();
         }
       }
