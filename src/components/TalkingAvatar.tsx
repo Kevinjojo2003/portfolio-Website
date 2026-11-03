@@ -451,7 +451,7 @@ export const TalkingAvatar = () => {
       {visible && x !== null && (
         <motion.aside
           ref={avatarRef}
-          className="fixed bottom-0 left-0 z-40 pointer-events-none"
+          className="avatar-live-stage fixed bottom-0 left-0 z-40 pointer-events-none"
           style={{ width: figureWidth() }}
           initial={{ x: -figureWidth() - 20 }}
           animate={{ x }}
