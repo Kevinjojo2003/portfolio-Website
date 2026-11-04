@@ -1,6 +1,8 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
+type AnalyticsWindow = Window & { gtag?: (...args: unknown[]) => void };
+
 interface Props {
   children: ReactNode;
 }
@@ -21,8 +23,8 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "exception", {
+    if (typeof window !== "undefined" && (window as AnalyticsWindow).gtag) {
+      (window as AnalyticsWindow).gtag("event", "exception", {
         description: error.message,
         fatal: true,
       });
