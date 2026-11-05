@@ -442,15 +442,12 @@ export const TalkingAvatar = () => {
   const bubbleOnLeft = preferLeft ? fitsLeft || !fitsRight : !fitsRight && fitsLeft;
   const showCtas = phase === "idle" && isIntro;
   // Cartoon clips: base path without extension; the video plays WebM, Safari gets the HEVC .mov.
-  const motionBase = phase === "walk"
-    ? "/avatar/cartoon/run"
-    : phase === "sneak"
-      ? "/avatar/cartoon/sneak"
-      : phase === "wave"
+  // Walk-in and sneak slide the page-side position; the standing idle clip keeps the full figure in frame.
+  const motionBase = phase === "walk" || phase === "sneak" || phase === "idle"
+    ? "/avatar/cartoon/idle"
+    : phase === "wave"
         ? "/avatar/cartoon/wave"
-        : phase === "idle"
-          ? "/avatar/cartoon/idle"
-          : phase === "talk"
+        : phase === "talk"
             ? (clip?.video ?? null)
             : null;
 
@@ -557,7 +554,7 @@ export const TalkingAvatar = () => {
             {motionBase && !reduceMotion ? (
               <video
                 key={motionBase}
-                className="avatar-webm aspect-square block w-full"
+                className="avatar-webm aspect-[1/2] block w-full"
                 autoPlay
                 loop={phase !== "talk"}
                 muted
