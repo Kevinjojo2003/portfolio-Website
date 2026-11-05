@@ -19,6 +19,8 @@ interface Clip {
   text: string;
   /** Matching cloned-voice audio. */
   audio?: string;
+  /** Cartoon talking clip, without extension (.webm / .mov). */
+  video?: string;
 }
 
 const WALK_PX_PER_SECOND = 420;
@@ -101,10 +103,12 @@ export const TalkingAvatar = () => {
     text: t(`avatar.line${n}`),
     // Lines 3–4 changed with the role transition; use browser speech until refreshed recordings exist.
     audio: english && n !== 3 && n !== 4 ? `/voice/line${n}.m4a` : undefined,
+    video: english ? `/avatar/cartoon/talk/line${n}` : undefined,
   }));
   const narrationClip = (id: string): Clip => ({
     text: t(`narrate.${id}`),
     audio: english && id !== "basil" ? `/voice/narrate/${id}.m4a` : undefined,
+    video: english && id !== "basil" ? `/avatar/cartoon/narrate/${id}` : undefined,
   });
 
   const [visible, setVisible] = useState(() => !readDismissed());
@@ -383,7 +387,7 @@ export const TalkingAvatar = () => {
   const narrateCurrentSection = () => {
     if (phase !== "idle") return;
     const id = currentSection || "hero";
-    play(narrationClip(id), false);
+    play([narrationClip(id)], false);
     (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "avatar_section_narration", { section: id });
   };
 
@@ -437,15 +441,18 @@ export const TalkingAvatar = () => {
   const preferLeft = bubbleSide ? bubbleSide === "left" : x !== null && x + figureWidth() / 2 > window.innerWidth / 2;
   const bubbleOnLeft = preferLeft ? fitsLeft || !fitsRight : !fitsRight && fitsLeft;
   const showCtas = phase === "idle" && isIntro;
-  const motionClip = phase === "walk"
-    ? "/avatar/walk/line1.webm"
+  // Cartoon clips: base path without extension; the video plays WebM, Safari gets the HEVC .mov.
+  const motionBase = phase === "walk"
+    ? "/avatar/cartoon/run"
     : phase === "sneak"
-      ? "/avatar/walk/line2.webm"
+      ? "/avatar/cartoon/sneak"
       : phase === "wave"
-        ? "/avatar/walk/wave.webm"
-        : phase === "talk"
-          ? `/avatar/walk/line${Math.min(clipIdx + 1, 5)}.webm`
-          : null;
+        ? "/avatar/cartoon/wave"
+        : phase === "idle"
+          ? "/avatar/cartoon/idle"
+          : phase === "talk"
+            ? (clip?.video ?? null)
+            : null;
 
   return (
     <>
@@ -547,18 +554,20 @@ export const TalkingAvatar = () => {
             aria-label="Show or hide Kevin's introduction"
             aria-expanded={bubbleOpen}
           >
-            {motionClip && !reduceMotion ? (
+            {motionBase && !reduceMotion ? (
               <video
-                key={motionClip}
+                key={motionBase}
                 className="avatar-webm aspect-square block w-full"
-                src={motionClip}
                 autoPlay
-                loop
+                loop={phase !== "talk"}
                 muted
                 playsInline
                 preload="auto"
                 aria-hidden="true"
-              />
+              >
+                <source src={`${motionBase}.mov`} type='video/quicktime; codecs="hvc1"' />
+                <source src={`${motionBase}.webm`} type="video/webm" />
+              </video>
             ) : (
               <span aria-hidden="true" className={cn("walker-sprite aspect-square block w-full", spritePose)} />
             )}
