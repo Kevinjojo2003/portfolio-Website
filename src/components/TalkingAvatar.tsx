@@ -123,6 +123,7 @@ export const TalkingAvatar = () => {
   const [bubbleSide, setBubbleSide] = useState<"left" | "right" | null>(null);
   const [runId, setRunId] = useState(0);
   const [currentSection, setCurrentSection] = useState("hero");
+  const [videoFailed, setVideoFailed] = useState(false);
 
   const avatarRef = useRef<HTMLElement | null>(null);
   const entranceTimer = useRef<number | null>(null);
@@ -437,15 +438,15 @@ export const TalkingAvatar = () => {
   const preferLeft = bubbleSide ? bubbleSide === "left" : x !== null && x + figureWidth() / 2 > window.innerWidth / 2;
   const bubbleOnLeft = preferLeft ? fitsLeft || !fitsRight : !fitsRight && fitsLeft;
   const showCtas = phase === "idle" && isIntro;
-  const motionClip = phase === "walk"
-    ? "/avatar/walk/line1.webm"
-    : phase === "sneak"
-      ? "/avatar/walk/line2.webm"
-      : phase === "wave"
-        ? "/avatar/walk/wave.webm"
-        : phase === "talk"
-          ? `/avatar/walk/line${Math.min(clipIdx + 1, 5)}.webm`
-          : null;
+  // The idle/walk assets are not consistently framed; use the aligned sprite for those states.
+  // WebM is reserved for the wave and talking clips, which have matching full-body framing.
+  const motionClip = phase === "wave"
+    ? "/avatar/walk/wave.webm"
+    : phase === "talk"
+      ? `/avatar/walk/line${Math.min(clipIdx + 1, 5)}.webm`
+      : null;
+
+  useEffect(() => setVideoFailed(false), [motionClip]);
 
   return (
     <>
@@ -547,7 +548,7 @@ export const TalkingAvatar = () => {
             aria-label="Show or hide Kevin's introduction"
             aria-expanded={bubbleOpen}
           >
-            {motionClip && !reduceMotion ? (
+            {motionClip && !reduceMotion && !videoFailed ? (
               <video
                 key={motionClip}
                 className="avatar-webm aspect-square block w-full"
@@ -557,6 +558,7 @@ export const TalkingAvatar = () => {
                 muted
                 playsInline
                 preload="auto"
+                onError={() => setVideoFailed(true)}
                 aria-hidden="true"
               />
             ) : (
