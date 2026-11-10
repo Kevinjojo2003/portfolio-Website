@@ -254,7 +254,8 @@
 .walker-sprite.is-waving { background-position: 33.33% 33.33%; animation: walker-wave 0.85s ease-in-out infinite, walker-smile 2.6s ease-in-out infinite; }
 .walker-sprite.is-talking { background-position: 0 66.66%; animation: walker-talk 0.75s ease-in-out infinite, walker-smile 2.6s ease-in-out infinite; }
 .walker-sprite.is-sneaking { background-position: 0 100%; animation: walker-sneak 0.6s ease-in-out infinite; }
-.walker-sprite.is-peeking { background-position: 33.33% 100%; animation: walker-peek 3.2s ease-in-out infinite; }
+/* The peek reaction uses the aligned full-body frame so it never renders as a cropped giant half-body. */
+.walker-sprite.is-peeking { background-position: 0 0; animation: walker-peek 3.2s ease-in-out infinite, avatar-idle-breathe 3.4s ease-in-out infinite; }
 .walker-sprite.is-talking::after {
   content: "";
   position: absolute;
