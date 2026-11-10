@@ -123,6 +123,7 @@ export const TalkingAvatar = () => {
   const [bubbleSide, setBubbleSide] = useState<"left" | "right" | null>(null);
   const [runId, setRunId] = useState(0);
   const [currentSection, setCurrentSection] = useState("hero");
+  const [videoFailed, setVideoFailed] = useState(false);
 
   const avatarRef = useRef<HTMLElement | null>(null);
   const entranceTimer = useRef<number | null>(null);
@@ -447,6 +448,8 @@ export const TalkingAvatar = () => {
           ? `/avatar/walk/line${Math.min(clipIdx + 1, 5)}.webm`
           : null;
 
+  useEffect(() => setVideoFailed(false), [motionClip]);
+
   return (
     <>
       {visible && x !== null && (
@@ -547,7 +550,7 @@ export const TalkingAvatar = () => {
             aria-label="Show or hide Kevin's introduction"
             aria-expanded={bubbleOpen}
           >
-            {motionClip && !reduceMotion ? (
+            {motionClip && !reduceMotion && !videoFailed ? (
               <video
                 key={motionClip}
                 className="avatar-webm aspect-square block w-full"
@@ -557,6 +560,7 @@ export const TalkingAvatar = () => {
                 muted
                 playsInline
                 preload="auto"
+                onError={() => setVideoFailed(true)}
                 aria-hidden="true"
               />
             ) : (
