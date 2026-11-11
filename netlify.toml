@@ -9,6 +9,11 @@
   directory = "netlify/functions"
 
 [[redirects]]
+  from = "/Rewind"
+  to = "/Rewind/"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
