@@ -12,8 +12,13 @@
       : null;
   }
 
+  var WHO = C.ownerName ? NAME + ' is run by ' + C.ownerName + (C.siteAddress ? ' and lives at ' + C.siteAddress : '') + '. ' : '';
+
   function privacy() {
     var s = [
+      { h: 'Who this covers', p: [
+        WHO + 'This policy covers only the Rewind & Renew pages' + (C.siteAddress ? ' (' + C.siteAddress + ')' : '') + '. ' + (C.ownerName ? 'Other pages on the same domain are separate and may work differently, so statements such as “no analytics” apply to this part of the site only.' : '')
+      ] },
       { h: 'The short version', p: [
         NAME + ' does not store, save, or sell your answers, stories, or images. We have no accounts, no database, and no copy of anything you write. Everything you create stays in your own web browser, on your own device.' +
         (C.imageEndpoint ? ' The one exception is your picture: to create it with AI, a short description built from your hopes is sent, through our server, to ElevenLabs. We don’t keep it, and you can choose a drawn image instead so that nothing is sent.' : ' Nothing leaves your device unless you choose to send it.')
@@ -39,7 +44,7 @@
         'A few technical details are worth knowing, even though none of them include your answers:'
       ], ul: [
         'Fonts. This site loads its typefaces from Google Fonts. When your browser requests them, Google receives standard connection information such as your IP address and browser type. Google’s own privacy policy covers that.',
-        'Hosting. The company that serves this website may keep ordinary server logs (such as your IP address, the time, and which files were requested). Those logs do not contain what you write.',
+        'Hosting. ' + (C.hostName ? 'This site is served by ' + C.hostName + ', which' : 'The company that serves this website') + ' may keep ordinary server logs (such as your IP address, the time, and which files were requested). Those logs do not contain what you write.',
         'Your device. Anyone who can use your device and browser could open this site and see a saved reflection. If you share a device, use “Delete my reflection” when you are done.'
       ] },
       { h: 'When you choose to share or save', p: [
@@ -87,7 +92,7 @@
     var AI = !!C.imageEndpoint;
     var s = [
       { h: 'Welcome', p: [
-        'These terms explain how you may use ' + NAME + '. By using the site you agree to them. If you don’t agree, please don’t use it. We’ve tried to keep them plain and short. Please also read our Privacy Policy, which explains how your information is handled.'
+        'These terms explain how you may use ' + NAME + (C.ownerName ? ', run by ' + C.ownerName : '') + '. By using the site you agree to them. If you don’t agree, please don’t use it. We’ve tried to keep them plain and short. Please also read our Privacy Policy, which explains how your information is handled.'
       ] },
       { h: 'What the site is', p: [
         NAME + ' is a personal, year-end reflection tool. It helps you write about your year, turns your own words into a story, and creates an imaginative story and image about the year ahead. It is for personal, non-commercial use.'
@@ -128,7 +133,7 @@
         'Don’t use the site to create content that is unlawful, harassing, hateful, or that infringes someone else’s rights.',
         'Don’t try to get around the limits or safeguards in place' + (AI ? ', including the AI image limits and content checks' : '') + '.',
         'Don’t copy the site’s design, text, or code and present it as your own.',
-        'The site’s design, text, code, and sample artwork belong to the site’s creators.'
+        'The site’s design, text, code, and sample artwork belong to ' + (C.ownerName || 'the site’s creators') + '.'
       ] },
       { h: 'Third-party services', p: [
         'The site relies on third parties, such as Google Fonts for typefaces' + (AI ? ' and ElevenLabs for AI images' : '') + '. We don’t control them, and they may change or become unavailable. Their own terms and privacy policies apply to what they do.'
@@ -141,6 +146,9 @@
       ] },
       { h: 'Ending your use', p: [
         'You can stop using the site at any time and delete everything saved on your device using “Delete my reflection”. We may restrict access for anyone who breaks these terms or misuses the site.'
+      ] },
+      { h: 'Governing law', p: [
+        'These terms are governed by the laws of ' + (C.governingLaw || 'the place where the site’s operator is based') + ', and any dispute about them is for the courts there, unless the law where you live says otherwise.'
       ] },
       { h: 'Changes', p: [
         'We may update these terms. The date at the top shows when they last changed. Continuing to use the site after a change means you accept the updated terms.'

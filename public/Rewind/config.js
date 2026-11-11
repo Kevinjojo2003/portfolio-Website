@@ -25,15 +25,19 @@ window.RR_CONFIG = {
 
   // Shown on the Privacy Policy and Terms pages.
   operatorName: 'Rewind & Renew',
+  ownerName: 'Kevin Jojo',        // the person responsible for this site; shown in the Privacy Policy and Terms
+  siteAddress: 'kevinjojo.in/Rewind/', // where the site is hosted
+  hostName: 'Netlify',            // the company that serves the site (named in the Privacy Policy). Set null if unknown.
+  governingLaw: 'India',          // used in the Terms. Ask a lawyer to confirm the wording. Set null to omit.
   contactEmail: null,            // e.g. 'hello@yourdomain.com'. Leave null to omit a contact line.
-  policyUpdated: 'November 10, 2026',
+  policyUpdated: 'November 11, 2026',
 
   // Optional AI images via ElevenLabs. Served by server.js, which keeps your API key
   // secret. When the server has a key, AI images are used automatically (with a visible
   // notice and a "use a drawn image instead" choice). If the server has no key, or this
   // site is hosted statically, the feature stays hidden and the drawn images are used.
   // Set null to remove the feature and its privacy wording completely.
-  imageEndpoint: 'api/image',   // relative, so it also works when the site lives in a folder such as /Rewind/
+  imageEndpoint: null,   // relative, so it also works when the site lives in a folder such as /Rewind/
 
   storageKey: 'rewind-and-renew'
 };
