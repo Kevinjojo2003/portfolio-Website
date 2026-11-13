@@ -384,7 +384,7 @@ export const TalkingAvatar = () => {
   const narrateCurrentSection = () => {
     if (phase !== "idle") return;
     const id = currentSection || "hero";
-    play(narrationClip(id), false);
+    play([narrationClip(id)], false);
     (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "avatar_section_narration", { section: id });
   };
 
