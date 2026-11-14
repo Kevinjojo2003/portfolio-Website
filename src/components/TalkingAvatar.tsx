@@ -448,6 +448,8 @@ export const TalkingAvatar = () => {
 
   useEffect(() => setVideoFailed(false), [motionClip]);
 
+  useEffect(() => setVideoFailed(false), [motionClip]);
+
   return (
     <>
       {visible && x !== null && (
